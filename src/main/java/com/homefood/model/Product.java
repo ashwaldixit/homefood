@@ -1,7 +1,6 @@
 package com.homefood.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,8 +9,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -30,10 +29,12 @@ public class Product {
 	@Column(unique = true, nullable = false)
 	private String name;
 
+	@NotNull
 	@CreatedDate
 	@Column(name = "createddate")
 	private LocalDateTime createdDate;
 
+	@NotNull
 	@LastModifiedDate
 	@Column(name = "lastmodifieddate")
 	private LocalDateTime lastModifiedDate;
@@ -47,8 +48,16 @@ public class Product {
 	@Column(nullable = false)
 	private String description;
 
-	@ManyToMany(mappedBy = "products")
-	private List<Category> categories;
+	@Version
+	private int version;
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
 
 	public long getProductid() {
 		return productid;
@@ -104,14 +113,6 @@ public class Product {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public List<Category> getCategories() {
-		return categories;
-	}
-
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
 	}
 
 }

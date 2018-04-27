@@ -1,14 +1,18 @@
 package com.homefood.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -20,11 +24,11 @@ import com.homefood.codetype.RecordStatus;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Category {
+public class Caterer {
 
 	@Id
 	@GeneratedValue
-	private long categoryid;
+	private long catererid;
 
 	@Column(unique = true, nullable = false)
 	private String name;
@@ -42,23 +46,43 @@ public class Category {
 	@Enumerated(EnumType.STRING)
 	private RecordStatus recordStatus = RecordStatus.Active;
 
+	@Column(name = "imageurl")
+	private String imageUrl;
+
+	@Column(nullable = false)
+	private String description;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<CategoryProduct> categoryProducts;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Section> sections;
+
 	@Version
 	private int version;
 
-	public int getVersion() {
-		return version;
+	public List<CategoryProduct> getCategoryProducts() {
+		return categoryProducts;
 	}
 
-	public void setVersion(int version) {
-		this.version = version;
+	public void setCategoryProducts(List<CategoryProduct> categoryProducts) {
+		this.categoryProducts = categoryProducts;
 	}
 
-	public long getCategoryid() {
-		return categoryid;
+	public List<Section> getSections() {
+		return sections;
 	}
 
-	public void setCategoryid(long categoryid) {
-		this.categoryid = categoryid;
+	public void setSections(List<Section> sections) {
+		this.sections = sections;
+	}
+
+	public long getCatererid() {
+		return catererid;
+	}
+
+	public void setCatererid(long catererid) {
+		this.catererid = catererid;
 	}
 
 	public String getName() {
@@ -91,6 +115,30 @@ public class Category {
 
 	public void setRecordStatus(RecordStatus recordStatus) {
 		this.recordStatus = recordStatus;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 }

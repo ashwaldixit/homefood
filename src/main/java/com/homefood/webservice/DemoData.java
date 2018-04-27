@@ -27,20 +27,6 @@ public class DemoData {
 	@POST
 	public void generateDemoData() {
 
-		List<Category> categories = new ArrayList<Category>();
-		Category category = new Category();
-		category.setName("Breakfast");
-		categories.add(categoryRepository.save(category));
-		category = new Category();
-		category.setName("Lunch");
-		categories.add(categoryRepository.save(category));
-
-		Product product = new Product();
-		product.setName("idli");
-		product.setDescription("morning breakfast");
-		product.setCategories(categories);
-		productRepository.save(product);
-
 	}
 
 }

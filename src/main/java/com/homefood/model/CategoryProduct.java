@@ -2,13 +2,18 @@ package com.homefood.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -18,16 +23,19 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.homefood.codetype.RecordStatus;
 
-@Entity
+@Entity(name = "categoryprod")
 @EntityListeners(AuditingEntityListener.class)
-public class Category {
+public class CategoryProduct {
 
 	@Id
 	@GeneratedValue
-	private long categoryid;
+	private long categoryproductid;
 
-	@Column(unique = true, nullable = false)
-	private String name;
+	@Column(nullable = false)
+	private Category category;
+
+	@Column(nullable = false)
+	private Product product;
 
 	@NotNull
 	@CreatedDate
@@ -45,6 +53,10 @@ public class Category {
 	@Version
 	private int version;
 
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(referencedColumnName = "catererid")
+	private Caterer caterer;
+
 	public int getVersion() {
 		return version;
 	}
@@ -53,20 +65,28 @@ public class Category {
 		this.version = version;
 	}
 
-	public long getCategoryid() {
-		return categoryid;
+	public long getCategoryproductid() {
+		return categoryproductid;
 	}
 
-	public void setCategoryid(long categoryid) {
-		this.categoryid = categoryid;
+	public void setCategoryproductid(long categoryproductid) {
+		this.categoryproductid = categoryproductid;
 	}
 
-	public String getName() {
-		return name;
+	public Category getCategory() {
+		return category;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public LocalDateTime getCreatedDate() {
@@ -91,6 +111,14 @@ public class Category {
 
 	public void setRecordStatus(RecordStatus recordStatus) {
 		this.recordStatus = recordStatus;
+	}
+
+	public Caterer getCaterer() {
+		return caterer;
+	}
+
+	public void setCaterer(Caterer caterer) {
+		this.caterer = caterer;
 	}
 
 }

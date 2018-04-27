@@ -2,13 +2,18 @@ package com.homefood.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -20,11 +25,11 @@ import com.homefood.codetype.RecordStatus;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Category {
+public class Section {
 
 	@Id
 	@GeneratedValue
-	private long categoryid;
+	private long sectionid;
 
 	@Column(unique = true, nullable = false)
 	private String name;
@@ -45,20 +50,15 @@ public class Category {
 	@Version
 	private int version;
 
-	public int getVersion() {
-		return version;
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Caterer caterer;
+
+	public long getSectionid() {
+		return sectionid;
 	}
 
-	public void setVersion(int version) {
-		this.version = version;
-	}
-
-	public long getCategoryid() {
-		return categoryid;
-	}
-
-	public void setCategoryid(long categoryid) {
-		this.categoryid = categoryid;
+	public void setSectionid(long sectionid) {
+		this.sectionid = sectionid;
 	}
 
 	public String getName() {
@@ -91,6 +91,22 @@ public class Category {
 
 	public void setRecordStatus(RecordStatus recordStatus) {
 		this.recordStatus = recordStatus;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	public Caterer getCaterer() {
+		return caterer;
+	}
+
+	public void setCaterer(Caterer caterer) {
+		this.caterer = caterer;
 	}
 
 }
