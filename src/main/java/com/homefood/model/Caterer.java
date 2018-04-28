@@ -20,6 +20,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.homefood.codetype.RecordStatus;
 
 @Entity
@@ -52,22 +53,16 @@ public class Caterer {
 	@Column(nullable = false)
 	private String description;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<CategoryProduct> categoryProducts;
+	@Column
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "caterer")
+	@JsonManagedReference
+	private List<Product> products;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Section> sections;
 
 	@Version
 	private int version;
-
-	public List<CategoryProduct> getCategoryProducts() {
-		return categoryProducts;
-	}
-
-	public void setCategoryProducts(List<CategoryProduct> categoryProducts) {
-		this.categoryProducts = categoryProducts;
-	}
 
 	public List<Section> getSections() {
 		return sections;

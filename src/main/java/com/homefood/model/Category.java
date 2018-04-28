@@ -1,14 +1,17 @@
 package com.homefood.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -16,6 +19,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.homefood.codetype.RecordStatus;
 
 @Entity
@@ -41,6 +45,11 @@ public class Category {
 
 	@Enumerated(EnumType.STRING)
 	private RecordStatus recordStatus = RecordStatus.Active;
+
+	@Column
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+	@JsonManagedReference
+	private List<Product> products;
 
 	@Version
 	private int version;
@@ -91,6 +100,14 @@ public class Category {
 
 	public void setRecordStatus(RecordStatus recordStatus) {
 		this.recordStatus = recordStatus;
+	}
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
 	}
 
 }

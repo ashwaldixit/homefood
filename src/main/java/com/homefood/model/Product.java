@@ -7,8 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -16,6 +19,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.homefood.codetype.RecordStatus;
 
 @Entity
@@ -50,6 +54,16 @@ public class Product {
 
 	@Version
 	private int version;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "categoryid", nullable = false)
+	@JsonBackReference
+	private Category category;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "catererid", nullable = false)
+	@JsonBackReference
+	private Caterer caterer;
 
 	public int getVersion() {
 		return version;
@@ -113,6 +127,14 @@ public class Product {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 }

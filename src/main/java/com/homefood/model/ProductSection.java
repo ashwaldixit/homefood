@@ -20,11 +20,11 @@ import com.homefood.codetype.RecordStatus;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class CategoryProductSection {
+public class ProductSection {
 
 	@Id
 	@GeneratedValue
-	private long catprodsectid;
+	private long prodsectid;
 
 	@Column(unique = true, nullable = false)
 	private String name;
@@ -44,5 +44,53 @@ public class CategoryProductSection {
 
 	@Version
 	private int version;
+
+	public long getProdsectid() {
+		return prodsectid;
+	}
+
+	public void setProdsectid(long prodsectid) {
+		this.prodsectid = prodsectid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public LocalDateTime getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(LocalDateTime createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public LocalDateTime getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
+
+	public RecordStatus getRecordStatus() {
+		return recordStatus;
+	}
+
+	public void setRecordStatus(RecordStatus recordStatus) {
+		this.recordStatus = recordStatus;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
 
 }
