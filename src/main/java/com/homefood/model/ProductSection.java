@@ -1,6 +1,7 @@
 package com.homefood.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,6 +42,12 @@ public class ProductSection {
 
 	@Enumerated(EnumType.STRING)
 	private RecordStatus recordStatus = RecordStatus.Active;
+
+	@Column
+	Product product;
+
+	@Column
+	Section section;
 
 	@Version
 	private int version;
@@ -91,6 +98,22 @@ public class ProductSection {
 
 	public void setVersion(int version) {
 		this.version = version;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Section getSection() {
+		return section;
+	}
+
+	public void setSection(Section section) {
+		this.section = section;
 	}
 
 }

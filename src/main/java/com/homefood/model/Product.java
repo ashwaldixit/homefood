@@ -44,7 +44,7 @@ public class Product {
 	private LocalDateTime lastModifiedDate;
 
 	@Enumerated(EnumType.STRING)
-	private RecordStatus recordStatus = RecordStatus.Active;
+	private RecordStatus status = RecordStatus.Active;
 
 	@Column(name = "imageurl")
 	private String imageUrl;
@@ -59,11 +59,27 @@ public class Product {
 	@JoinColumn(name = "categoryid", nullable = false)
 	@JsonBackReference
 	private Category category;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "catererid", nullable = false)
 	@JsonBackReference
 	private Caterer caterer;
+
+	public RecordStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(RecordStatus status) {
+		this.status = status;
+	}
+
+	public Caterer getCaterer() {
+		return caterer;
+	}
+
+	public void setCaterer(Caterer caterer) {
+		this.caterer = caterer;
+	}
 
 	public int getVersion() {
 		return version;
@@ -103,14 +119,6 @@ public class Product {
 
 	public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
 		this.lastModifiedDate = lastModifiedDate;
-	}
-
-	public RecordStatus getRecordStatus() {
-		return recordStatus;
-	}
-
-	public void setRecordStatus(RecordStatus recordStatus) {
-		this.recordStatus = recordStatus;
 	}
 
 	public String getImageUrl() {
