@@ -1,54 +1,156 @@
-2018-04-28 10:43:07.417  INFO 1121 --- [main] com.homefood.HomefoodApplication         : Starting HomefoodApplication on Ashwals-MacBook-Pro.local with PID 1121 (/Users/ashwaldixit/Documents/Ashwal/Projects/homefood/homefood/target/classes started by ashwaldixit in /Users/ashwaldixit/Documents/Ashwal/Projects/homefood/homefood)
-2018-04-28 10:43:07.424  INFO 1121 --- [main] com.homefood.HomefoodApplication         : No active profile set, falling back to default profiles: default
-2018-04-28 10:43:07.469  INFO 1121 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@609bcfb6: startup date [Sat Apr 28 10:43:07 IST 2018]; root of context hierarchy
-2018-04-28 10:43:08.210  INFO 1121 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
-2018-04-28 10:43:08.562  INFO 1121 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2018-04-28 10:43:08.582  INFO 1121 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2018-04-28 10:43:08.583  INFO 1121 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
-2018-04-28 10:43:08.588  INFO 1121 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/ashwaldixit/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
-2018-04-28 10:43:08.667  INFO 1121 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2018-04-28 10:43:08.667  INFO 1121 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1198 ms
-2018-04-28 10:43:08.713  INFO 1121 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
-2018-04-28 10:43:08.870  INFO 1121 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2018-04-28 10:43:09.039  INFO 1121 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2018-04-28 10:43:09.087  INFO 1121 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
-2018-04-28 10:43:09.101  INFO 1121 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+2018-04-29 22:16:24.831  INFO 1516 --- [main] com.homefood.HomefoodApplication         : Starting HomefoodApplication on Ashwals-MacBook-Pro.local with PID 1516 (/Users/ashwaldixit/Documents/Ashwal/Projects/homefood/homefood/target/classes started by ashwaldixit in /Users/ashwaldixit/Documents/Ashwal/Projects/homefood/homefood)
+2018-04-29 22:16:24.837  INFO 1516 --- [main] com.homefood.HomefoodApplication         : No active profile set, falling back to default profiles: default
+2018-04-29 22:16:24.880  INFO 1516 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5e21e98f: startup date [Sun Apr 29 22:16:24 IST 2018]; root of context hierarchy
+2018-04-29 22:16:25.612  INFO 1516 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-04-29 22:16:25.936  INFO 1516 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2018-04-29 22:16:25.959  INFO 1516 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-29 22:16:25.959  INFO 1516 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-04-29 22:16:25.964  INFO 1516 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/ashwaldixit/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2018-04-29 22:16:26.067  INFO 1516 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-29 22:16:26.067  INFO 1516 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1187 ms
+2018-04-29 22:16:26.130  INFO 1516 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-29 22:16:26.281  INFO 1516 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-04-29 22:16:26.360  INFO 1516 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-04-29 22:16:26.408  INFO 1516 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-04-29 22:16:26.421  INFO 1516 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
 	name: default
 	...]
-2018-04-28 10:43:09.200  INFO 1121 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.16.Final}
-2018-04-28 10:43:09.201  INFO 1121 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
-2018-04-28 10:43:09.244  INFO 1121 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
-2018-04-28 10:43:09.428  INFO 1121 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL92Dialect
-2018-04-28 10:43:09.448  INFO 1121 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000422: Disabling contextual LOB creation as connection was null
-2018-04-28 10:43:09.450  INFO 1121 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@6e3ecf5c
-2018-04-28 10:43:10.061  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2018-04-28 10:43:10.062  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "caterer_sections" does not exist, skipping
-2018-04-28 10:43:10.062  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2018-04-28 10:43:10.062  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "caterer_sections" does not exist, skipping
-2018-04-28 10:43:10.065  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2018-04-28 10:43:10.065  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "product" does not exist, skipping
-2018-04-28 10:43:10.066  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2018-04-28 10:43:10.066  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "product" does not exist, skipping
-2018-04-28 10:43:10.067  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2018-04-28 10:43:10.067  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "section" does not exist, skipping
-2018-04-28 10:43:10.067  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2018-04-28 10:43:10.067  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "category" does not exist, skipping
-2018-04-28 10:43:10.068  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2018-04-28 10:43:10.068  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "caterer" does not exist, skipping
-2018-04-28 10:43:10.068  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2018-04-28 10:43:10.068  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "caterer_sections" does not exist, skipping
-2018-04-28 10:43:10.069  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2018-04-28 10:43:10.069  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "product" does not exist, skipping
-2018-04-28 10:43:10.070  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2018-04-28 10:43:10.070  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "product_section" does not exist, skipping
-2018-04-28 10:43:10.070  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2018-04-28 10:43:10.070  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "section" does not exist, skipping
-2018-04-28 10:43:10.071  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2018-04-28 10:43:10.071  WARN 1121 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : sequence "hibernate_sequence" does not exist, skipping
-2018-04-28 10:43:11.005  INFO 1121 --- [main] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@6d294ddc'
-2018-04-28 10:43:11.010  INFO 1121 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2018-04-28 10:43:11.719  INFO 1121 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
-2018-04-28 10:43:11.720  INFO 1121 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
-2018-04-28 10:43:11.725  INFO 1121 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
-2018-04-28 10:43:11.778  INFO 1121 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2018-04-28 10:43:11.782  INFO 1121 --- [main] com.homefood.HomefoodApplication         : Started HomefoodApplication in 4.673 seconds (JVM running for 5.505)
+2018-04-29 22:16:26.496  INFO 1516 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.16.Final}
+2018-04-29 22:16:26.497  INFO 1516 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-04-29 22:16:26.546  INFO 1516 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-04-29 22:16:26.674  INFO 1516 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL92Dialect
+2018-04-29 22:16:26.692  INFO 1516 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000422: Disabling contextual LOB creation as connection was null
+2018-04-29 22:16:26.693  INFO 1516 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@4baed682
+2018-04-29 22:16:26.896  WARN 1516 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: com.homefood.model.ProductPresence.category in com.homefood.model.Product.presence
+2018-04-29 22:16:26.897  INFO 1516 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-04-29 22:16:26.901  INFO 1516 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-04-29 22:16:26.904  INFO 1516 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2018-04-29 22:16:26.915  INFO 1516 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2018-04-29 22:16:26.926 ERROR 1516 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: com.homefood.model.ProductPresence.category in com.homefood.model.Product.presence
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1702) ~[spring-beans-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:579) ~[spring-beans-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:501) ~[spring-beans-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:317) ~[spring-beans-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228) ~[spring-beans-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) ~[spring-beans-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1089) ~[spring-context-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:859) ~[spring-context-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:550) ~[spring-context-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140) ~[spring-boot-2.0.1.RELEASE.jar:2.0.1.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:759) [spring-boot-2.0.1.RELEASE.jar:2.0.1.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:395) [spring-boot-2.0.1.RELEASE.jar:2.0.1.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327) [spring-boot-2.0.1.RELEASE.jar:2.0.1.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1255) [spring-boot-2.0.1.RELEASE.jar:2.0.1.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1243) [spring-boot-2.0.1.RELEASE.jar:2.0.1.RELEASE]
+	at com.homefood.HomefoodApplication.main(HomefoodApplication.java:15) [classes/:na]
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: com.homefood.model.ProductPresence.category in com.homefood.model.Product.presence
+	at org.hibernate.cfg.annotations.CollectionBinder.bindStarToManySecondPass(CollectionBinder.java:785) ~[hibernate-core-5.2.16.Final.jar:5.2.16.Final]
+	at org.hibernate.cfg.annotations.CollectionBinder$1.secondPass(CollectionBinder.java:735) ~[hibernate-core-5.2.16.Final.jar:5.2.16.Final]
+	at org.hibernate.cfg.CollectionSecondPass.doSecondPass(CollectionSecondPass.java:54) ~[hibernate-core-5.2.16.Final.jar:5.2.16.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processSecondPasses(InFlightMetadataCollectorImpl.java:1635) ~[hibernate-core-5.2.16.Final.jar:5.2.16.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processSecondPasses(InFlightMetadataCollectorImpl.java:1603) ~[hibernate-core-5.2.16.Final.jar:5.2.16.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:278) ~[hibernate-core-5.2.16.Final.jar:5.2.16.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:861) ~[hibernate-core-5.2.16.Final.jar:5.2.16.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:888) ~[hibernate-core-5.2.16.Final.jar:5.2.16.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:57) ~[spring-orm-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) ~[spring-orm-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:390) ~[spring-orm-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:377) ~[spring-orm-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341) ~[spring-orm-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1761) ~[spring-beans-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1698) ~[spring-beans-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	... 16 common frames omitted
+
+2018-04-29 22:19:01.447  INFO 1539 --- [main] com.homefood.HomefoodApplication         : Starting HomefoodApplication on Ashwals-MacBook-Pro.local with PID 1539 (/Users/ashwaldixit/Documents/Ashwal/Projects/homefood/homefood/target/classes started by ashwaldixit in /Users/ashwaldixit/Documents/Ashwal/Projects/homefood/homefood)
+2018-04-29 22:19:01.450  INFO 1539 --- [main] com.homefood.HomefoodApplication         : No active profile set, falling back to default profiles: default
+2018-04-29 22:19:01.484  INFO 1539 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@21ba0741: startup date [Sun Apr 29 22:19:01 IST 2018]; root of context hierarchy
+2018-04-29 22:19:02.090  INFO 1539 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-04-29 22:19:02.383  INFO 1539 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2018-04-29 22:19:02.399  INFO 1539 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-29 22:19:02.399  INFO 1539 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-04-29 22:19:02.402  INFO 1539 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/ashwaldixit/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2018-04-29 22:19:02.476  INFO 1539 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-29 22:19:02.476  INFO 1539 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 992 ms
+2018-04-29 22:19:02.517  INFO 1539 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-29 22:19:02.652  INFO 1539 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-04-29 22:19:02.715  INFO 1539 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-04-29 22:19:02.770  INFO 1539 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-04-29 22:19:02.783  INFO 1539 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-04-29 22:19:02.881  INFO 1539 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.16.Final}
+2018-04-29 22:19:02.882  INFO 1539 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-04-29 22:19:02.916  INFO 1539 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-04-29 22:19:03.063  INFO 1539 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL92Dialect
+2018-04-29 22:19:03.076  INFO 1539 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000422: Disabling contextual LOB creation as connection was null
+2018-04-29 22:19:03.078  INFO 1539 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@705a8dbc
+2018-04-29 22:19:03.659  WARN 1539 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2018-04-29 22:19:03.660  WARN 1539 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "product" does not exist, skipping
+2018-04-29 22:19:03.660  WARN 1539 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2018-04-29 22:19:03.660  WARN 1539 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "product" does not exist, skipping
+2018-04-29 22:19:03.661  WARN 1539 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2018-04-29 22:19:03.661  WARN 1539 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "product_presence" does not exist, skipping
+2018-04-29 22:19:03.662  WARN 1539 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2018-04-29 22:19:03.662  WARN 1539 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "category" does not exist, skipping
+2018-04-29 22:19:03.662  WARN 1539 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2018-04-29 22:19:03.662  WARN 1539 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "caterer" does not exist, skipping
+2018-04-29 22:19:03.663  WARN 1539 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2018-04-29 22:19:03.663  WARN 1539 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "product" does not exist, skipping
+2018-04-29 22:19:03.663  WARN 1539 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2018-04-29 22:19:03.663  WARN 1539 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "product_presence" does not exist, skipping
+2018-04-29 22:19:03.664  WARN 1539 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2018-04-29 22:19:03.664  WARN 1539 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : sequence "hibernate_sequence" does not exist, skipping
+2018-04-29 22:19:03.735  INFO 1539 --- [main] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@527937d0'
+2018-04-29 22:19:03.739  INFO 1539 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-04-29 22:19:04.407  INFO 1539 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-29 22:19:04.409  INFO 1539 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-04-29 22:19:04.413  INFO 1539 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-04-29 22:19:04.464  INFO 1539 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2018-04-29 22:19:04.467  INFO 1539 --- [main] com.homefood.HomefoodApplication         : Started HomefoodApplication in 3.293 seconds (JVM running for 3.92)
+2018-04-29 22:19:04.606  WARN 1539 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 23502
+2018-04-29 22:19:04.606 ERROR 1539 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: null value in column "description" violates not-null constraint
+  Detail: Failing row contains (3, 2018-04-29 22:19:04.6, null, null, 2018-04-29 22:19:04.6, Idli, Active, 0, 2, 1).
+2018-04-29 22:19:04.611 ERROR 1539 --- [main] o.h.i.ExceptionMapperStandardImpl        : HHH000346: Error during managed flush [org.hibernate.exception.ConstraintViolationException: could not execute statement]
+2018-04-29 22:21:53.507  INFO 1562 --- [main] com.homefood.HomefoodApplication         : Starting HomefoodApplication on Ashwals-MacBook-Pro.local with PID 1562 (/Users/ashwaldixit/Documents/Ashwal/Projects/homefood/homefood/target/classes started by ashwaldixit in /Users/ashwaldixit/Documents/Ashwal/Projects/homefood/homefood)
+2018-04-29 22:21:53.511  INFO 1562 --- [main] com.homefood.HomefoodApplication         : No active profile set, falling back to default profiles: default
+2018-04-29 22:21:53.553  INFO 1562 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6f1c29b7: startup date [Sun Apr 29 22:21:53 IST 2018]; root of context hierarchy
+2018-04-29 22:21:54.167  INFO 1562 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-04-29 22:21:54.487  INFO 1562 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2018-04-29 22:21:54.504  INFO 1562 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-29 22:21:54.505  INFO 1562 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-04-29 22:21:54.508  INFO 1562 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/ashwaldixit/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2018-04-29 22:21:54.584  INFO 1562 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-29 22:21:54.585  INFO 1562 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1032 ms
+2018-04-29 22:21:54.625  INFO 1562 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-29 22:21:54.773  INFO 1562 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-04-29 22:21:54.844  INFO 1562 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-04-29 22:21:54.891  INFO 1562 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-04-29 22:21:54.903  INFO 1562 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-04-29 22:21:54.985  INFO 1562 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.16.Final}
+2018-04-29 22:21:54.987  INFO 1562 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-04-29 22:21:55.026  INFO 1562 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-04-29 22:21:55.192  INFO 1562 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL92Dialect
+2018-04-29 22:21:55.206  INFO 1562 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000422: Disabling contextual LOB creation as connection was null
+2018-04-29 22:21:55.207  INFO 1562 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@5034f5dd
+2018-04-29 22:21:55.746  INFO 1562 --- [main] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@3cb6e0ee'
+2018-04-29 22:21:55.751  INFO 1562 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-04-29 22:21:56.402  INFO 1562 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-29 22:21:56.403  INFO 1562 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-04-29 22:21:56.407  INFO 1562 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-04-29 22:21:56.452  INFO 1562 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2018-04-29 22:21:56.456  INFO 1562 --- [main] com.homefood.HomefoodApplication         : Started HomefoodApplication in 3.252 seconds (JVM running for 3.746)
+2018-04-29 22:22:05.543  INFO 1562 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2018-04-29 22:22:05.543  INFO 1562 --- [RMI TCP Connection(2)-127.0.0.1] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6f1c29b7: startup date [Sun Apr 29 22:21:53 IST 2018]; root of context hierarchy
+2018-04-29 22:22:05.545  INFO 1562 --- [RMI TCP Connection(2)-127.0.0.1] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-04-29 22:22:05.545  INFO 1562 --- [RMI TCP Connection(2)-127.0.0.1] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-04-29 22:22:05.546  INFO 1562 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-04-29 22:22:05.547  INFO 1562 --- [RMI TCP Connection(2)-127.0.0.1] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed drop of schema as part of SessionFactory shut-down'
+2018-04-29 22:22:05.583  INFO 1562 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-04-29 22:22:05.586  INFO 1562 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

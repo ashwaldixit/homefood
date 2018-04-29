@@ -1,6 +1,7 @@
 package com.homefood.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -20,6 +22,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.homefood.codetype.RecordStatus;
 
 @Entity
@@ -64,6 +67,11 @@ public class Product {
 	@JoinColumn(name = "catererid", nullable = false)
 	@JsonBackReference
 	private Caterer caterer;
+
+	@Column
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
+	@JsonManagedReference
+	private List<ProductPresence> presence;
 
 	public RecordStatus getStatus() {
 		return status;
@@ -143,6 +151,14 @@ public class Product {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public List<ProductPresence> getPresence() {
+		return presence;
+	}
+
+	public void setPresence(List<ProductPresence> presence) {
+		this.presence = presence;
 	}
 
 }

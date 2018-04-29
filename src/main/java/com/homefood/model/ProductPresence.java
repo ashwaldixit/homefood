@@ -1,6 +1,7 @@
 package com.homefood.model;
 
 import java.time.LocalDateTime;
+import java.time.Period;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,8 +12,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -23,14 +25,24 @@ import com.homefood.codetype.RecordStatus;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Section {
+public class ProductPresence {
 
 	@Id
 	@GeneratedValue
-	private long sectionid;
+	private long prodsectionid;
 
-	@Column(unique = true, nullable = false)
-	private String name;
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(referencedColumnName="productid")
+	private Product product;
+
+	@Column(name = "starttime")
+	private LocalDateTime startTime;
+
+	@Column(name = "endtime")
+	private LocalDateTime endTime;
+
+	@Transient
+	private boolean isPresent;
 
 	@NotNull
 	@CreatedDate
@@ -45,26 +57,20 @@ public class Section {
 	@Enumerated(EnumType.STRING)
 	private RecordStatus recordStatus = RecordStatus.Active;
 
-	@Version
-	private int version;
-
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Caterer caterer;
-
-	public long getSectionid() {
-		return sectionid;
+	public long getProdsectionid() {
+		return prodsectionid;
 	}
 
-	public void setSectionid(long sectionid) {
-		this.sectionid = sectionid;
+	public void setProdsectionid(long prodsectionid) {
+		this.prodsectionid = prodsectionid;
 	}
 
-	public String getName() {
-		return name;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public LocalDateTime getCreatedDate() {
@@ -91,20 +97,29 @@ public class Section {
 		this.recordStatus = recordStatus;
 	}
 
-	public int getVersion() {
-		return version;
+	public LocalDateTime getStartTime() {
+		return startTime;
 	}
 
-	public void setVersion(int version) {
-		this.version = version;
+	public void setStartTime(LocalDateTime startTime) {
+		this.startTime = startTime;
 	}
 
-	public Caterer getCaterer() {
-		return caterer;
+	public LocalDateTime getEndTime() {
+		return endTime;
 	}
 
-	public void setCaterer(Caterer caterer) {
-		this.caterer = caterer;
+	public void setEndTime(LocalDateTime endTime) {
+		this.endTime = endTime;
+	}
+
+	public boolean isPresent() {
+		return (getStartTime().isBefore(LocalDateTime.now()) && getEndTime().isAfter(LocalDateTime.now())) ? true
+				: false;
+	}
+
+	public void setPresent(boolean isPresent) {
+		this.isPresent = isPresent;
 	}
 
 }

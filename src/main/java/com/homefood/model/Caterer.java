@@ -58,19 +58,8 @@ public class Caterer {
 	@JsonManagedReference
 	private List<Product> products;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Section> sections;
-
 	@Version
 	private int version;
-
-	public List<Section> getSections() {
-		return sections;
-	}
-
-	public void setSections(List<Section> sections) {
-		this.sections = sections;
-	}
 
 	public long getCatererid() {
 		return catererid;
