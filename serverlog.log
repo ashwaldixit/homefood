@@ -706,3 +706,134 @@
 2018-04-30 23:05:19.679  INFO 1841 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8085 (http) with context path ''
 2018-04-30 23:05:19.683  INFO 1841 --- [main] com.homefood.HomefoodApplication         : Started HomefoodApplication in 3.335 seconds (JVM running for 3.784)
 2018-04-30 23:05:19.833  INFO 1841 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-04-30 23:07:31.825  INFO 1871 --- [main] com.homefood.HomefoodApplication         : Starting HomefoodApplication on Ashwals-MacBook-Pro.local with PID 1871 (/Users/ashwaldixit/Documents/Ashwal/Projects/homefood/homefood/target/classes started by ashwaldixit in /Users/ashwaldixit/Documents/Ashwal/Projects/homefood/homefood)
+2018-04-30 23:07:31.829  INFO 1871 --- [main] com.homefood.HomefoodApplication         : No active profile set, falling back to default profiles: default
+2018-04-30 23:07:31.883  INFO 1871 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5f0fd5a0: startup date [Mon Apr 30 23:07:31 IST 2018]; root of context hierarchy
+2018-04-30 23:07:32.542  INFO 1871 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-04-30 23:07:32.867  INFO 1871 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8085 (http)
+2018-04-30 23:07:32.886  INFO 1871 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-30 23:07:32.886  INFO 1871 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-04-30 23:07:32.891  INFO 1871 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/ashwaldixit/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2018-04-30 23:07:32.965  INFO 1871 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-30 23:07:32.965  INFO 1871 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1082 ms
+2018-04-30 23:07:33.228  INFO 1871 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-30 23:07:33.229  INFO 1871 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-04-30 23:07:33.229  INFO 1871 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'corsFilter' to: [/*]
+2018-04-30 23:07:33.229  INFO 1871 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet com.homefood.JerseyConfig mapped to [/*]
+2018-04-30 23:07:33.365  INFO 1871 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-04-30 23:07:33.429  INFO 1871 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-04-30 23:07:33.470  INFO 1871 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-04-30 23:07:33.481  INFO 1871 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-04-30 23:07:33.534  INFO 1871 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.16.Final}
+2018-04-30 23:07:33.536  INFO 1871 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-04-30 23:07:33.569  INFO 1871 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-04-30 23:07:33.734  INFO 1871 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL92Dialect
+2018-04-30 23:07:33.747  INFO 1871 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000422: Disabling contextual LOB creation as connection was null
+2018-04-30 23:07:33.749  INFO 1871 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@7c51782d
+2018-04-30 23:07:34.227  INFO 1871 --- [main] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@46a8c2b4'
+2018-04-30 23:07:34.231  INFO 1871 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-04-30 23:07:34.496  INFO 1871 --- [main] c.h.service.ApplicationDataUtilImpl      : Entering fetchXmlPath()
+2018-04-30 23:07:34.908  INFO 1871 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-30 23:07:34.909  INFO 1871 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-04-30 23:07:34.914  INFO 1871 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-04-30 23:07:34.952  INFO 1871 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8085 (http) with context path ''
+2018-04-30 23:07:34.956  INFO 1871 --- [main] com.homefood.HomefoodApplication         : Started HomefoodApplication in 3.409 seconds (JVM running for 4.099)
+2018-04-30 23:07:35.077  INFO 1871 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-04-30 23:08:01.568  INFO 1871 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2018-04-30 23:08:01.569  INFO 1871 --- [RMI TCP Connection(2)-127.0.0.1] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5f0fd5a0: startup date [Mon Apr 30 23:07:31 IST 2018]; root of context hierarchy
+2018-04-30 23:08:01.572  INFO 1871 --- [RMI TCP Connection(2)-127.0.0.1] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-04-30 23:08:01.572  INFO 1871 --- [RMI TCP Connection(2)-127.0.0.1] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-04-30 23:08:01.573  INFO 1871 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-04-30 23:08:01.574  INFO 1871 --- [RMI TCP Connection(2)-127.0.0.1] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed drop of schema as part of SessionFactory shut-down'
+2018-04-30 23:08:01.586  INFO 1871 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2018-04-30 23:08:01.588  INFO 1871 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2018-04-30 23:08:06.987  INFO 1884 --- [main] com.homefood.HomefoodApplication         : Starting HomefoodApplication on Ashwals-MacBook-Pro.local with PID 1884 (/Users/ashwaldixit/Documents/Ashwal/Projects/homefood/homefood/target/classes started by ashwaldixit in /Users/ashwaldixit/Documents/Ashwal/Projects/homefood/homefood)
+2018-04-30 23:08:06.990  INFO 1884 --- [main] com.homefood.HomefoodApplication         : No active profile set, falling back to default profiles: default
+2018-04-30 23:08:07.029  INFO 1884 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1df8b5b8: startup date [Mon Apr 30 23:08:07 IST 2018]; root of context hierarchy
+2018-04-30 23:08:07.684  INFO 1884 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-04-30 23:08:08.032  INFO 1884 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8085 (http)
+2018-04-30 23:08:08.049  INFO 1884 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-30 23:08:08.049  INFO 1884 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-04-30 23:08:08.053  INFO 1884 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/ashwaldixit/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2018-04-30 23:08:08.125  INFO 1884 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-30 23:08:08.125  INFO 1884 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1096 ms
+2018-04-30 23:08:08.352  INFO 1884 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-30 23:08:08.353  INFO 1884 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-04-30 23:08:08.353  INFO 1884 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'corsFilter' to: [/*]
+2018-04-30 23:08:08.353  INFO 1884 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet com.homefood.JerseyConfig mapped to [/*]
+2018-04-30 23:08:08.484  INFO 1884 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-04-30 23:08:08.561  INFO 1884 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-04-30 23:08:08.599  INFO 1884 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-04-30 23:08:08.608  INFO 1884 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-04-30 23:08:08.660  INFO 1884 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.16.Final}
+2018-04-30 23:08:08.661  INFO 1884 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-04-30 23:08:08.696  INFO 1884 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-04-30 23:08:08.846  INFO 1884 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL92Dialect
+2018-04-30 23:08:08.859  INFO 1884 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000422: Disabling contextual LOB creation as connection was null
+2018-04-30 23:08:08.861  INFO 1884 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@2f14b0f6
+2018-04-30 23:08:09.301  WARN 1884 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2018-04-30 23:08:09.301  WARN 1884 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "product" does not exist, skipping
+2018-04-30 23:08:09.302  WARN 1884 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2018-04-30 23:08:09.302  WARN 1884 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "product" does not exist, skipping
+2018-04-30 23:08:09.302  WARN 1884 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2018-04-30 23:08:09.302  WARN 1884 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "product_presence" does not exist, skipping
+2018-04-30 23:08:09.303  WARN 1884 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2018-04-30 23:08:09.303  WARN 1884 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "applicationdata" does not exist, skipping
+2018-04-30 23:08:09.304  WARN 1884 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2018-04-30 23:08:09.304  WARN 1884 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "category" does not exist, skipping
+2018-04-30 23:08:09.304  WARN 1884 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2018-04-30 23:08:09.304  WARN 1884 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "caterer" does not exist, skipping
+2018-04-30 23:08:09.305  WARN 1884 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2018-04-30 23:08:09.305  WARN 1884 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "product" does not exist, skipping
+2018-04-30 23:08:09.305  WARN 1884 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2018-04-30 23:08:09.305  WARN 1884 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "product_presence" does not exist, skipping
+2018-04-30 23:08:09.306  WARN 1884 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2018-04-30 23:08:09.306  WARN 1884 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : sequence "hibernate_sequence" does not exist, skipping
+2018-04-30 23:08:09.336  INFO 1884 --- [main] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@16f7f59f'
+2018-04-30 23:08:09.340  INFO 1884 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-04-30 23:08:09.614  INFO 1884 --- [main] c.h.service.ApplicationDataUtilImpl      : Entering fetchXmlPath()
+2018-04-30 23:08:10.000  INFO 1884 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-30 23:08:10.002  INFO 1884 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-04-30 23:08:10.007  INFO 1884 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-04-30 23:08:10.050  INFO 1884 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8085 (http) with context path ''
+2018-04-30 23:08:10.053  INFO 1884 --- [main] com.homefood.HomefoodApplication         : Started HomefoodApplication in 3.335 seconds (JVM running for 3.809)
+2018-04-30 23:08:10.215  INFO 1884 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-04-30 23:08:51.550  INFO 1897 --- [main] com.homefood.HomefoodApplication         : Starting HomefoodApplication on Ashwals-MacBook-Pro.local with PID 1897 (/Users/ashwaldixit/Documents/Ashwal/Projects/homefood/homefood/target/classes started by ashwaldixit in /Users/ashwaldixit/Documents/Ashwal/Projects/homefood/homefood)
+2018-04-30 23:08:51.553  INFO 1897 --- [main] com.homefood.HomefoodApplication         : No active profile set, falling back to default profiles: default
+2018-04-30 23:08:51.589  INFO 1897 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2a7ed1f: startup date [Mon Apr 30 23:08:51 IST 2018]; root of context hierarchy
+2018-04-30 23:08:52.272  INFO 1897 --- [main] f.a.AutowiredAnnotationBeanPostProcessor : JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+2018-04-30 23:08:52.621  INFO 1897 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8085 (http)
+2018-04-30 23:08:52.637  INFO 1897 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-30 23:08:52.638  INFO 1897 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-04-30 23:08:52.642  INFO 1897 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/ashwaldixit/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2018-04-30 23:08:52.711  INFO 1897 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-30 23:08:52.711  INFO 1897 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1122 ms
+2018-04-30 23:08:52.940  INFO 1897 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-30 23:08:52.941  INFO 1897 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-04-30 23:08:52.941  INFO 1897 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'corsFilter' to: [/*]
+2018-04-30 23:08:52.941  INFO 1897 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet com.homefood.JerseyConfig mapped to [/*]
+2018-04-30 23:08:53.072  INFO 1897 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-04-30 23:08:53.155  INFO 1897 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-04-30 23:08:53.195  INFO 1897 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-04-30 23:08:53.205  INFO 1897 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-04-30 23:08:53.256  INFO 1897 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.2.16.Final}
+2018-04-30 23:08:53.257  INFO 1897 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-04-30 23:08:53.289  INFO 1897 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-04-30 23:08:53.437  INFO 1897 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL92Dialect
+2018-04-30 23:08:53.451  INFO 1897 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000422: Disabling contextual LOB creation as connection was null
+2018-04-30 23:08:53.452  INFO 1897 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@31120021
+2018-04-30 23:08:53.916  INFO 1897 --- [main] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@70d4f672'
+2018-04-30 23:08:53.919  INFO 1897 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-04-30 23:08:54.191  INFO 1897 --- [main] c.h.service.ApplicationDataUtilImpl      : Entering fetchXmlPath()
+2018-04-30 23:08:54.590  INFO 1897 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-30 23:08:54.591  INFO 1897 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-04-30 23:08:54.597  INFO 1897 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-04-30 23:08:54.642  INFO 1897 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8085 (http) with context path ''
+2018-04-30 23:08:54.645  INFO 1897 --- [main] com.homefood.HomefoodApplication         : Started HomefoodApplication in 3.351 seconds (JVM running for 3.8)
+2018-04-30 23:08:54.796  INFO 1897 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
