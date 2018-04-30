@@ -20,9 +20,24 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	ProductRepository productRepository;
 
+	@Autowired
+	CatererService catererService;
+
+	@Autowired
+	CategoryService categoryService;
+
 	@Override
 	public Product createProduct(Product product) {
-		// TODO Detached entity logic
+		Caterer caterer = catererService.readById(product.getCaterer().getCatererid());
+		if (null == caterer)
+			caterer = catererService.createCaterer(product.getCaterer());
+		product.setCaterer(caterer);
+
+		Category category = categoryService.readById(product.getCategory().getCategoryid());
+		if (null == category)
+			category = categoryService.createCategory(product.getCategory());
+		product.setCategory(category);
+
 		return productRepository.save(product);
 	}
 
@@ -33,7 +48,6 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void validate(Product product) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -85,6 +99,28 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> readAllInActiveByCategoryAndCaterer(Category category, Caterer caterer) {
 		return productRepository.findByCategoryAndCatererAndStatus(category, caterer, RecordStatus.InActive);
+	}
+
+	@Override
+	public Product validateAndCreate(Product product) {
+		validate(product);
+		return createProduct(product);
+	}
+
+	@Override
+	public Product update(Product product) {
+		return createProduct(product);
+	}
+
+	@Override
+	public List<Product> readAllActiveByName(String name) {
+
+		return readAllByNameAndStatus(name, RecordStatus.Active);
+	}
+
+	@Override
+	public List<Product> readAllInActiveByName(String name) {
+		return readAllByNameAndStatus(name, RecordStatus.InActive);
 	}
 
 }

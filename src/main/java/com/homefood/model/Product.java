@@ -22,11 +22,14 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.homefood.codetype.RecordStatus;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Product {
 
 	@Id
@@ -58,19 +61,19 @@ public class Product {
 	@Version
 	private int version;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "categoryid", nullable = false)
 	@JsonBackReference
 	private Category category;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "catererid", nullable = false)
-	@JsonBackReference
+	//@JsonBackReference
 	private Caterer caterer;
 
 	@Column
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
-	@JsonManagedReference
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
+	//@JsonManagedReference
 	private List<ProductPresence> presence;
 
 	public RecordStatus getStatus() {

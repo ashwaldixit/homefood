@@ -1,7 +1,6 @@
 package com.homefood.model;
 
 import java.time.LocalDateTime;
-import java.time.Period;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,18 +20,25 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.homefood.codetype.RecordStatus;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class ProductPresence {
 
 	@Id
 	@GeneratedValue
 	private long prodsectionid;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(referencedColumnName="productid")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "productid")
+	// @JsonBackReference
+	@JsonIgnore
 	private Product product;
 
 	@Column(name = "starttime")

@@ -16,6 +16,10 @@ import com.homefood.repository.CategoryRepository;
 import com.homefood.repository.CatererRepository;
 import com.homefood.repository.ProductPresenceRepository;
 import com.homefood.repository.ProductRepository;
+import com.homefood.service.CategoryService;
+import com.homefood.service.CatererService;
+import com.homefood.service.ProductPresenceService;
+import com.homefood.service.ProductService;
 
 @Path("/demodata")
 @Component
@@ -33,6 +37,17 @@ public class DemoData {
 	@Autowired
 	ProductPresenceRepository productPresenceRepository;
 
+	@Autowired
+	ProductService productService;
+	@Autowired
+	CategoryService categoryService;
+
+	@Autowired
+	CatererService catererService;
+
+	@Autowired
+	ProductPresenceService productPresenceService;
+
 	@POST
 	public void generateDemoData() {
 
@@ -40,24 +55,56 @@ public class DemoData {
 		caterer.setName("Sumi");
 		caterer.setDescription("First Caterer");
 
-		caterer = catererRepository.save(caterer);
+		caterer = catererService.createCaterer(caterer);
 
 		Category category = new Category();
 		category.setName("South Indian");
-		category = categoryRepository.save(category);
+		category = categoryService.createCategory(category);
 
 		Product product = new Product();
 		product.setCategory(category);
 		product.setCaterer(caterer);
 		product.setName("Idli");
 		product.setDescription("South Indian Breakfast");
-		product = productRepository.save(product);
+		product = productService.createProduct(product);
 
 		ProductPresence presence = new ProductPresence();
 		presence.setProduct(product);
 		presence.setStartTime(LocalDateTime.now());
 		presence.setEndTime(LocalDateTime.now().plusHours(3));
-		productPresenceRepository.save(presence);
+		productPresenceService.createProductPresence(presence);
+
+		product = new Product();
+		product.setCategory(category);
+		product.setCaterer(caterer);
+		product.setName("Vada");
+		product.setDescription("South Indian Breakfast");
+		product = productService.createProduct(product);
+
+		presence = new ProductPresence();
+		presence.setProduct(product);
+		presence.setStartTime(LocalDateTime.now());
+		presence.setEndTime(LocalDateTime.now().plusHours(3));
+		productPresenceService.createProductPresence(presence);
+
+		category = new Category();
+		category.setName("North Indian");
+		category = categoryService.createCategory(category);
+
+		product = new Product();
+		product.setCategory(category);
+		product.setCaterer(caterer);
+		product.setName("Roti");
+		product.setDescription("NOrth Indian Breakfast");
+		product = productService.createProduct(product);
+
+		presence = new ProductPresence();
+		presence.setProduct(product);
+		presence.setStartTime(LocalDateTime.now());
+		presence.setEndTime(LocalDateTime.now().plusHours(3));
+		productPresenceService.createProductPresence(presence);
+
+		System.out.println("*****************************Done with Demo Data *************************************");
 
 	}
 
