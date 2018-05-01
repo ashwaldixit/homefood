@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import com.homefood.model.Category;
 import com.homefood.model.Caterer;
+import com.homefood.model.Customer;
+import com.homefood.model.Order;
 import com.homefood.model.Product;
 import com.homefood.model.ProductPresence;
 import com.homefood.repository.CategoryRepository;
@@ -18,6 +20,7 @@ import com.homefood.repository.ProductPresenceRepository;
 import com.homefood.repository.ProductRepository;
 import com.homefood.service.CategoryService;
 import com.homefood.service.CatererService;
+import com.homefood.service.CustomerService;
 import com.homefood.service.ProductPresenceService;
 import com.homefood.service.ProductService;
 
@@ -47,6 +50,9 @@ public class DemoData {
 
 	@Autowired
 	ProductPresenceService productPresenceService;
+
+	@Autowired
+	CustomerService customerService;
 
 	@POST
 	public void generateDemoData() {
@@ -103,6 +109,16 @@ public class DemoData {
 		presence.setStartTime(LocalDateTime.now());
 		presence.setEndTime(LocalDateTime.now().plusHours(3));
 		productPresenceService.createProductPresence(presence);
+
+		Customer customer = new Customer();
+		customer.setUserName("Ashwal");
+		customer.setEmail("ashwalappi@gmail.com");
+		customer.setPassword("p");
+		customer.setConfirmPassword("p");
+		customer = customerService.validateAndCreateCustomer(customer);
+		
+		Order order  = new Order();
+		order.setCustomer(customer);
 
 		System.out.println("*****************************Done with Demo Data *************************************");
 

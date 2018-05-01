@@ -58,6 +58,7 @@ public class ProductPresence {
 	private LocalDateTime lastModifiedDate;
 
 	@Enumerated(EnumType.STRING)
+	@Column(name="recordstatus")
 	private RecordStatus recordStatus = RecordStatus.Active;
 
 	public long getProdsectionid() {
