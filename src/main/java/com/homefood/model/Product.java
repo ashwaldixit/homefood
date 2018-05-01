@@ -22,6 +22,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.homefood.codetype.RecordStatus;
@@ -72,8 +73,13 @@ public class Product {
 
 	@Column
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
-	//@JsonManagedReference
+	// @JsonManagedReference
 	private List<ProductPresence> presence;
+
+	@Column
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
+	@JsonIgnore
+	private List<Order> orders;
 
 	public RecordStatus getStatus() {
 		return status;
@@ -161,6 +167,14 @@ public class Product {
 
 	public void setPresence(List<ProductPresence> presence) {
 		this.presence = presence;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 
 }

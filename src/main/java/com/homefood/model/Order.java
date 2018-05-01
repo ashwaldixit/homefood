@@ -2,8 +2,10 @@ package com.homefood.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
@@ -15,13 +17,16 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
 
 @Entity(name = "customerorder")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+@EntityListeners(AuditingEntityListener.class)
 public class Order {
 
 	@Id
@@ -45,11 +50,12 @@ public class Order {
 	@Column(name = "orderstatus")
 	private OrderStatus orderStatus = OrderStatus.Open;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "customerid", nullable = false, updatable = false)
+	@JsonManagedReference
 	private Customer customer;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "productid", nullable = false, updatable = false)
 	private Product product;
 

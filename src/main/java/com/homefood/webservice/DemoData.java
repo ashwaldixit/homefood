@@ -21,6 +21,7 @@ import com.homefood.repository.ProductRepository;
 import com.homefood.service.CategoryService;
 import com.homefood.service.CatererService;
 import com.homefood.service.CustomerService;
+import com.homefood.service.OrderService;
 import com.homefood.service.ProductPresenceService;
 import com.homefood.service.ProductService;
 
@@ -53,6 +54,9 @@ public class DemoData {
 
 	@Autowired
 	CustomerService customerService;
+
+	@Autowired
+	OrderService orderService;
 
 	@POST
 	public void generateDemoData() {
@@ -116,9 +120,12 @@ public class DemoData {
 		customer.setPassword("p");
 		customer.setConfirmPassword("p");
 		customer = customerService.validateAndCreateCustomer(customer);
-		
-		Order order  = new Order();
+
+		Order order = new Order();
 		order.setCustomer(customer);
+		order.setProduct(product);
+		order.setDeliverydate(LocalDateTime.now().plusDays(2));
+		orderService.validateAndCreate(order);
 
 		System.out.println("*****************************Done with Demo Data *************************************");
 
