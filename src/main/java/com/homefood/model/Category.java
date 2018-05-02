@@ -20,6 +20,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.homefood.codetype.RecordStatus;
 
@@ -50,7 +51,8 @@ public class Category {
 
 	@Column
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
-	@JsonBackReference
+//	@JsonBackReference
+	@JsonIgnore
 	private List<Product> products;
 
 	@Version

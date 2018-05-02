@@ -1,12 +1,15 @@
 package com.homefood.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.homefood.codetype.NotificationInfo;
 import com.homefood.codetype.RecordStatus;
+import com.homefood.core.TransactionInfo;
 import com.homefood.model.Category;
 import com.homefood.model.Caterer;
 import com.homefood.model.Product;
@@ -25,6 +28,9 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	CategoryService categoryService;
+
+	@Autowired
+	TransactionInfo transactionInfo;
 
 	@Override
 	public Product createProduct(Product product) {
@@ -48,7 +54,17 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void validate(Product product) {
+		List<Object> args = new ArrayList<Object>();
+		args.add(product.getClass().getSimpleName() + " name");
+		args.add(product.getName());
 
+		List<Product> products = productRepository.findByNameAndCatererAndStatus(product.getName(),
+				product.getCaterer(), RecordStatus.Active);
+		if (product.getName() == null || product.getName().isEmpty()) {
+			transactionInfo.generateException("EMPTY_FILED", args, NotificationInfo.ERROR, 500);
+		} else if (!products.isEmpty() || products == null) {
+			transactionInfo.generateException("ALREADY_EXISTS", args, NotificationInfo.ERROR, 500);
+		}
 	}
 
 	@Override

@@ -1,13 +1,17 @@
 package com.homefood.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.homefood.codetype.NotificationInfo;
 import com.homefood.codetype.RecordStatus;
+import com.homefood.core.TransactionInfo;
 import com.homefood.model.Caterer;
+import com.homefood.model.Product;
 import com.homefood.repository.CatererRepository;
 
 @Service
@@ -16,6 +20,9 @@ public class CatererServiceImpl implements CatererService {
 
 	@Autowired
 	CatererRepository catererRepository;
+
+	@Autowired
+	TransactionInfo transactionInfo;
 
 	@Override
 	public Caterer createCaterer(Caterer caterer) {
@@ -29,8 +36,15 @@ public class CatererServiceImpl implements CatererService {
 
 	@Override
 	public void validate(Caterer caterer) {
-		// TODO Auto-generated method stub
-
+		List<Object> args = new ArrayList<Object>();
+		args.add(caterer.getClass().getSimpleName() + " name");
+		args.add(caterer.getName());
+		List<Caterer> caterers = catererRepository.findByNameAndRecordStatus(caterer.getName(), RecordStatus.Active);
+		if (caterer.getName() == null || caterer.getName().isEmpty()) {
+			transactionInfo.generateException("EMPTY_FILED", args, NotificationInfo.ERROR, 501);
+		} else if (!caterers.isEmpty() || null == caterers) {
+			transactionInfo.generateException("ALREADY_EXISTS", args, NotificationInfo.ERROR, 501);
+		}
 	}
 
 	@Override

@@ -19,6 +19,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.homefood.codetype.RecordStatus;
@@ -55,8 +57,8 @@ public class Caterer {
 	private String description;
 
 	@Column
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "caterer")
-	@JsonManagedReference
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "caterer")
 	private List<Product> products;
 
 	@Version

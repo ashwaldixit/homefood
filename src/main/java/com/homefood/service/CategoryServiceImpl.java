@@ -1,12 +1,15 @@
 package com.homefood.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.homefood.codetype.NotificationInfo;
 import com.homefood.codetype.RecordStatus;
+import com.homefood.core.TransactionInfo;
 import com.homefood.model.Category;
 import com.homefood.repository.CategoryRepository;
 
@@ -16,6 +19,9 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Autowired
 	CategoryRepository categoryRepository;
+
+	@Autowired
+	TransactionInfo transactionInfo;
 
 	@Override
 	public Category createCategory(Category category) {
@@ -43,8 +49,16 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public void validate(Category category) {
-		// TODO Auto-generated method stub
-
+		List<Object> args = new ArrayList<Object>();
+		args.add(category.getClass().getSimpleName() + " name");
+		args.add(category.getName());
+		List<Category> categories = categoryRepository.findByNameAndRecordStatus(category.getName(),
+				RecordStatus.Active);
+		if (category.getName() == null || category.getName().isEmpty()) {
+			transactionInfo.generateException("EMPTY_FILED", args, NotificationInfo.ERROR, 501);
+		} else if (categories == null || !categories.isEmpty()) {
+			transactionInfo.generateException("ALREADY_EXISTS", args, NotificationInfo.ERROR, 501);
+		}
 	}
 
 	@Override
