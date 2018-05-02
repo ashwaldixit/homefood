@@ -12,16 +12,16 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.homefood.model.Order;
+import com.homefood.model.ProductOrder;
 import com.homefood.service.CustomerService;
-import com.homefood.service.OrderService;
+import com.homefood.service.ProductOrderService;
 import com.homefood.service.ProductService;
 
-@Path("/orders")
-public class OrderResource {
+@Path("/productorders")
+public class ProductOrderResource {
 
 	@Autowired
-	OrderService orderService;
+	ProductOrderService orderService;
 
 	@Autowired
 	CustomerService customerService;
@@ -70,14 +70,14 @@ public class OrderResource {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createOrder(Order order) {
+	public Response createOrder(ProductOrder order) {
 		return Response.ok().entity(orderService.validateAndCreate(order)).build();
 	}
 
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateOrder(Order order) {
+	public Response updateOrder(ProductOrder order) {
 		return Response.ok().entity(orderService.update(order)).build();
 	}
 }

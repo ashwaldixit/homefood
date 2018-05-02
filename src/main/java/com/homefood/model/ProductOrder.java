@@ -24,10 +24,10 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
 
-@Entity(name = "customerorder")
+@Entity(name = "productorder")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @EntityListeners(AuditingEntityListener.class)
-public class Order {
+public class ProductOrder {
 
 	@Id
 	@GeneratedValue

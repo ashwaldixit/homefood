@@ -16,4 +16,6 @@ public interface CategoryRepository extends CrudRepository<Category, Serializabl
 
 	public List<Category> findByNameAndRecordStatus(String name, RecordStatus status);
 
+	public List<Category> findByRecordStatus(RecordStatus recordStatus);
+
 }

@@ -79,7 +79,7 @@ public class Product {
 	@Column
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
 	@JsonIgnore
-	private List<Order> orders;
+	private List<ProductOrder> orders;
 
 	public RecordStatus getStatus() {
 		return status;
@@ -169,11 +169,11 @@ public class Product {
 		this.presence = presence;
 	}
 
-	public List<Order> getOrders() {
+	public List<ProductOrder> getOrders() {
 		return orders;
 	}
 
-	public void setOrders(List<Order> orders) {
+	public void setOrders(List<ProductOrder> orders) {
 		this.orders = orders;
 	}
 

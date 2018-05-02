@@ -16,4 +16,6 @@ public interface CatererRepository extends CrudRepository<Caterer, Serializable>
 
 	public List<Caterer> findByNameAndRecordStatus(String name, RecordStatus recordStatus);
 
+	
+	public List<Caterer> findByRecordStatus(RecordStatus recordStatus);
 }

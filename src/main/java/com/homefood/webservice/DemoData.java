@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import com.homefood.model.Category;
 import com.homefood.model.Caterer;
 import com.homefood.model.Customer;
-import com.homefood.model.Order;
+import com.homefood.model.ProductOrder;
 import com.homefood.model.Product;
 import com.homefood.model.ProductPresence;
 import com.homefood.repository.CategoryRepository;
@@ -21,7 +21,7 @@ import com.homefood.repository.ProductRepository;
 import com.homefood.service.CategoryService;
 import com.homefood.service.CatererService;
 import com.homefood.service.CustomerService;
-import com.homefood.service.OrderService;
+import com.homefood.service.ProductOrderService;
 import com.homefood.service.ProductPresenceService;
 import com.homefood.service.ProductService;
 
@@ -56,7 +56,7 @@ public class DemoData {
 	CustomerService customerService;
 
 	@Autowired
-	OrderService orderService;
+	ProductOrderService orderService;
 
 	@POST
 	public void generateDemoData() {
@@ -121,7 +121,7 @@ public class DemoData {
 		customer.setConfirmPassword("p");
 		customer = customerService.validateAndCreateCustomer(customer);
 
-		Order order = new Order();
+		ProductOrder order = new ProductOrder();
 		order.setCustomer(customer);
 		order.setProduct(product);
 		order.setDeliverydate(LocalDateTime.now().plusDays(2));

@@ -58,4 +58,9 @@ public class CategoryServiceImpl implements CategoryService {
 		return createCategory(category);
 	}
 
+	@Override
+	public List<Category> getAllActiveCategories() {
+		return categoryRepository.findByRecordStatus(RecordStatus.Active);
+	}
+
 }

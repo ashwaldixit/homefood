@@ -29,6 +29,13 @@ public class CatererResource {
 	}
 
 	@GET
+	@Path("/active")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllActive() {
+		return Response.ok().entity(catererService.readAllInActiveCaterers()).build();
+	}
+
+	@GET
 	@Path("/name/{name}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getByName(@PathParam("name") String name) {

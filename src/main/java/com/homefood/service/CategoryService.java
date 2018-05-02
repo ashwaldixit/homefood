@@ -20,4 +20,6 @@ public interface CategoryService {
 
 	public Category update(Category category);
 
+	public List<Category> getAllActiveCategories();
+
 }
