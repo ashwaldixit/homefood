@@ -1,8 +1,6 @@
 package com.homefood.webservice;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -14,8 +12,8 @@ import com.homefood.model.Category;
 import com.homefood.model.Caterer;
 import com.homefood.model.Customer;
 import com.homefood.model.CustomerOrder;
-import com.homefood.model.ProductOrder;
 import com.homefood.model.Product;
+import com.homefood.model.ProductOrder;
 import com.homefood.model.ProductPresence;
 import com.homefood.repository.CategoryRepository;
 import com.homefood.repository.CatererRepository;
@@ -71,7 +69,6 @@ public class DemoData {
 		Caterer caterer = new Caterer();
 		caterer.setName("Sumi");
 		caterer.setDescription("First Caterer");
-
 		caterer = catererService.createCaterer(caterer);
 
 		Category category = new Category();
@@ -82,6 +79,7 @@ public class DemoData {
 		product.setCategory(category);
 		product.setCaterer(caterer);
 		product.setName("Idli");
+		product.setImageUrl("https://www.ruchiskitchen.com/wp-content/uploads/2016/01/instant-rice-idli-recipe-6.jpg");
 		product.setDescription("South Indian Breakfast");
 		product = productService.createProduct(product);
 
@@ -94,6 +92,21 @@ public class DemoData {
 		product = new Product();
 		product.setCategory(category);
 		product.setCaterer(caterer);
+		product.setImageUrl("http://www.dosacrepecafe.com/images/dosa-2.jpg");
+		product.setName("Dosa");
+		product.setDescription("South Indian Breakfast");
+		product = productService.createProduct(product);
+
+		presence = new ProductPresence();
+		presence.setProduct(product);
+		presence.setStartTime(LocalDateTime.now());
+		presence.setEndTime(LocalDateTime.now().plusHours(3));
+		productPresenceService.createProductPresence(presence);
+
+		product = new Product();
+		product.setCategory(category);
+		product.setCaterer(caterer);
+		product.setImageUrl("https://i.ytimg.com/vi/0HL2_8QV5mM/maxresdefault.jpg");
 		product.setName("Vada");
 		product.setDescription("South Indian Breakfast");
 		product = productService.createProduct(product);
@@ -112,7 +125,23 @@ public class DemoData {
 		product.setCategory(category);
 		product.setCaterer(caterer);
 		product.setName("Roti");
-		product.setDescription("NOrth Indian Breakfast");
+		product.setImageUrl("http://www.strokeinfoblog.com/wp-content/uploads/2017/12/tandoori-roti.jpg");
+		product.setDescription("North Indian Breakfast");
+		product = productService.createProduct(product);
+
+		presence = new ProductPresence();
+		presence.setProduct(product);
+		presence.setStartTime(LocalDateTime.now());
+		presence.setEndTime(LocalDateTime.now().plusHours(3));
+		productPresenceService.createProductPresence(presence);
+		
+		
+		product = new Product();
+		product.setCategory(category);
+		product.setCaterer(caterer);
+		product.setName("Panner Butter Masala");
+		product.setImageUrl("https://i.ytimg.com/vi/T5tCiHGjEbk/maxresdefault.jpg");
+		product.setDescription("North Indian Breakfast");
 		product = productService.createProduct(product);
 
 		presence = new ProductPresence();

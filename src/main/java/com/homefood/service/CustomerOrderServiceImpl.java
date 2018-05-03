@@ -3,16 +3,14 @@ package com.homefood.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
 import com.homefood.model.Customer;
 import com.homefood.model.CustomerOrder;
-import com.homefood.model.ProductOrder;
 import com.homefood.repository.CustomerOrderRepository;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional

@@ -9,9 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
-import com.homefood.model.Customer;
-import com.homefood.model.ProductOrder;
 import com.homefood.model.Product;
+import com.homefood.model.ProductOrder;
 
 @Repository
 public interface ProductOrderRepository extends JpaRepository<ProductOrder, Serializable> {

@@ -11,7 +11,6 @@ import com.homefood.codetype.NotificationInfo;
 import com.homefood.codetype.RecordStatus;
 import com.homefood.core.TransactionInfo;
 import com.homefood.model.Caterer;
-import com.homefood.model.Product;
 import com.homefood.repository.CatererRepository;
 
 @Service
