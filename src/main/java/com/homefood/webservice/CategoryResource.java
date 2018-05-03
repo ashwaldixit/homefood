@@ -29,6 +29,13 @@ public class CategoryResource {
 	}
 
 	@GET
+	@Path("/active")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllActive() {
+		return Response.ok().entity(categoryService.getAllActiveCategories()).build();
+	}
+
+	@GET
 	@Path("/name/active/{name}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getActiveByName(@PathParam("name") String name) {

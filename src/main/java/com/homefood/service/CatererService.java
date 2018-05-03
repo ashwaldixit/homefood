@@ -19,4 +19,6 @@ public interface CatererService {
 	public List<Caterer> readAllInActiveByName(String name);
 
 	public Caterer update(Caterer caterer);
+	
+	public List<Caterer> readAllInActiveCaterers();
 }

@@ -61,7 +61,7 @@ public class Customer {
 	
 	@Column
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "customer")
-	private List<Order> orders;
+	private List<CustomerOrder> orders;
 
 
 	public long getCustomerid() {

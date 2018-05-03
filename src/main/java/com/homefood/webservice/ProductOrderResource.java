@@ -20,16 +20,16 @@ import com.homefood.codetype.NotificationInfo;
 import com.homefood.codetype.OrderStatus;
 import com.homefood.core.LocalDateTimeParser;
 import com.homefood.core.TransactionInfo;
-import com.homefood.model.Order;
+import com.homefood.model.ProductOrder;
 import com.homefood.service.CustomerService;
-import com.homefood.service.OrderService;
+import com.homefood.service.ProductOrderService;
 import com.homefood.service.ProductService;
 
-@Path("/orders")
-public class OrderResource {
+@Path("/productorders")
+public class ProductOrderResource {
 
 	@Autowired
-	OrderService orderService;
+	ProductOrderService orderService;
 
 	@Autowired
 	CustomerService customerService;
@@ -50,58 +50,18 @@ public class OrderResource {
 		return Response.ok().entity(orderService.readById(orderid)).build();
 	}
 
-	@GET
-	@Path("/customer/{customerid}/open")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAllOpenOrderOFCustomer(@PathParam("name") long id) {
-		return Response.ok().entity(orderService.readAllOpenOrdersOfCustomer(customerService.readById(id))).build();
-	}
-
-	@GET
-	@Path("/customer/{customerid}/cancelled")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAllCancelOrderOFCustomer(@PathParam("name") long id) {
-		return Response.ok().entity(orderService.readAllCancelledOrdersOfCustomer(customerService.readById(id)))
-				.build();
-	}
-
-	@GET
-	@Path("/customer/{customerid}/delivered")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAllDeliveredOrderOFCustomer(@PathParam("name") long id) {
-		return Response.ok().entity(orderService.readAllDeliveredOrdersOfCustomer(customerService.readById(id)))
-				.build();
-	}
-
-	@GET
-	@Path("/customer/{customerid}/confirmed")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAllConfirmedOrderOFCustomer(@PathParam("name") long id) {
-		return Response.ok().entity(orderService.readAllConfirmedOrdersOfCustomer(customerService.readById(id)))
-				.build();
-	}
-
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createOrder(Order order) {
+	public Response createOrder(ProductOrder order) {
 		return Response.ok().entity(orderService.validateAndCreate(order)).build();
 	}
 
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateOrder(Order order) {
+	public Response updateOrder(ProductOrder order) {
 		return Response.ok().entity(orderService.update(order)).build();
-	}
-
-	@GET
-	@Path("/customer/{customerid}/product/{productid}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAllProductsOFCustomer(@PathParam("customerid") long customerid,
-			@PathParam("productid") long productid) {
-		return Response.ok().entity(orderService.readAllByCustomerAndProduct(customerService.readById(customerid),
-				productService.readById(productid))).build();
 	}
 
 	@GET
@@ -134,33 +94,37 @@ public class OrderResource {
 	@GET
 	@Path("/date/{deliveryDate}/delivered")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAllDeliveredOrdersByDeliveryDate(@PathParam("deliveryDate") LocalDateTime deliveryDate) {
-		return Response.ok().entity(orderService.readAllDeliveredByDeliveryDate(deliveryDate)).build();
+	public Response getAllDeliveredOrdersByDeliveryDate(@PathParam("deliveryDate") String deliveryDate) {
+		LocalDateTime deliveryDateTime = dateTimeParser.parseString(deliveryDate);
+		return Response.ok().entity(orderService.readAllDeliveredByDeliveryDate(deliveryDateTime)).build();
 	}
 
 	@GET
 	@Path("/date/{deliveryDate}/open")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAllOpenOrdersByDeliveryDate(@PathParam("deliveryDate") LocalDateTime deliveryDate) {
-		return Response.ok().entity(orderService.readAllOpenByDeliveryDate(deliveryDate)).build();
+	public Response getAllOpenOrdersByDeliveryDate(@PathParam("deliveryDate") String deliveryDate) {
+		LocalDateTime deliveryDateTime = dateTimeParser.parseString(deliveryDate);
+		return Response.ok().entity(orderService.readAllOpenByDeliveryDate(deliveryDateTime)).build();
 	}
 
 	@GET
 	@Path("/date/{deliveryDate}/cancelled")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAllCancelledOrdersByDeliveryDate(@PathParam("deliveryDate") LocalDateTime deliveryDate) {
-		return Response.ok().entity(orderService.readAllCancelledByDeliveryDate(deliveryDate)).build();
+	public Response getAllCancelledOrdersByDeliveryDate(@PathParam("deliveryDate") String deliveryDate) {
+		LocalDateTime deliveryDateTime = dateTimeParser.parseString(deliveryDate);
+		return Response.ok().entity(orderService.readAllCancelledByDeliveryDate(deliveryDateTime)).build();
 	}
 
 	@GET
 	@Path("/product/{productId}/date/{deliveryDate}/status/{orderStatus}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllOrdersByProductAndDeliveryDateAndOrderStatus(@PathParam("productId") long productId,
-			@PathParam("deliveryDate") LocalDateTime deliveryDate, @PathParam("status") String orderStatus) {
+			@PathParam("deliveryDate") String deliveryDate, @PathParam("status") String orderStatus) {
+		LocalDateTime deliveryDateTime = dateTimeParser.parseString(deliveryDate);
 		for (OrderStatus status : OrderStatus.values()) {
 			if (orderStatus.equalsIgnoreCase(status.name())) {
 				return Response.ok().entity(orderService.readAllByProductAndDeliveryDateAndOrderStatus(
-						productService.readById(productId), deliveryDate, status)).build();
+						productService.readById(productId), deliveryDateTime, status)).build();
 			}
 		}
 		List<Object> args = new ArrayList<Object>();
@@ -173,9 +137,10 @@ public class OrderResource {
 	@Path("/product/{productId}/date/{deliveryDate}/confirmed")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllConfirmedOrdersByProductAndDeliveryDate(@PathParam("productId") long productId,
-			@PathParam("deliveryDate") LocalDateTime deliveryDate) {
-		return Response.ok().entity(
-				orderService.readAllConfirmedByProductAndDeliveryDate(productService.readById(productId), deliveryDate))
+			@PathParam("deliveryDate") String deliveryDate) {
+		LocalDateTime deliveryDateTime = dateTimeParser.parseString(deliveryDate);
+		return Response.ok().entity(orderService
+				.readAllConfirmedByProductAndDeliveryDate(productService.readById(productId), deliveryDateTime))
 				.build();
 	}
 
@@ -183,9 +148,10 @@ public class OrderResource {
 	@Path("/product/{productId}/date/{deliveryDate}/delivered")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllDeliveredOrdersByProductAndDeliveryDate(@PathParam("productId") long productId,
-			@PathParam("deliveryDate") LocalDateTime deliveryDate) {
-		return Response.ok().entity(
-				orderService.readAllDeliveredByProductAndDeliveryDate(productService.readById(productId), deliveryDate))
+			@PathParam("deliveryDate") String deliveryDate) {
+		LocalDateTime deliveryDateTime = dateTimeParser.parseString(deliveryDate);
+		return Response.ok().entity(orderService
+				.readAllDeliveredByProductAndDeliveryDate(productService.readById(productId), deliveryDateTime))
 				.build();
 	}
 
@@ -193,9 +159,10 @@ public class OrderResource {
 	@Path("/product/{productId}/date/{deliveryDate}/cancelled")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllCancelledOrdersByProductAndDeliveryDate(@PathParam("productId") long productId,
-			@PathParam("deliveryDate") LocalDateTime deliveryDate) {
-		return Response.ok().entity(
-				orderService.readAllCancelledByProductAndDeliveryDate(productService.readById(productId), deliveryDate))
+			@PathParam("deliveryDate") String deliveryDate) {
+		LocalDateTime deliveryDateTime = dateTimeParser.parseString(deliveryDate);
+		return Response.ok().entity(orderService
+				.readAllCancelledByProductAndDeliveryDate(productService.readById(productId), deliveryDateTime))
 				.build();
 	}
 
@@ -203,9 +170,10 @@ public class OrderResource {
 	@Path("/product/{productId}/date/{deliveryDate}/open")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllOpenOrdersByProductAndDeliveryDate(@PathParam("productId") long productId,
-			@PathParam("deliveryDate") LocalDateTime deliveryDate) {
+			@PathParam("deliveryDate") String deliveryDate) {
+		LocalDateTime deliveryDateTime = dateTimeParser.parseString(deliveryDate);
 		return Response.ok().entity(
-				orderService.readAllOpenByProductAndDeliveryDate(productService.readById(productId), deliveryDate))
+				orderService.readAllOpenByProductAndDeliveryDate(productService.readById(productId), deliveryDateTime))
 				.build();
 	}
 }

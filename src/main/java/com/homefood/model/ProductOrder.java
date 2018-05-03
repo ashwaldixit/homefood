@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -24,10 +25,10 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
 
-@Entity(name = "customerorder")
+@Entity(name = "productorder")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @EntityListeners(AuditingEntityListener.class)
-public class Order {
+public class ProductOrder {
 
 	@Id
 	@GeneratedValue
@@ -50,17 +51,24 @@ public class Order {
 	@Column(name = "orderstatus")
 	private OrderStatus orderStatus = OrderStatus.Open;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "customerid", nullable = false, updatable = false)
-	@JsonManagedReference
-	private Customer customer;
-
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "productid", nullable = false, updatable = false)
 	private Product product;
 
 	@Column(name = "deliverydate")
 	private LocalDateTime deliverydate;
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "customerorderid", nullable = false, updatable = false)
+	private CustomerOrder customerOrder;
+
+	public CustomerOrder getCustomerOrder() {
+		return customerOrder;
+	}
+
+	public void setCustomerOrder(CustomerOrder customerOrder) {
+		this.customerOrder = customerOrder;
+	}
 
 	public long getOrderid() {
 		return orderid;
@@ -100,14 +108,6 @@ public class Order {
 
 	public void setOrderStatus(OrderStatus orderStatus) {
 		this.orderStatus = orderStatus;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
 	}
 
 	public Product getProduct() {

@@ -9,10 +9,11 @@ import com.homefood.model.Customer;
 
 @Repository
 public interface CustomerRepository extends CrudRepository<Customer, Serializable> {
-	
+
 	public Customer findByCustomerid(long id);
+
 	public Customer findByEmail(String email);
+
 	public Customer findByUserName(String userName);
-	
 
 }

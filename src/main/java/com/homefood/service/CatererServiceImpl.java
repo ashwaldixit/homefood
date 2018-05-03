@@ -72,4 +72,9 @@ public class CatererServiceImpl implements CatererService {
 		return createCaterer(caterer);
 	}
 
+	@Override
+	public List<Caterer> readAllInActiveCaterers() {
+		return catererRepository.findByRecordStatus(RecordStatus.Active);
+	}
+
 }

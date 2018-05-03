@@ -1,6 +1,8 @@
 package com.homefood.webservice;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -11,7 +13,8 @@ import org.springframework.stereotype.Component;
 import com.homefood.model.Category;
 import com.homefood.model.Caterer;
 import com.homefood.model.Customer;
-import com.homefood.model.Order;
+import com.homefood.model.CustomerOrder;
+import com.homefood.model.ProductOrder;
 import com.homefood.model.Product;
 import com.homefood.model.ProductPresence;
 import com.homefood.repository.CategoryRepository;
@@ -20,8 +23,9 @@ import com.homefood.repository.ProductPresenceRepository;
 import com.homefood.repository.ProductRepository;
 import com.homefood.service.CategoryService;
 import com.homefood.service.CatererService;
+import com.homefood.service.CustomerOrderService;
 import com.homefood.service.CustomerService;
-import com.homefood.service.OrderService;
+import com.homefood.service.ProductOrderService;
 import com.homefood.service.ProductPresenceService;
 import com.homefood.service.ProductService;
 
@@ -56,7 +60,10 @@ public class DemoData {
 	CustomerService customerService;
 
 	@Autowired
-	OrderService orderService;
+	ProductOrderService orderService;
+
+	@Autowired
+	CustomerOrderService customerOrderService;
 
 	@POST
 	public void generateDemoData() {
@@ -121,10 +128,17 @@ public class DemoData {
 		customer.setConfirmPassword("p");
 		customer = customerService.validateAndCreateCustomer(customer);
 
-		Order order = new Order();
-		order.setCustomer(customer);
+		CustomerOrder customerOrder = new CustomerOrder();
+		customerOrder.setCreatedDate(LocalDateTime.now());
+		customerOrder.setCustomer(customer);
+		customerOrder.setLastModifiedDate(LocalDateTime.now().plusHours(3));
+		customerOrder = customerOrderService.validateAndCreate(customerOrder);
+
+		ProductOrder order = new ProductOrder();
+		// order.setCustomer(customer);
 		order.setProduct(product);
 		order.setDeliverydate(LocalDateTime.now().plusDays(2));
+		order.setCustomerOrder(customerOrder);
 		orderService.validateAndCreate(order);
 
 		System.out.println("*****************************Done with Demo Data *************************************");

@@ -7,9 +7,10 @@ import com.homefood.exception.GenericExceptionMapper;
 import com.homefood.exception.HomeFoodExceptionMapper;
 import com.homefood.webservice.CategoryResource;
 import com.homefood.webservice.CatererResource;
+import com.homefood.webservice.CustomerOrderResource;
 import com.homefood.webservice.CustomerResource;
 import com.homefood.webservice.DemoData;
-import com.homefood.webservice.OrderResource;
+import com.homefood.webservice.ProductOrderResource;
 import com.homefood.webservice.ProductPresenceResource;
 import com.homefood.webservice.ProductResource;
 
@@ -26,9 +27,10 @@ public class JerseyConfig extends ResourceConfig {
 		register(ProductResource.class);
 		register(ProductPresenceResource.class);
 		register(CustomerResource.class);
-		register(OrderResource.class);
+		register(ProductOrderResource.class);
 		register(GenericExceptionMapper.class);
 		register(HomeFoodExceptionMapper.class);
+		register(CustomerOrderResource.class);
 	}
 
 }
