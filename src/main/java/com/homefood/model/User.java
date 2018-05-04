@@ -68,6 +68,11 @@ public class User {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "customer")
 	@JsonIgnore
 	private List<CustomerOrder> orders;
+	
+	@Column
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	@JsonIgnore
+	private List<Address> addresses;
 
 
 	public String getEmail() {

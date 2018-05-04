@@ -100,7 +100,6 @@ public class DemoData {
 		productPrice.setEndDate(LocalDateTime.now().plusYears(2));
 		productPriceService.createProductPrice(productPrice);
 
-		
 		ProductPresence presence = new ProductPresence();
 		presence.setProduct(product);
 		presence.setStartTime(LocalDateTime.now());
@@ -114,14 +113,13 @@ public class DemoData {
 		product.setName("Dosa");
 		product.setDescription("South Indian Breakfast");
 		product = productService.createProduct(product);
-		
-		 productPrice = new ProductPrice();
+
+		productPrice = new ProductPrice();
 		productPrice.setProduct(product);
 		productPrice.setPrice(50);
 		productPrice.setStartDate(LocalDateTime.now().plusDays(-1));
 		productPrice.setEndDate(LocalDateTime.now().plusYears(2));
 		productPriceService.createProductPrice(productPrice);
-
 
 		presence = new ProductPresence();
 		presence.setProduct(product);
@@ -142,14 +140,139 @@ public class DemoData {
 		presence.setStartTime(LocalDateTime.now());
 		presence.setEndTime(LocalDateTime.now().plusHours(3));
 		productPresenceService.createProductPresence(presence);
-		
-		 productPrice = new ProductPrice();
+
+		productPrice = new ProductPrice();
 		productPrice.setProduct(product);
 		productPrice.setPrice(30);
 		productPrice.setStartDate(LocalDateTime.now().plusDays(-1));
 		productPrice.setEndDate(LocalDateTime.now().plusYears(2));
 		productPriceService.createProductPrice(productPrice);
 
+		product = new Product();
+		product.setCategory(category);
+		product.setCaterer(caterer);
+		product.setName("Chapathi");
+		product.setImageUrl("https://thumbs.dreamstime.com/b/indian-bread-chapathi-hand-made-33805774.jpg");
+		product.setDescription("South Indian Breakfast");
+		product = productService.createProduct(product);
+
+		productPrice = new ProductPrice();
+		productPrice.setProduct(product);
+		productPrice.setPrice(40);
+		productPrice.setStartDate(LocalDateTime.now().plusDays(-1));
+		productPrice.setEndDate(LocalDateTime.now().plusYears(2));
+		productPriceService.createProductPrice(productPrice);
+
+		presence = new ProductPresence();
+		presence.setProduct(product);
+		presence.setStartTime(LocalDateTime.now());
+		presence.setEndTime(LocalDateTime.now().plusHours(3));
+		productPresenceService.createProductPresence(presence);
+
+		product = new Product();
+		product.setCategory(category);
+		product.setCaterer(caterer);
+		product.setName("Upma");
+		product.setImageUrl("https://media.hungryforever.com/wp-content/uploads/2017/06/27115919/veg-upma-recipe.jpg");
+		product.setDescription("South Indian Breakfast");
+		product = productService.createProduct(product);
+
+		productPrice = new ProductPrice();
+		productPrice.setProduct(product);
+		productPrice.setPrice(33);
+		productPrice.setStartDate(LocalDateTime.now().plusDays(-1));
+		productPrice.setEndDate(LocalDateTime.now().plusYears(2));
+		productPriceService.createProductPrice(productPrice);
+
+		presence = new ProductPresence();
+		presence.setProduct(product);
+		presence.setStartTime(LocalDateTime.now());
+		presence.setEndTime(LocalDateTime.now().plusHours(3));
+		productPresenceService.createProductPresence(presence);
+
+		product = new Product();
+		product.setCategory(category);
+		product.setCaterer(caterer);
+		product.setName("Avalakki");
+		product.setImageUrl("http://www.sailusfood.com/wp-content/uploads/2013/11/huli-avalakki-breakfast-recipes.jpg");
+		product.setDescription("South Indian Breakfast");
+		product = productService.createProduct(product);
+
+		productPrice = new ProductPrice();
+		productPrice.setProduct(product);
+		productPrice.setPrice(25);
+		productPrice.setStartDate(LocalDateTime.now().plusDays(-1));
+		productPrice.setEndDate(LocalDateTime.now().plusYears(2));
+		productPriceService.createProductPrice(productPrice);
+
+		presence = new ProductPresence();
+		presence.setProduct(product);
+		presence.setStartTime(LocalDateTime.now());
+		presence.setEndTime(LocalDateTime.now().plusHours(3));
+		productPresenceService.createProductPresence(presence);
+
+		product = new Product();
+		product.setCategory(category);
+		product.setCaterer(caterer);
+		product.setName("Poori");
+		product.setImageUrl("https://i2.wp.com/honalu.net/wp-content/uploads/2015/05/poori-sagu.jpg?ssl=1");
+		product.setDescription("South Indian Breakfast");
+		product = productService.createProduct(product);
+
+		productPrice = new ProductPrice();
+		productPrice.setProduct(product);
+		productPrice.setPrice(40);
+		productPrice.setStartDate(LocalDateTime.now().plusDays(-1));
+		productPrice.setEndDate(LocalDateTime.now().plusYears(2));
+		productPriceService.createProductPrice(productPrice);
+
+		presence = new ProductPresence();
+		presence.setProduct(product);
+		presence.setStartTime(LocalDateTime.now());
+		presence.setEndTime(LocalDateTime.now().plusHours(3));
+		productPresenceService.createProductPresence(presence);
+
+		product = new Product();
+		product.setCategory(category);
+		product.setCaterer(caterer);
+		product.setName("Raagi Rotti");
+		product.setImageUrl("http://www.archanaskitchen.com//images/archanaskitchen/1-Author/Gauravi_Vinay/Ragi_Ujju_Rotti.jpg");
+		product.setDescription("South Indian Breakfast");
+		product = productService.createProduct(product);
+
+		productPrice = new ProductPrice();
+		productPrice.setProduct(product);
+		productPrice.setPrice(33);
+		productPrice.setStartDate(LocalDateTime.now().plusDays(-1));
+		productPrice.setEndDate(LocalDateTime.now().plusYears(2));
+		productPriceService.createProductPrice(productPrice);
+
+		presence = new ProductPresence();
+		presence.setProduct(product);
+		presence.setStartTime(LocalDateTime.now());
+		presence.setEndTime(LocalDateTime.now().plusHours(3));
+		productPresenceService.createProductPresence(presence);
+
+		product = new Product();
+		product.setCategory(category);
+		product.setCaterer(caterer);
+		product.setName("Rava Idli");
+		product.setImageUrl("http://www.secondrecipe.com/wp-content/uploads/2017/01/idli.jpg");
+		product.setDescription("South Indian Breakfast");
+		product = productService.createProduct(product);
+
+		productPrice = new ProductPrice();
+		productPrice.setProduct(product);
+		productPrice.setPrice(25);
+		productPrice.setStartDate(LocalDateTime.now().plusDays(-1));
+		productPrice.setEndDate(LocalDateTime.now().plusYears(2));
+		productPriceService.createProductPrice(productPrice);
+
+		presence = new ProductPresence();
+		presence.setProduct(product);
+		presence.setStartTime(LocalDateTime.now());
+		presence.setEndTime(LocalDateTime.now().plusHours(3));
+		productPresenceService.createProductPresence(presence);
 
 		category = new Category();
 		category.setName("North Indian");
@@ -163,14 +286,13 @@ public class DemoData {
 		product.setDescription("North Indian Breakfast");
 		product = productService.createProduct(product);
 
-		 productPrice = new ProductPrice();
+		productPrice = new ProductPrice();
 		productPrice.setProduct(product);
 		productPrice.setPrice(30);
 		productPrice.setStartDate(LocalDateTime.now().plusDays(-1));
 		productPrice.setEndDate(LocalDateTime.now().plusYears(2));
 		productPriceService.createProductPrice(productPrice);
 
-		
 		presence = new ProductPresence();
 		presence.setProduct(product);
 		presence.setStartTime(LocalDateTime.now());
@@ -185,14 +307,13 @@ public class DemoData {
 		product.setDescription("North Indian Breakfast");
 		product = productService.createProduct(product);
 
-		 productPrice = new ProductPrice();
+		productPrice = new ProductPrice();
 		productPrice.setProduct(product);
 		productPrice.setPrice(75);
 		productPrice.setStartDate(LocalDateTime.now().plusDays(-1));
 		productPrice.setEndDate(LocalDateTime.now().plusYears(2));
 		productPriceService.createProductPrice(productPrice);
 
-		
 		presence = new ProductPresence();
 		presence.setProduct(product);
 		presence.setStartTime(LocalDateTime.now());
