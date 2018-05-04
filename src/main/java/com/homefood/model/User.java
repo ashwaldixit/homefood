@@ -19,17 +19,19 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.homefood.codetype.RecordStatus;
+import com.homefood.codetype.UserRole;
 
-@Entity
+@Entity(name="users")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @EntityListeners(AuditingEntityListener.class)
-public class Customer {
+public class User {
 
 	@Id
 	@GeneratedValue
-	private long customerid;
+	private long userid;
 
 	@Column(unique = true, nullable = false)
 	private String email;
@@ -40,6 +42,9 @@ public class Customer {
 	@Column(nullable = false)
 	private String password;
 
+	@Column(name = "role")
+	private UserRole userRole;
+	
 	@Transient
 	private String confirmPassword;
 
@@ -58,19 +63,12 @@ public class Customer {
 
 	@Enumerated(EnumType.STRING)
 	private RecordStatus status = RecordStatus.Active;
-	
+
 	@Column
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "customer")
+	@JsonIgnore
 	private List<CustomerOrder> orders;
 
-
-	public long getCustomerid() {
-		return customerid;
-	}
-
-	public void setCustomerid(long customerid) {
-		this.customerid = customerid;
-	}
 
 	public String getEmail() {
 		return email;
@@ -134,6 +132,30 @@ public class Customer {
 
 	public void setStatus(RecordStatus status) {
 		this.status = status;
+	}
+
+	public long getUserid() {
+		return userid;
+	}
+
+	public void setUserid(long userid) {
+		this.userid = userid;
+	}
+
+	public UserRole getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(UserRole userRole) {
+		this.userRole = userRole;
+	}
+
+	public List<CustomerOrder> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<CustomerOrder> orders) {
+		this.orders = orders;
 	}
 
 }

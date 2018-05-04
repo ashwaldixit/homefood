@@ -21,7 +21,7 @@ import com.homefood.codetype.OrderStatus;
 import com.homefood.core.LocalDateTimeParser;
 import com.homefood.core.TransactionInfo;
 import com.homefood.model.ProductOrder;
-import com.homefood.service.CustomerService;
+import com.homefood.service.UserService;
 import com.homefood.service.ProductOrderService;
 import com.homefood.service.ProductService;
 
@@ -32,7 +32,7 @@ public class ProductOrderResource {
 	ProductOrderService orderService;
 
 	@Autowired
-	CustomerService customerService;
+	UserService customerService;
 
 	@Autowired
 	ProductService productService;

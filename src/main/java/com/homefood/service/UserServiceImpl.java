@@ -4,50 +4,50 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.homefood.model.Customer;
+import com.homefood.model.User;
 import com.homefood.repository.CustomerRepository;
 
 @Service
 @Transactional
-public class CustomerServiceImpl implements CustomerService {
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	CustomerRepository customerRepository;
 
 	@Override
-	public Customer readById(long id) {
-		return customerRepository.findByCustomerid(id);
+	public User readById(long id) {
+		return customerRepository.findByUserid(id);
 	}
 
 	@Override
-	public Customer createCustomer(Customer customer) {
+	public User createCustomer(User customer) {
 		return customerRepository.save(customer);
 	}
 
 	@Override
-	public void validate(Customer customer) {
+	public void validate(User customer) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Customer validateAndCreateCustomer(Customer customer) {
+	public User validateAndCreateCustomer(User customer) {
 		validate(customer);
 		return createCustomer(customer);
 	}
 
 	@Override
-	public Customer update(Customer customer) {
+	public User update(User customer) {
 		return createCustomer(customer);
 	}
 
 	@Override
-	public Customer readByEmail(String email) {
+	public User readByEmail(String email) {
 		return customerRepository.findByEmail(email);
 	}
 
 	@Override
-	public Customer readByUserName(String userName) {
+	public User readByUserName(String userName) {
 		return customerRepository.findByUserName(userName);
 	}
 

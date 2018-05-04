@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import com.homefood.model.Cart;
 import com.homefood.model.Category;
 import com.homefood.model.Caterer;
-import com.homefood.model.Customer;
+import com.homefood.model.User;
 import com.homefood.model.CustomerOrder;
 import com.homefood.model.Product;
 import com.homefood.model.ProductOrder;
@@ -25,7 +25,7 @@ import com.homefood.service.CartService;
 import com.homefood.service.CategoryService;
 import com.homefood.service.CatererService;
 import com.homefood.service.CustomerOrderService;
-import com.homefood.service.CustomerService;
+import com.homefood.service.UserService;
 import com.homefood.service.ProductOrderService;
 import com.homefood.service.ProductPresenceService;
 import com.homefood.service.ProductPriceService;
@@ -59,7 +59,7 @@ public class DemoData {
 	ProductPresenceService productPresenceService;
 
 	@Autowired
-	CustomerService customerService;
+	UserService customerService;
 
 	@Autowired
 	ProductOrderService orderService;
@@ -199,7 +199,7 @@ public class DemoData {
 		presence.setEndTime(LocalDateTime.now().plusHours(3));
 		productPresenceService.createProductPresence(presence);
 
-		Customer customer = new Customer();
+		User customer = new User();
 		customer.setUserName("Ashwal");
 		customer.setEmail("ashwalappi@gmail.com");
 		customer.setPassword("p");

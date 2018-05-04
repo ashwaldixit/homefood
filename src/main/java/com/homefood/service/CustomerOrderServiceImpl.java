@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
-import com.homefood.model.Customer;
+import com.homefood.model.User;
 import com.homefood.model.CustomerOrder;
 import com.homefood.repository.CustomerOrderRepository;
 
@@ -20,7 +20,7 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 	CustomerOrderRepository customerOrderRepository;
 
 	@Autowired
-	CustomerService customerService;
+	UserService customerService;
 	
 	@Autowired
 	CartService cartService;
@@ -44,7 +44,7 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 
 	@Override
 	public CustomerOrder create(CustomerOrder customerOrder) {
-		Customer customer = customerService.readById(customerOrder.getCustomer().getCustomerid());
+		User customer = customerService.readById(customerOrder.getCustomer().getUserid());
 		if (null == customer) {
 			customer = customerService.createCustomer(customerOrder.getCustomer());
 		}
@@ -65,32 +65,32 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 	}
 
 	@Override
-	public List<CustomerOrder> readAllByCustomer(Customer customer) {
+	public List<CustomerOrder> readAllByCustomer(User customer) {
 		return customerOrderRepository.findByCustomer(customer);
 	}
 
 	@Override
-	public List<CustomerOrder> readAllByCustomerAndStatus(Customer customer, OrderStatus orderStatus) {
+	public List<CustomerOrder> readAllByCustomerAndStatus(User customer, OrderStatus orderStatus) {
 		return customerOrderRepository.findByCustomerAndStatus(customer, orderStatus);
 	}
 
 	@Override
-	public List<CustomerOrder> readAllOpenOrdersOfCustomer(Customer customer) {
+	public List<CustomerOrder> readAllOpenOrdersOfCustomer(User customer) {
 		return customerOrderRepository.findByCustomerAndStatus(customer, OrderStatus.Open);
 	}
 
 	@Override
-	public List<CustomerOrder> readAllConfirmedOrdersOfCustomer(Customer customer) {
+	public List<CustomerOrder> readAllConfirmedOrdersOfCustomer(User customer) {
 		return customerOrderRepository.findByCustomerAndStatus(customer, OrderStatus.Confirmed);
 	}
 
 	@Override
-	public List<CustomerOrder> readAllDeliveredOrdersOfCustomer(Customer customer) {
+	public List<CustomerOrder> readAllDeliveredOrdersOfCustomer(User customer) {
 		return customerOrderRepository.findByCustomerAndStatus(customer, OrderStatus.Delivered);
 	}
 
 	@Override
-	public List<CustomerOrder> readAllCancelledOrdersOfCustomer(Customer customer) {
+	public List<CustomerOrder> readAllCancelledOrdersOfCustomer(User customer) {
 		return customerOrderRepository.findByCustomerAndStatus(customer, OrderStatus.Cancelled);
 	}
 

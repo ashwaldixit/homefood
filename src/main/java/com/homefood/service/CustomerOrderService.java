@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
-import com.homefood.model.Customer;
+import com.homefood.model.User;
 import com.homefood.model.CustomerOrder;
 
 
@@ -22,16 +22,16 @@ public interface CustomerOrderService {
 
 	public List<CustomerOrder> readAllByStatus(RecordStatus recordStatus);
 
-	public List<CustomerOrder> readAllByCustomer(Customer customer);
+	public List<CustomerOrder> readAllByCustomer(User customer);
 
-	public List<CustomerOrder> readAllByCustomerAndStatus(Customer customer, OrderStatus orderStatus);
+	public List<CustomerOrder> readAllByCustomerAndStatus(User customer, OrderStatus orderStatus);
 
-	public List<CustomerOrder> readAllOpenOrdersOfCustomer(Customer customer);
+	public List<CustomerOrder> readAllOpenOrdersOfCustomer(User customer);
 
-	public List<CustomerOrder> readAllConfirmedOrdersOfCustomer(Customer customer);
+	public List<CustomerOrder> readAllConfirmedOrdersOfCustomer(User customer);
 
-	public List<CustomerOrder> readAllDeliveredOrdersOfCustomer(Customer customer);
+	public List<CustomerOrder> readAllDeliveredOrdersOfCustomer(User customer);
 
-	public List<CustomerOrder> readAllCancelledOrdersOfCustomer(Customer customer);
+	public List<CustomerOrder> readAllCancelledOrdersOfCustomer(User customer);
 
 }

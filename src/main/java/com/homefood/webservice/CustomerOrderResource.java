@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.homefood.model.CustomerOrder;
 import com.homefood.service.CustomerOrderService;
-import com.homefood.service.CustomerService;
+import com.homefood.service.UserService;
 
 @Path("/customerorders")
 public class CustomerOrderResource {
@@ -23,7 +23,7 @@ public class CustomerOrderResource {
 	CustomerOrderService customerOrderService;
 
 	@Autowired
-	CustomerService customerService;
+	UserService customerService;
 
 	@GET
 	@Path("/{customerorderid}")

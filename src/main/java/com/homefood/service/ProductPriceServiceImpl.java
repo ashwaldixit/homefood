@@ -17,7 +17,7 @@ import com.homefood.repository.ProductPriceRepository;
 
 @Service
 @Transactional
-public class ProductPriceResource implements ProductPriceService {
+public class ProductPriceServiceImpl implements ProductPriceService {
 
 	@Autowired
 	ProductPriceRepository productPriceRepository;

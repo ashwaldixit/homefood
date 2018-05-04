@@ -12,14 +12,14 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.homefood.model.Customer;
-import com.homefood.service.CustomerService;
+import com.homefood.model.User;
+import com.homefood.service.UserService;
 
 @Path("/customers")
 public class CustomerResource {
 
 	@Autowired
-	CustomerService customerService;
+	UserService customerService;
 
 	@GET
 	@Path("/{customerid}")
@@ -45,14 +45,14 @@ public class CustomerResource {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createCustomer(Customer customer) {
+	public Response createCustomer(User customer) {
 		return Response.ok().entity(customerService.validateAndCreateCustomer(customer)).build();
 	}
 
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateCustomer(Customer customer) {
+	public Response updateCustomer(User customer) {
 		return Response.ok().entity(customerService.update(customer)).build();
 	}
 

@@ -54,7 +54,7 @@ public class CustomerOrder {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "customerid", nullable = false, updatable = false)
 	@JsonManagedReference
-	private Customer customer;
+	private User customer;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "orderstatus")
@@ -100,11 +100,11 @@ public class CustomerOrder {
 		this.productOrders = productOrders;
 	}
 
-	public Customer getCustomer() {
+	public User getCustomer() {
 		return customer;
 	}
 
-	public void setCustomer(Customer customer) {
+	public void setCustomer(User customer) {
 		this.customer = customer;
 	}
 

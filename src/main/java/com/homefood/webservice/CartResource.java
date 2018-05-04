@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.homefood.model.Cart;
 import com.homefood.service.CartService;
-import com.homefood.service.CustomerService;
+import com.homefood.service.UserService;
 
 @Path("/cart")
 public class CartResource {
@@ -24,7 +24,7 @@ public class CartResource {
 	@Autowired
 	CartService cartService;
 	@Autowired
-	CustomerService customerService;
+	UserService customerService;
 
 	@GET
 	@Path("{customerid}/active")

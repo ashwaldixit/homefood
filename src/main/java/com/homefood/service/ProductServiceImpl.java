@@ -3,6 +3,8 @@ package com.homefood.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.core.Response.Status;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -125,7 +127,14 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Product update(Product product) {
-		return createProduct(product);
+
+		if (null != readById(product.getProductid()))
+			return createProduct(product);
+
+		transactionInfo.generateException("UPDATE_FAILED", NotificationInfo.ERROR,
+				Status.INTERNAL_SERVER_ERROR.getStatusCode());
+		return null;
+
 	}
 
 	@Override

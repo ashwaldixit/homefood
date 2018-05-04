@@ -5,15 +5,15 @@ import java.io.Serializable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.homefood.model.Customer;
+import com.homefood.model.User;
 
 @Repository
-public interface CustomerRepository extends CrudRepository<Customer, Serializable> {
+public interface CustomerRepository extends CrudRepository<User, Serializable> {
 
-	public Customer findByCustomerid(long id);
+	public User findByUserid(long id);
 
-	public Customer findByEmail(String email);
+	public User findByEmail(String email);
 
-	public Customer findByUserName(String userName);
+	public User findByUserName(String userName);
 
 }

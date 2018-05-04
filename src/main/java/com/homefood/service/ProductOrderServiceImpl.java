@@ -21,7 +21,7 @@ public class ProductOrderServiceImpl implements ProductOrderService {
 	@Autowired
 	ProductOrderRepository orderRepository;
 	@Autowired
-	CustomerService customerService;
+	UserService customerService;
 
 	@Autowired
 	CustomerOrderService customerOrderService;

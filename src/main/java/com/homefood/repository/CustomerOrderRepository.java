@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
-import com.homefood.model.Customer;
+import com.homefood.model.User;
 import com.homefood.model.CustomerOrder;
 
 @Repository
@@ -18,8 +18,8 @@ public interface CustomerOrderRepository extends CrudRepository<CustomerOrder, S
 
 	public List<CustomerOrder> findByStatus(RecordStatus recordStatus);
 
-	public List<CustomerOrder> findByCustomer(Customer customer);
+	public List<CustomerOrder> findByCustomer(User customer);
 
-	public List<CustomerOrder> findByCustomerAndStatus(Customer customer, OrderStatus orderStatus);
+	public List<CustomerOrder> findByCustomerAndStatus(User customer, OrderStatus orderStatus);
 
 }

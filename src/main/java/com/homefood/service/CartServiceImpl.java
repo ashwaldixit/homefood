@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.homefood.codetype.CartStatus;
 import com.homefood.model.Cart;
-import com.homefood.model.Customer;
+import com.homefood.model.User;
 import com.homefood.repository.CartRepository;
 
 @Service
@@ -30,12 +30,12 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public List<Cart> readAllActiveByCustomer(Customer customer) {
+	public List<Cart> readAllActiveByCustomer(User customer) {
 		return cartRepository.findByCustomerAndStatus(customer, CartStatus.ACTIVE);
 	}
 
 	@Override
-	public void processAllByCustomer(Customer customer) {
+	public void processAllByCustomer(User customer) {
 		cartRepository.updateStatusByCustomer(CartStatus.PROCESSED, customer);
 	}
 
