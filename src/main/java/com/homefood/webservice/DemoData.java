@@ -135,7 +135,6 @@ public class DemoData {
 		presence.setEndTime(LocalDateTime.now().plusHours(3));
 		productPresenceService.createProductPresence(presence);
 		
-		
 		product = new Product();
 		product.setCategory(category);
 		product.setCaterer(caterer);
@@ -164,7 +163,6 @@ public class DemoData {
 		customerOrder = customerOrderService.validateAndCreate(customerOrder);
 
 		ProductOrder order = new ProductOrder();
-		// order.setCustomer(customer);
 		order.setProduct(product);
 		order.setDeliverydate(LocalDateTime.now().plusDays(2));
 		order.setCustomerOrder(customerOrder);
