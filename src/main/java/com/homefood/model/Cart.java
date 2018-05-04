@@ -1,7 +1,6 @@
 package com.homefood.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,29 +10,33 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Version;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.homefood.codetype.RecordStatus;
+import com.homefood.codetype.CartStatus;
 
-@Entity
+@Entity(name = "cart")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class Category {
+public class Cart {
 
 	@Id
 	@GeneratedValue
-	private long categoryid;
+	private long cartid;
 
-	@Column(unique = true, nullable = false)
-	private String name;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "customerid")
+	private Customer customer;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "productid")
+	private Product product;
 
 	@NotNull
 	@CreatedDate
@@ -46,40 +49,31 @@ public class Category {
 	private LocalDateTime lastModifiedDate;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name="recordstatus")
-	private RecordStatus recordStatus = RecordStatus.Active;
+	@Column(name = "recordstatus")
+	private CartStatus status = CartStatus.ACTIVE;
 
-	@Column
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
-//	@JsonBackReference
-	@JsonIgnore
-	private List<Product> products;
-
-	@Version
-	private int version;
-
-	public int getVersion() {
-		return version;
+	public long getCartid() {
+		return cartid;
 	}
 
-	public void setVersion(int version) {
-		this.version = version;
+	public void setCartid(long cartid) {
+		this.cartid = cartid;
 	}
 
-	public long getCategoryid() {
-		return categoryid;
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setCategoryid(long categoryid) {
-		this.categoryid = categoryid;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
-	public String getName() {
-		return name;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public LocalDateTime getCreatedDate() {
@@ -98,20 +92,11 @@ public class Category {
 		this.lastModifiedDate = lastModifiedDate;
 	}
 
-	public RecordStatus getRecordStatus() {
-		return recordStatus;
+	public CartStatus getStatus() {
+		return status;
 	}
 
-	public void setRecordStatus(RecordStatus recordStatus) {
-		this.recordStatus = recordStatus;
+	public void setStatus(CartStatus status) {
+		this.status = status;
 	}
-
-	public List<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
-
 }

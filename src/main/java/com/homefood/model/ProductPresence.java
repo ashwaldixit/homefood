@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.homefood.codetype.RecordStatus;
 
-@Entity
+@Entity(name="productpresence")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class ProductPresence {

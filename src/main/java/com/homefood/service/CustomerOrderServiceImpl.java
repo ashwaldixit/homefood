@@ -21,6 +21,9 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 
 	@Autowired
 	CustomerService customerService;
+	
+	@Autowired
+	CartService cartService;
 
 	@Override
 	public CustomerOrder readById(long id) {
@@ -46,7 +49,9 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 			customer = customerService.createCustomer(customerOrder.getCustomer());
 		}
 		customerOrder.setCustomer(customer);
-		return customerOrderRepository.save(customerOrder);
+		customerOrder = customerOrderRepository.save(customerOrder);
+		cartService.processAllByCustomer(customerOrder.getCustomer());
+		return customerOrder;
 	}
 
 	@Override

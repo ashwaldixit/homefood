@@ -8,6 +8,7 @@ import javax.ws.rs.Path;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.homefood.model.Cart;
 import com.homefood.model.Category;
 import com.homefood.model.Caterer;
 import com.homefood.model.Customer;
@@ -19,6 +20,7 @@ import com.homefood.repository.CategoryRepository;
 import com.homefood.repository.CatererRepository;
 import com.homefood.repository.ProductPresenceRepository;
 import com.homefood.repository.ProductRepository;
+import com.homefood.service.CartService;
 import com.homefood.service.CategoryService;
 import com.homefood.service.CatererService;
 import com.homefood.service.CustomerOrderService;
@@ -62,6 +64,9 @@ public class DemoData {
 
 	@Autowired
 	CustomerOrderService customerOrderService;
+
+	@Autowired
+	CartService cartService;
 
 	@POST
 	public void generateDemoData() {
@@ -134,7 +139,7 @@ public class DemoData {
 		presence.setStartTime(LocalDateTime.now());
 		presence.setEndTime(LocalDateTime.now().plusHours(3));
 		productPresenceService.createProductPresence(presence);
-		
+
 		product = new Product();
 		product.setCategory(category);
 		product.setCaterer(caterer);
@@ -156,6 +161,11 @@ public class DemoData {
 		customer.setConfirmPassword("p");
 		customer = customerService.validateAndCreateCustomer(customer);
 
+		Cart cart = new Cart();
+		cart.setCustomer(customer);
+		cart.setProduct(product);
+		cartService.createCart(cart);
+
 		CustomerOrder customerOrder = new CustomerOrder();
 		customerOrder.setCreatedDate(LocalDateTime.now());
 		customerOrder.setCustomer(customer);
@@ -167,6 +177,10 @@ public class DemoData {
 		order.setDeliverydate(LocalDateTime.now().plusDays(2));
 		order.setCustomerOrder(customerOrder);
 		orderService.validateAndCreate(order);
+		cart = new Cart();
+		cart.setCustomer(customer);
+		cart.setProduct(product);
+		cartService.createCart(cart);
 
 		System.out.println("*****************************Done with Demo Data *************************************");
 
