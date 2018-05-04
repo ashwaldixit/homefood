@@ -1,7 +1,6 @@
 package com.homefood.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,31 +8,44 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.homefood.codetype.OrderStatus;
+import com.homefood.codetype.CurrencyType;
 import com.homefood.codetype.RecordStatus;
 
-@Entity
+@Entity(name = "productprice")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class CustomerOrder {
+public class ProductPrice {
 
 	@Id
 	@GeneratedValue
-	private long customerorderid;
+	private long productpriceid;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonBackReference
+	private Product product;
+
+	@Column
+	private double price;
+
+	@Column
+	private CurrencyType currency = CurrencyType.Rupee;
+
+	@Column(name = "startdate")
+	private LocalDateTime startDate;
+
+	@Column(name = "enddate")
+	private LocalDateTime endDate;
 
 	@NotNull
 	@CreatedDate
@@ -48,24 +60,44 @@ public class CustomerOrder {
 	@Enumerated(EnumType.STRING)
 	private RecordStatus status = RecordStatus.Active;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "customerOrder")
-	private List<ProductOrder> productOrders;
-
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "customerid", nullable = false, updatable = false)
-	@JsonManagedReference
-	private Customer customer;
-
-	@Enumerated(EnumType.STRING)
-	@Column(name = "orderstatus")
-	private OrderStatus orderStatus = OrderStatus.Open;
-
-	public long getCustomerorderid() {
-		return customerorderid;
+	public long getProductpriceid() {
+		return productpriceid;
 	}
 
-	public void setCustomerorderid(long customerorderid) {
-		this.customerorderid = customerorderid;
+	public void setProductpriceid(long productpriceid) {
+		this.productpriceid = productpriceid;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public LocalDateTime getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(LocalDateTime startDate) {
+		this.startDate = startDate;
+	}
+
+	public LocalDateTime getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(LocalDateTime endDate) {
+		this.endDate = endDate;
 	}
 
 	public LocalDateTime getCreatedDate() {
@@ -92,28 +124,12 @@ public class CustomerOrder {
 		this.status = status;
 	}
 
-	public List<ProductOrder> getProductOrders() {
-		return productOrders;
+	public CurrencyType getCurrency() {
+		return currency;
 	}
 
-	public void setProductOrders(List<ProductOrder> productOrders) {
-		this.productOrders = productOrders;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-	public OrderStatus getOrderStatus() {
-		return orderStatus;
-	}
-
-	public void setOrderStatus(OrderStatus orderStatus) {
-		this.orderStatus = orderStatus;
+	public void setCurrency(CurrencyType currency) {
+		this.currency = currency;
 	}
 
 }

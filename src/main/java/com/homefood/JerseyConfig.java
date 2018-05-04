@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.homefood.exception.GenericExceptionMapper;
 import com.homefood.exception.HomeFoodExceptionMapper;
+import com.homefood.service.ProductPriceResource;
 import com.homefood.webservice.CartResource;
 import com.homefood.webservice.CategoryResource;
 import com.homefood.webservice.CatererResource;
@@ -33,6 +34,7 @@ public class JerseyConfig extends ResourceConfig {
 		register(HomeFoodExceptionMapper.class);
 		register(CustomerOrderResource.class);
 		register(CartResource.class);
+		register(ProductPriceResource.class);
 	}
 
 }

@@ -16,6 +16,7 @@ import com.homefood.model.CustomerOrder;
 import com.homefood.model.Product;
 import com.homefood.model.ProductOrder;
 import com.homefood.model.ProductPresence;
+import com.homefood.model.ProductPrice;
 import com.homefood.repository.CategoryRepository;
 import com.homefood.repository.CatererRepository;
 import com.homefood.repository.ProductPresenceRepository;
@@ -27,6 +28,7 @@ import com.homefood.service.CustomerOrderService;
 import com.homefood.service.CustomerService;
 import com.homefood.service.ProductOrderService;
 import com.homefood.service.ProductPresenceService;
+import com.homefood.service.ProductPriceService;
 import com.homefood.service.ProductService;
 
 @Path("/demodata")
@@ -67,6 +69,9 @@ public class DemoData {
 
 	@Autowired
 	CartService cartService;
+
+	@Autowired
+	ProductPriceService productPriceService;
 
 	@POST
 	public void generateDemoData() {
@@ -133,6 +138,13 @@ public class DemoData {
 		product.setImageUrl("http://www.strokeinfoblog.com/wp-content/uploads/2017/12/tandoori-roti.jpg");
 		product.setDescription("North Indian Breakfast");
 		product = productService.createProduct(product);
+
+		ProductPrice productPrice = new ProductPrice();
+		productPrice.setProduct(product);
+		productPrice.setPrice(27);
+		productPrice.setStartDate(LocalDateTime.now().plusDays(-1));
+		productPrice.setEndDate(LocalDateTime.now().plusYears(2));
+		productPriceService.createProductPrice(productPrice);
 
 		presence = new ProductPresence();
 		presence.setProduct(product);

@@ -3,6 +3,7 @@ package com.homefood.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -14,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -25,7 +27,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.homefood.HomeFoodAppContextAware;
 import com.homefood.codetype.RecordStatus;
+import com.homefood.service.ProductPriceService;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -80,6 +84,13 @@ public class Product {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
 	@JsonIgnore
 	private List<ProductOrder> orders;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+	@JsonIgnore
+	private List<ProductPrice> productPrices;
+
+	@Transient
+	private double price;
 
 	public RecordStatus getStatus() {
 		return status;
@@ -175,6 +186,22 @@ public class Product {
 
 	public void setOrders(List<ProductOrder> orders) {
 		this.orders = orders;
+	}
+
+	public List<ProductPrice> getProductPrices() {
+		return productPrices;
+	}
+
+	public void setProductPrices(List<ProductPrice> productPrices) {
+		this.productPrices = productPrices;
+	}
+
+	public double getPrice() {
+		return HomeFoodAppContextAware.bean(ProductPriceService.class).getActiveByProduct(this).getPrice();
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 }
