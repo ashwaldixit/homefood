@@ -44,4 +44,5 @@ public interface ProductService {
 
 	public Product update(Product product);
 
+	public List<Product> findByCategoriesAndCaterers(List<Category> categories, List<Caterer> caterers);
 }

@@ -38,7 +38,7 @@ public class HomeFoodWSFilter implements ContainerRequestFilter, ContainerRespon
 	}
 
 	@Override
-	public void filter(ContainerRequestContext requestContext) throws IOException {
+	public void filter(ContainerRequestContext requestContext) throws IOException {/*
 		if (!getExceptionalRequests().contains(requestContext.getUriInfo().getPath())) {
 			if (isExceptionalRequest(requestContext)) {
 				return;
@@ -60,7 +60,7 @@ public class HomeFoodWSFilter implements ContainerRequestFilter, ContainerRespon
 		} else {
 			return;
 		}
-	}
+	*/}
 
 	/**
 	 * 

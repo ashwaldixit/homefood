@@ -29,4 +29,7 @@ public interface ProductRepository extends CrudRepository<Product, Serializable>
 
 	public List<Product> findByCategoryAndCatererAndStatus(Category category, Caterer caterer, RecordStatus status);
 
+	public List<Product> findByStatusAndCategoryInAndCatererIn(RecordStatus status, List<Category> categories,
+			List<Caterer> caterers);
+
 }

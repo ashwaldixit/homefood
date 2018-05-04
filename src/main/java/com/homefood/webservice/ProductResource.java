@@ -1,5 +1,8 @@
 package com.homefood.webservice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -7,11 +10,16 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.homefood.model.Category;
+import com.homefood.model.Caterer;
 import com.homefood.model.Product;
 import com.homefood.service.CategoryService;
 import com.homefood.service.CatererService;
@@ -56,6 +64,30 @@ public class ProductResource {
 	public Response getActiveByCategory(@PathParam("name") String cat) {
 		return Response.ok().entity(productService.readAllActiveByCategory(categoryService.readActiveByName(cat)))
 				.build();
+	}
+
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getProducts(@Context UriInfo uriInfo) {
+		MultivaluedMap<String, String> map = uriInfo.getQueryParameters();
+		String[] categoryIds = map.get("category").get(0).split(",");
+		String[] catererIds = map.get("caterer").get(0).split(",");
+		List<Category> categories = new ArrayList<Category>();
+		List<Caterer> caterers = new ArrayList<Caterer>();
+		 for(String catId :categoryIds ) {
+			Category cat = categoryService.readById(Long.parseLong(catId));
+			if (null != cat)
+				categories.add(cat);
+		}
+
+		 for(String catId :catererIds ) {
+			Caterer caterer = catererService.readById(Long.parseLong(catId));
+			if (null != caterer)
+				caterers.add(caterer);
+		}
+
+		return Response.ok().entity(productService.findByCategoriesAndCaterers(categories, caterers)).build();
+
 	}
 
 	@GET

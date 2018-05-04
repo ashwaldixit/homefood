@@ -148,4 +148,9 @@ public class ProductServiceImpl implements ProductService {
 		return readAllByNameAndStatus(name, RecordStatus.InActive);
 	}
 
+	@Override
+	public List<Product> findByCategoriesAndCaterers(List<Category> categories, List<Caterer> caterers) {
+		return productRepository.findByStatusAndCategoryInAndCatererIn(RecordStatus.Active, categories, caterers);
+	}
+
 }
