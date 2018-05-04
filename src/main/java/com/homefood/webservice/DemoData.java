@@ -1,5 +1,6 @@
 package com.homefood.webservice;
 
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 
 import javax.ws.rs.POST;
@@ -74,8 +75,10 @@ public class DemoData {
 	ProductPriceService productPriceService;
 
 	@POST
-	public void generateDemoData() {
+	public void generateDemoData() throws NoSuchAlgorithmException {
 
+		
+		
 		Caterer caterer = new Caterer();
 		caterer.setName("Sumi");
 		caterer.setDescription("First Caterer");

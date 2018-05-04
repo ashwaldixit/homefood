@@ -1,5 +1,8 @@
 package com.homefood;
 
+import java.security.NoSuchAlgorithmException;
+
+import org.springframework.beans.BeansException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,7 +28,11 @@ public class HomefoodApplication {
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(HomefoodApplication.class, args);
-		context.getBean(DemoData.class).generateDemoData();
+		try {
+			context.getBean(DemoData.class).generateDemoData();
+		} catch (BeansException | NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Bean

@@ -1,5 +1,6 @@
 package com.homefood.service;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import com.homefood.model.Address;
@@ -7,7 +8,7 @@ import com.homefood.model.User;
 
 public interface AddressService {
 
-	public Address createAddress(Address address);
+	public Address createAddress(Address address) throws NoSuchAlgorithmException;
 
 	public Address validateAndCreate(Address address);
 

@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.homefood.codetype.RecordStatus;
 import com.homefood.codetype.UserRole;
 
-@Entity(name="users")
+@Entity(name = "users")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @EntityListeners(AuditingEntityListener.class)
 public class User {
@@ -44,7 +44,7 @@ public class User {
 
 	@Column(name = "role")
 	private UserRole userRole;
-	
+
 	@Transient
 	private String confirmPassword;
 
@@ -68,12 +68,11 @@ public class User {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "customer")
 	@JsonIgnore
 	private List<CustomerOrder> orders;
-	
+
 	@Column
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	@JsonIgnore
 	private List<Address> addresses;
-
 
 	public String getEmail() {
 		return email;
@@ -161,6 +160,14 @@ public class User {
 
 	public void setOrders(List<CustomerOrder> orders) {
 		this.orders = orders;
+	}
+
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
 	}
 
 }

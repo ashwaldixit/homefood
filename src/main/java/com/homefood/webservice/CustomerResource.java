@@ -1,5 +1,7 @@
 package com.homefood.webservice;
 
+import java.security.NoSuchAlgorithmException;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -45,7 +47,7 @@ public class CustomerResource {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createCustomer(User customer) {
+	public Response createCustomer(User customer) throws NoSuchAlgorithmException {
 		return Response.ok().entity(customerService.validateAndCreateCustomer(customer)).build();
 	}
 

@@ -1,5 +1,6 @@
 package com.homefood.service;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.ws.rs.core.Response.Status;
@@ -31,8 +32,13 @@ public class AddressServiceImpl implements AddressService {
 	@Override
 	public Address createAddress(Address address) {
 		User user = userService.readById(address.getUser().getUserid());
-		if (null == user)
-			user = userService.validateAndCreateCustomer(user);
+		if (null == user) {
+			try {
+				user = userService.validateAndCreateCustomer(user);
+			} catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+			}
+		}
 		address.setUser(user);
 
 		return addressRepository.save(address);

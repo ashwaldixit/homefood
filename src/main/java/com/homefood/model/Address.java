@@ -18,7 +18,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.homefood.codetype.CartStatus;
+import com.homefood.codetype.RecordStatus;
 
 @Entity(name = "address")
 @EntityListeners(AuditingEntityListener.class)
@@ -65,7 +65,7 @@ public class Address {
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "recordstatus")
-	private CartStatus status = CartStatus.ACTIVE;
+	private RecordStatus status = RecordStatus.Active;
 
 	public long getAddressid() {
 		return addressid;
@@ -147,11 +147,11 @@ public class Address {
 		this.lastModifiedDate = lastModifiedDate;
 	}
 
-	public CartStatus getStatus() {
+	public RecordStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(CartStatus status) {
+	public void setStatus(RecordStatus status) {
 		this.status = status;
 	}
 
