@@ -93,6 +93,14 @@ public class DemoData {
 		product.setDescription("South Indian Breakfast");
 		product = productService.createProduct(product);
 
+		ProductPrice productPrice = new ProductPrice();
+		productPrice.setProduct(product);
+		productPrice.setPrice(27);
+		productPrice.setStartDate(LocalDateTime.now().plusDays(-1));
+		productPrice.setEndDate(LocalDateTime.now().plusYears(2));
+		productPriceService.createProductPrice(productPrice);
+
+		
 		ProductPresence presence = new ProductPresence();
 		presence.setProduct(product);
 		presence.setStartTime(LocalDateTime.now());
@@ -106,6 +114,14 @@ public class DemoData {
 		product.setName("Dosa");
 		product.setDescription("South Indian Breakfast");
 		product = productService.createProduct(product);
+		
+		 productPrice = new ProductPrice();
+		productPrice.setProduct(product);
+		productPrice.setPrice(50);
+		productPrice.setStartDate(LocalDateTime.now().plusDays(-1));
+		productPrice.setEndDate(LocalDateTime.now().plusYears(2));
+		productPriceService.createProductPrice(productPrice);
+
 
 		presence = new ProductPresence();
 		presence.setProduct(product);
@@ -126,6 +142,14 @@ public class DemoData {
 		presence.setStartTime(LocalDateTime.now());
 		presence.setEndTime(LocalDateTime.now().plusHours(3));
 		productPresenceService.createProductPresence(presence);
+		
+		 productPrice = new ProductPrice();
+		productPrice.setProduct(product);
+		productPrice.setPrice(30);
+		productPrice.setStartDate(LocalDateTime.now().plusDays(-1));
+		productPrice.setEndDate(LocalDateTime.now().plusYears(2));
+		productPriceService.createProductPrice(productPrice);
+
 
 		category = new Category();
 		category.setName("North Indian");
@@ -139,13 +163,14 @@ public class DemoData {
 		product.setDescription("North Indian Breakfast");
 		product = productService.createProduct(product);
 
-		ProductPrice productPrice = new ProductPrice();
+		 productPrice = new ProductPrice();
 		productPrice.setProduct(product);
-		productPrice.setPrice(27);
+		productPrice.setPrice(30);
 		productPrice.setStartDate(LocalDateTime.now().plusDays(-1));
 		productPrice.setEndDate(LocalDateTime.now().plusYears(2));
 		productPriceService.createProductPrice(productPrice);
 
+		
 		presence = new ProductPresence();
 		presence.setProduct(product);
 		presence.setStartTime(LocalDateTime.now());
@@ -160,6 +185,14 @@ public class DemoData {
 		product.setDescription("North Indian Breakfast");
 		product = productService.createProduct(product);
 
+		 productPrice = new ProductPrice();
+		productPrice.setProduct(product);
+		productPrice.setPrice(75);
+		productPrice.setStartDate(LocalDateTime.now().plusDays(-1));
+		productPrice.setEndDate(LocalDateTime.now().plusYears(2));
+		productPriceService.createProductPrice(productPrice);
+
+		
 		presence = new ProductPresence();
 		presence.setProduct(product);
 		presence.setStartTime(LocalDateTime.now());
