@@ -1,5 +1,6 @@
 package com.homefood.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
 import com.homefood.model.User;
+import com.homefood.model.Cart;
 import com.homefood.model.CustomerOrder;
+import com.homefood.model.ProductOrder;
 import com.homefood.repository.CustomerOrderRepository;
 
 @Service
@@ -21,9 +24,12 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 
 	@Autowired
 	UserService customerService;
-	
+
 	@Autowired
 	CartService cartService;
+
+	@Autowired
+	ProductOrderService productOrderService;
 
 	@Override
 	public CustomerOrder readById(long id) {
@@ -50,6 +56,16 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 		}
 		customerOrder.setCustomer(customer);
 		customerOrder = customerOrderRepository.save(customerOrder);
+		final CustomerOrder customerOrder2 = customerOrder;
+		List<Cart> carts = cartService.readAllActiveByCustomer(customerOrder.getCustomer());
+		carts.stream().forEach(cart -> {
+			ProductOrder productOrder = new ProductOrder();
+			productOrder.setCustomerOrder(customerOrder2);
+			productOrder.setDeliverydate(LocalDateTime.now().plusDays(1));
+			productOrder.setProduct(cart.getProduct());
+			productOrderService.validateAndCreate(productOrder);
+		});
+
 		cartService.processAllByCustomer(customerOrder.getCustomer());
 		return customerOrder;
 	}
