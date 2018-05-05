@@ -42,9 +42,12 @@ public class User {
 	@Column(nullable = false)
 	private String password;
 
-	@Column(name = "role")
+	@Column(name = "role", nullable=false)
 	private UserRole userRole;
 
+	@Column(name = "isApproved")
+	private boolean isApproved = false;
+	
 	@Transient
 	private String confirmPassword;
 
@@ -168,6 +171,14 @@ public class User {
 
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
+	}
+
+	public boolean getIsApproved() {
+		return isApproved;
+	}
+
+	public void setIsApproved(boolean isApproved) {
+		this.isApproved = isApproved;
 	}
 
 }

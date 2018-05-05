@@ -102,7 +102,7 @@ public class ProductResource {
 	@Path("/caterer/active/{name}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getActiveByCaterer(@PathParam("name") String cat) {
-		return Response.ok().entity(productService.readAllActiveByCaterer(catererService.readActiveByName(cat)))
+		return Response.ok().entity(productService.getAllActiveProductsByStatusAndStockAndAvailability(catererService.readActiveByName(cat)))
 				.build();
 	}
 

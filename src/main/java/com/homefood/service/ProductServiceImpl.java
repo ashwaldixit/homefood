@@ -1,5 +1,7 @@
 package com.homefood.service;
 
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.homefood.codetype.DayAvailablity;
 import com.homefood.codetype.NotificationInfo;
 import com.homefood.codetype.RecordStatus;
 import com.homefood.core.TransactionInfo;
@@ -151,6 +154,20 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> findByCategoriesAndCaterers(List<Category> categories, List<Caterer> caterers) {
 		return productRepository.findByStatusAndCategoryInAndCatererIn(RecordStatus.Active, categories, caterers);
+	}
+
+	@Override
+	public List<Product> getAllActiveProductsByStatusAndStockAndAvailability(Caterer caterer) {
+		return productRepository.getAllActiveProductsByStatusAndStockAndAvailability(caterer, RecordStatus.Active,
+				getDayAvailaility(LocalDateTime.now().getDayOfWeek()), LocalDateTime.now());
+	}
+
+	private DayAvailablity getDayAvailaility(DayOfWeek dayOfWeek) {
+		if (dayOfWeek.getValue() > 5)
+			return DayAvailablity.Weekday;
+		else
+			return DayAvailablity.Weekend;
+
 	}
 
 }

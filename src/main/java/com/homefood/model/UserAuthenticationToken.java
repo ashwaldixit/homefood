@@ -43,20 +43,24 @@ public class UserAuthenticationToken implements Serializable {
 	private User user;
 
 	@Column
+	@JsonIgnore
 	private LocalDateTime expiryDate = LocalDateTime.now();
 
 	@NotNull
 	@CreatedDate
+	@JsonIgnore
 	@Column(name = "createddate")
 	private LocalDateTime createdDate;
 
 	@NotNull
 	@LastModifiedDate
+	@JsonIgnore
 	@Column(name = "lastmodifieddate")
 	private LocalDateTime lastModifiedDate;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "recordstatus")
+	@JsonIgnore
 	private RecordStatus status = RecordStatus.Active;
 
 	public long getId() {

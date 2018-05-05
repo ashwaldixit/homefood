@@ -1,6 +1,7 @@
 package com.homefood.service;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import com.homefood.model.User;
 
@@ -21,6 +22,9 @@ public interface UserService {
 	public User readByUserName(String userName);
 	
 	public User findByEmailAndPassword(String email, String password);
+	
+	public List<User> getAllNonApprovedMerchants();
+	
 
 
 }

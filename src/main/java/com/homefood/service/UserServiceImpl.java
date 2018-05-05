@@ -1,11 +1,13 @@
 package com.homefood.service;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.homefood.codetype.UserRole;
 import com.homefood.core.PasswordMasker;
 import com.homefood.model.User;
 import com.homefood.repository.UserRepository;
@@ -40,6 +42,9 @@ public class UserServiceImpl implements UserService {
 	public User validateAndCreateCustomer(User customer) throws NoSuchAlgorithmException {
 		validate(customer);
 		customer.setPassword(getHashedPassword(customer));
+		if (!customer.getUserRole().equals(UserRole.Caterer)) {
+			customer.setIsApproved(true);
+		}
 		return createCustomer(customer);
 	}
 
@@ -67,4 +72,10 @@ public class UserServiceImpl implements UserService {
 		return customerRepository.findByEmailAndPassword(email, password);
 	}
 
+	@Override
+	public List<User> getAllNonApprovedMerchants() {
+		return customerRepository.findByIsApprovedAndUserRole(false, UserRole.Caterer);
+	}
+
+	
 }

@@ -1,11 +1,14 @@
 package com.homefood.repository;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import com.homefood.codetype.DayAvailablity;
 import com.homefood.codetype.RecordStatus;
 import com.homefood.model.Category;
 import com.homefood.model.Caterer;
@@ -31,5 +34,9 @@ public interface ProductRepository extends CrudRepository<Product, Serializable>
 
 	public List<Product> findByStatusAndCategoryInAndCatererIn(RecordStatus status, List<Category> categories,
 			List<Caterer> caterers);
+
+	@Query("select p from #{#entityName} p where p.caterer=?1 and status=?2 and productid in(select product from productpresence a where a.outofStock=false  AND (a.startTime < LOCALTIMESTAMP and a.endTime >	 LOCALTIMESTAMP  or  (a.availablity='Everyday' and a.availablity=?3)))")
+	public List<Product> getAllActiveProductsByStatusAndStockAndAvailability(Caterer caterer, RecordStatus status,
+			DayAvailablity availablity, LocalDateTime dateTime);
 
 }

@@ -21,9 +21,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.homefood.codetype.DayAvailablity;
 import com.homefood.codetype.RecordStatus;
 
-@Entity(name="productpresence")
+@Entity(name = "productpresence")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class ProductPresence {
@@ -34,7 +35,6 @@ public class ProductPresence {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "productid")
-	// @JsonBackReference
 	@JsonIgnore
 	private Product product;
 
@@ -47,6 +47,16 @@ public class ProductPresence {
 	@Transient
 	private boolean isPresent;
 
+	@Column(name = "availableday")
+	@Enumerated(EnumType.STRING)
+	private DayAvailablity availablity = DayAvailablity.Everyday;
+
+	@Column(name = "outofstock")
+	private Boolean outofStock = false;
+
+	@Column(name = "quantity")
+	private int quantity = 20;
+
 	@NotNull
 	@CreatedDate
 	@Column(name = "createddate")
@@ -58,7 +68,7 @@ public class ProductPresence {
 	private LocalDateTime lastModifiedDate;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name="recordstatus")
+	@Column(name = "recordstatus")
 	private RecordStatus recordStatus = RecordStatus.Active;
 
 	public long getProdsectionid() {
@@ -124,6 +134,30 @@ public class ProductPresence {
 
 	public void setPresent(boolean isPresent) {
 		this.isPresent = isPresent;
+	}
+
+	public DayAvailablity getAvailablity() {
+		return availablity;
+	}
+
+	public void setAvailablity(DayAvailablity availablity) {
+		this.availablity = availablity;
+	}
+
+	public Boolean getOutofStock() {
+		return outofStock;
+	}
+
+	public void setOutofStock(Boolean outofStock) {
+		this.outofStock = outofStock;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 }

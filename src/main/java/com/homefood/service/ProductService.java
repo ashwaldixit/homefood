@@ -2,6 +2,7 @@ package com.homefood.service;
 
 import java.util.List;
 
+import com.homefood.codetype.DayAvailablity;
 import com.homefood.codetype.RecordStatus;
 import com.homefood.model.Category;
 import com.homefood.model.Caterer;
@@ -45,4 +46,6 @@ public interface ProductService {
 	public Product update(Product product);
 
 	public List<Product> findByCategoriesAndCaterers(List<Category> categories, List<Caterer> caterers);
+	
+	public List<Product> getAllActiveProductsByStatusAndStockAndAvailability(Caterer caterer);
 }

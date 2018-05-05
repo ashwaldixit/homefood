@@ -9,6 +9,8 @@ import javax.ws.rs.Path;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.homefood.codetype.DayAvailablity;
+import com.homefood.codetype.UserRole;
 import com.homefood.model.Cart;
 import com.homefood.model.Category;
 import com.homefood.model.Caterer;
@@ -105,6 +107,7 @@ public class DemoData {
 
 		ProductPresence presence = new ProductPresence();
 		presence.setProduct(product);
+		presence.setOutofStock(true);
 		presence.setStartTime(LocalDateTime.now());
 		presence.setEndTime(LocalDateTime.now().plusHours(3));
 		productPresenceService.createProductPresence(presence);
@@ -189,6 +192,7 @@ public class DemoData {
 
 		presence = new ProductPresence();
 		presence.setProduct(product);
+		presence.setOutofStock(true);
 		presence.setStartTime(LocalDateTime.now());
 		presence.setEndTime(LocalDateTime.now().plusHours(3));
 		productPresenceService.createProductPresence(presence);
@@ -231,6 +235,7 @@ public class DemoData {
 
 		presence = new ProductPresence();
 		presence.setProduct(product);
+		presence.setAvailablity(DayAvailablity.Weekend);
 		presence.setStartTime(LocalDateTime.now());
 		presence.setEndTime(LocalDateTime.now().plusHours(3));
 		productPresenceService.createProductPresence(presence);
@@ -328,6 +333,7 @@ public class DemoData {
 		customer.setEmail("ashwalappi@gmail.com");
 		customer.setPassword("p");
 		customer.setConfirmPassword("p");
+		customer.setUserRole(UserRole.Customer);
 		customer = customerService.validateAndCreateCustomer(customer);
 
 		Cart cart = new Cart();
