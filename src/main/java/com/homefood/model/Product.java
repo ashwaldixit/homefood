@@ -67,7 +67,7 @@ public class Product {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "categoryid", nullable = false)
-	@JsonManagedReference
+//	@JsonManagedReference
 	private Category category;
 
 	@ManyToOne(fetch = FetchType.LAZY)
