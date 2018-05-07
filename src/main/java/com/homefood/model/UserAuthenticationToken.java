@@ -38,7 +38,7 @@ public class UserAuthenticationToken implements Serializable {
 	@Column(unique = true)
 	private String token = "";
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "userid", unique = true, referencedColumnName = "userid")
 	private User user;
 

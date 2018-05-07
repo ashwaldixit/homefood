@@ -31,7 +31,8 @@ public class Cart {
 	private long cartid;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "customerid")
+//	@JoinColumn(name = "customerid")
+	@JoinColumn(name = "userid")
 	private User customer;
 
 	@ManyToOne(fetch = FetchType.EAGER)
