@@ -3,6 +3,7 @@ package com.homefood.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -12,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -46,7 +48,7 @@ public class Caterer {
 	private LocalDateTime lastModifiedDate;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name="recordstatus")
+	@Column(name = "recordstatus")
 	private RecordStatus recordStatus = RecordStatus.Active;
 
 	@Column(name = "imageurl")
@@ -59,6 +61,9 @@ public class Caterer {
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "caterer")
 	private List<Product> products;
+
+	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+	private User user;
 
 	@Version
 	private int version;
@@ -125,6 +130,22 @@ public class Caterer {
 
 	public void setVersion(int version) {
 		this.version = version;
+	}
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

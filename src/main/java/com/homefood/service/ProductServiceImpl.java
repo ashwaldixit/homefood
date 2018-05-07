@@ -18,7 +18,9 @@ import com.homefood.core.TransactionInfo;
 import com.homefood.model.Category;
 import com.homefood.model.Caterer;
 import com.homefood.model.Product;
+import com.homefood.model.ProductCreate;
 import com.homefood.model.ProductPresence;
+import com.homefood.model.ProductPrice;
 import com.homefood.repository.ProductRepository;
 
 @Service
@@ -36,6 +38,12 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	TransactionInfo transactionInfo;
+
+	@Autowired
+	ProductPriceService productPriceService;
+
+	@Autowired
+	ProductPresenceService productPresenceService;
 
 	@Override
 	public Product createProduct(Product product) {
@@ -168,6 +176,34 @@ public class ProductServiceImpl implements ProductService {
 		else
 			return DayAvailablity.Weekend;
 
+	}
+
+	@Override
+	public Product validateAndcreateProduct(ProductCreate productCreate) {
+
+		Product product = new Product();
+		product.setCategory(productCreate.getCategory());
+		product.setCaterer(productCreate.getCaterer());
+		product.setName(productCreate.getName());
+		product.setImageUrl(productCreate.getImageUrl());
+		product.setDescription(productCreate.getDescription());
+		product = createProduct(product);
+
+		ProductPrice productPrice = new ProductPrice();
+		productPrice.setProduct(product);
+		productPrice.setPrice(productCreate.getPrice());
+		productPrice.setStartDate(LocalDateTime.now());
+		productPrice.setEndDate(null);
+		productPriceService.createProductPrice(productPrice);
+
+		ProductPresence presence = new ProductPresence();
+		presence.setProduct(product);
+		presence.setOutofStock(true);
+		presence.setStartTime(LocalDateTime.now());
+		presence.setEndTime(LocalDateTime.now().plusHours(3));
+		productPresenceService.createProductPresence(presence);
+
+		return product;
 	}
 
 }

@@ -21,12 +21,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.homefood.model.Category;
 import com.homefood.model.Caterer;
 import com.homefood.model.Product;
+import com.homefood.model.ProductCreate;
+import com.homefood.model.User;
+import com.homefood.model.UserAuthenticationToken;
 import com.homefood.service.CategoryService;
 import com.homefood.service.CatererService;
 import com.homefood.service.ProductService;
+import com.homefood.service.UserAuthenticationTokenService;
 
 @Path("/products")
 public class ProductResource {
+
+	@Context
+	private javax.servlet.http.HttpServletRequest req;
 
 	@Autowired
 	ProductService productService;
@@ -36,6 +43,9 @@ public class ProductResource {
 
 	@Autowired
 	CatererService catererService;
+
+	@Autowired
+	UserAuthenticationTokenService authenticationTokenService;
 
 	@GET
 	@Path("/{productid}")
@@ -74,13 +84,13 @@ public class ProductResource {
 		String[] catererIds = map.get("caterer").get(0).split(",");
 		List<Category> categories = new ArrayList<Category>();
 		List<Caterer> caterers = new ArrayList<Caterer>();
-		 for(String catId :categoryIds ) {
+		for (String catId : categoryIds) {
 			Category cat = categoryService.readById(Long.parseLong(catId));
 			if (null != cat)
 				categories.add(cat);
 		}
 
-		 for(String catId :catererIds ) {
+		for (String catId : catererIds) {
 			Caterer caterer = catererService.readById(Long.parseLong(catId));
 			if (null != caterer)
 				caterers.add(caterer);
@@ -102,7 +112,9 @@ public class ProductResource {
 	@Path("/caterer/active/{name}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getActiveByCaterer(@PathParam("name") String cat) {
-		return Response.ok().entity(productService.getAllActiveProductsByStatusAndStockAndAvailability(catererService.readActiveByName(cat)))
+		return Response.ok()
+				.entity(productService
+						.getAllActiveProductsByStatusAndStockAndAvailability(catererService.readActiveByName(cat)))
 				.build();
 	}
 
@@ -132,11 +144,29 @@ public class ProductResource {
 		return Response.ok().entity(productService.validateAndCreate(product)).build();
 	}
 
+	@POST
+	@Path("/add")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response addProduct(ProductCreate productCreate) {
+		productCreate.setCaterer(catererService.getByUser(getUser()));
+		return Response.ok().entity(productService.validateAndcreateProduct(productCreate)).build();
+	}
+
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateProduct(Product product) {
 		return Response.ok().entity(productService.update(product)).build();
+	}
+
+	private User getUser() {
+		String token = req.getHeader("token");
+		UserAuthenticationToken authToken = authenticationTokenService.findByToken(token);
+		if (null != authToken)
+			return authToken.getUser();
+		return null;
+
 	}
 
 }

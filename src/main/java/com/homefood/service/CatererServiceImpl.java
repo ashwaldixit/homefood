@@ -11,6 +11,8 @@ import com.homefood.codetype.NotificationInfo;
 import com.homefood.codetype.RecordStatus;
 import com.homefood.core.TransactionInfo;
 import com.homefood.model.Caterer;
+import com.homefood.model.Location;
+import com.homefood.model.User;
 import com.homefood.repository.CatererRepository;
 
 @Service
@@ -22,6 +24,9 @@ public class CatererServiceImpl implements CatererService {
 
 	@Autowired
 	TransactionInfo transactionInfo;
+
+	@Autowired
+	private CatererLocationService catererLocationService;
 
 	@Override
 	public Caterer createCaterer(Caterer caterer) {
@@ -74,6 +79,19 @@ public class CatererServiceImpl implements CatererService {
 	@Override
 	public List<Caterer> readAllInActiveCaterers() {
 		return catererRepository.findByRecordStatus(RecordStatus.Active);
+	}
+
+	@Override
+	public Caterer getByUser(User user) {
+		return catererRepository.findByUser(user);
+	}
+
+	@Override
+	public List<Location> getAllActiveLocations(Caterer caterer) {
+		List<Location> locations = new ArrayList<Location>();
+		catererLocationService.readAllActiveByCaterer(caterer).stream()
+				.forEach(item -> locations.add(item.getLocation()));
+		return locations;
 	}
 
 }

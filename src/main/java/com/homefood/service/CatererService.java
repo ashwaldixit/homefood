@@ -3,6 +3,8 @@ package com.homefood.service;
 import java.util.List;
 
 import com.homefood.model.Caterer;
+import com.homefood.model.Location;
+import com.homefood.model.User;
 
 public interface CatererService {
 
@@ -19,6 +21,10 @@ public interface CatererService {
 	public List<Caterer> readAllInActiveByName(String name);
 
 	public Caterer update(Caterer caterer);
-	
+
 	public List<Caterer> readAllInActiveCaterers();
+
+	public Caterer getByUser(User user);
+
+	public List<Location> getAllActiveLocations(Caterer caterer);
 }

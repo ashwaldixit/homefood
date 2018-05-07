@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.homefood.codetype.RecordStatus;
 import com.homefood.model.Caterer;
+import com.homefood.model.User;
 
 @Repository
 public interface CatererRepository extends CrudRepository<Caterer, Serializable> {
@@ -16,6 +17,7 @@ public interface CatererRepository extends CrudRepository<Caterer, Serializable>
 
 	public List<Caterer> findByNameAndRecordStatus(String name, RecordStatus recordStatus);
 
-	
 	public List<Caterer> findByRecordStatus(RecordStatus recordStatus);
+
+	public Caterer findByUser(User user);
 }

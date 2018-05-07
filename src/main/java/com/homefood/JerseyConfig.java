@@ -11,6 +11,7 @@ import com.homefood.webservice.AddressResource;
 import com.homefood.webservice.CartResource;
 import com.homefood.webservice.CategoryResource;
 import com.homefood.webservice.CatererResource;
+import com.homefood.webservice.CodeTypeResource;
 import com.homefood.webservice.CustomerOrderResource;
 import com.homefood.webservice.CustomerResource;
 import com.homefood.webservice.DemoData;
@@ -41,6 +42,7 @@ public class JerseyConfig extends ResourceConfig {
 		register(AddressResource.class);
 		register(HomeFoodWSFilter.class);
 		register(LoginResource.class);
+		register(CodeTypeResource.class);
 	}
 
 }

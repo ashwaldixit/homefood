@@ -2,11 +2,11 @@ package com.homefood.service;
 
 import java.util.List;
 
-import com.homefood.codetype.DayAvailablity;
 import com.homefood.codetype.RecordStatus;
 import com.homefood.model.Category;
 import com.homefood.model.Caterer;
 import com.homefood.model.Product;
+import com.homefood.model.ProductCreate;
 import com.homefood.model.ProductPresence;
 
 public interface ProductService {
@@ -48,4 +48,6 @@ public interface ProductService {
 	public List<Product> findByCategoriesAndCaterers(List<Category> categories, List<Caterer> caterers);
 	
 	public List<Product> getAllActiveProductsByStatusAndStockAndAvailability(Caterer caterer);
+	
+	public Product validateAndcreateProduct(ProductCreate productCreate);
 }
