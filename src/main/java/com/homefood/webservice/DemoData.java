@@ -28,6 +28,7 @@ import com.homefood.service.CartService;
 import com.homefood.service.CategoryService;
 import com.homefood.service.CatererService;
 import com.homefood.service.CustomerOrderService;
+import com.homefood.service.LocationService;
 import com.homefood.service.UserService;
 import com.homefood.service.ProductOrderService;
 import com.homefood.service.ProductPresenceService;
@@ -75,6 +76,9 @@ public class DemoData {
 
 	@Autowired
 	ProductPriceService productPriceService;
+	
+	@Autowired
+	LocationService locationService;
 
 	@POST
 	public void generateDemoData() throws NoSuchAlgorithmException {
@@ -356,6 +360,9 @@ public class DemoData {
 		cart.setCustomer(customer);
 		cart.setProduct(product);
 		cartService.createCart(cart);
+		
+		
+		locationService.loadCitiesFromExcel();
 
 		System.out.println("*****************************Done with Demo Data *************************************");
 

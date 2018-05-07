@@ -1,5 +1,6 @@
 package com.homefood.service;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class LocationServiceImpl implements LocationService {
 
 	@Autowired
 	private LocationRepository repository;
+
+	@Autowired
+	CSVUtilReaderService csvUtilReaderService;
 
 	@Override
 	public Location readByLocationid(long id) {
@@ -40,6 +44,32 @@ public class LocationServiceImpl implements LocationService {
 	@Override
 	public List<Location> readByState(String state) {
 		return repository.findByStateAndStatus(state, RecordStatus.Active);
+	}
+
+	@Override
+	public Location createLocation(Location location) {
+		return repository.save(location);
+	}
+
+	@Override
+	public void validate(Location location) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Location validateAndCreate(Location location) {
+		validate(location);
+		return createLocation(location);
+	}
+
+	@Override
+	public void loadCitiesFromExcel() {
+		try {
+			csvUtilReaderService.readLocationsFromExcel().stream().forEach(item -> validateAndCreate(item));
+		} catch (IllegalStateException | FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
