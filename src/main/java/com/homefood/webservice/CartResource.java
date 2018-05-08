@@ -30,18 +30,18 @@ public class CartResource {
 
 	@Autowired
 	CartService cartService;
+	
 	@Autowired
-	UserService customerService;
+	UserService userService;
 
 	@Autowired
 	UserAuthenticationTokenService authenticationTokenService;
 
 	@GET
-	@Path("{customerid}/active")
+	@Path("/active")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getActiveCartDetailsOfUser(@PathParam("customerid") long customerid) throws URISyntaxException {
-		return Response.status(200).entity(cartService.readAllActiveByCustomer(customerService.readById(customerid)))
-				.build();
+	public Response getActiveCartDetailsOfUser() throws URISyntaxException {
+		return Response.status(200).entity(cartService.readAllActiveByCustomer(getUser())).build();
 	}
 
 	@POST
@@ -65,7 +65,13 @@ public class CartResource {
 		if (null != authToken)
 			return authToken.getUser();
 		return null;
+	}
 
+	@GET
+	@Path("/compute")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response computeActiveCartOfUser() throws URISyntaxException {
+		return Response.status(200).entity(cartService.computeCart(getUser())).build();
 	}
 
 }
