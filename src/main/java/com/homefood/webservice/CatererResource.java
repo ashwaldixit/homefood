@@ -14,8 +14,10 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.homefood.model.Caterer;
+import com.homefood.model.CatererLocation;
 import com.homefood.model.User;
 import com.homefood.model.UserAuthenticationToken;
+import com.homefood.service.CatererLocationService;
 import com.homefood.service.CatererService;
 import com.homefood.service.UserAuthenticationTokenService;
 
@@ -30,6 +32,9 @@ public class CatererResource {
 
 	@Autowired
 	CatererService catererService;
+
+	@Autowired
+	CatererLocationService catererLocationService;
 
 	@GET
 	@Path("/{catererid}")
@@ -80,6 +85,15 @@ public class CatererResource {
 			return authToken.getUser();
 		return null;
 
+	}
+
+	@POST
+	@Path("/location")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response createCatererLocation(CatererLocation catererLocation) {
+		catererLocation.setCaterer(catererService.getByUser(getUser()));
+		return Response.ok().entity(catererLocationService.validateAndCreate(catererLocation)).build();
 	}
 
 }

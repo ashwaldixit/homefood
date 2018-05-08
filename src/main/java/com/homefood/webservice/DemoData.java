@@ -14,6 +14,7 @@ import com.homefood.codetype.UserRole;
 import com.homefood.model.Cart;
 import com.homefood.model.Category;
 import com.homefood.model.Caterer;
+import com.homefood.model.CatererLocation;
 import com.homefood.model.User;
 import com.homefood.model.CustomerOrder;
 import com.homefood.model.Product;
@@ -22,10 +23,12 @@ import com.homefood.model.ProductPresence;
 import com.homefood.model.ProductPrice;
 import com.homefood.repository.CategoryRepository;
 import com.homefood.repository.CatererRepository;
+import com.homefood.repository.LocationRepository;
 import com.homefood.repository.ProductPresenceRepository;
 import com.homefood.repository.ProductRepository;
 import com.homefood.service.CartService;
 import com.homefood.service.CategoryService;
+import com.homefood.service.CatererLocationService;
 import com.homefood.service.CatererService;
 import com.homefood.service.CustomerOrderService;
 import com.homefood.service.LocationService;
@@ -76,15 +79,19 @@ public class DemoData {
 
 	@Autowired
 	ProductPriceService productPriceService;
-	
+
 	@Autowired
 	LocationService locationService;
+
+	@Autowired
+	LocationRepository locationRepository;
+
+	@Autowired
+	CatererLocationService catererLocationService;
 
 	@POST
 	public void generateDemoData() throws NoSuchAlgorithmException {
 
-		
-		
 		Caterer caterer = new Caterer();
 		caterer.setName("Sumi");
 		caterer.setDescription("First Caterer");
@@ -248,7 +255,8 @@ public class DemoData {
 		product.setCategory(category);
 		product.setCaterer(caterer);
 		product.setName("Raagi Rotti");
-		product.setImageUrl("http://www.archanaskitchen.com//images/archanaskitchen/1-Author/Gauravi_Vinay/Ragi_Ujju_Rotti.jpg");
+		product.setImageUrl(
+				"http://www.archanaskitchen.com//images/archanaskitchen/1-Author/Gauravi_Vinay/Ragi_Ujju_Rotti.jpg");
 		product.setDescription("South Indian Breakfast");
 		product = productService.createProduct(product);
 
@@ -360,9 +368,23 @@ public class DemoData {
 		cart.setCustomer(customer);
 		cart.setProduct(product);
 		cartService.createCart(cart);
-		
-		
+
 		locationService.loadCitiesFromExcel();
+
+		CatererLocation catererLocation = new CatererLocation();
+		catererLocation.setCaterer(caterer);
+		catererLocation.setLocation(locationRepository.findAll().get(0));
+		catererLocationService.validateAndCreate(catererLocation);
+
+		catererLocation = new CatererLocation();
+		catererLocation.setCaterer(caterer);
+		catererLocation.setLocation(locationRepository.findAll().get(1));
+		catererLocationService.validateAndCreate(catererLocation);
+
+		catererLocation = new CatererLocation();
+		catererLocation.setCaterer(caterer);
+		catererLocation.setLocation(locationRepository.findAll().get(2));
+		catererLocationService.validateAndCreate(catererLocation);
 
 		System.out.println("*****************************Done with Demo Data *************************************");
 
