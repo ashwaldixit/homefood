@@ -58,6 +58,9 @@ public class Cart {
 	@Column(name = "price")
 	private double price;
 
+	@Column(name = "deliverydate")
+	private LocalDateTime deliverydate;
+
 	public long getCartid() {
 		return cartid;
 	}
@@ -121,4 +124,13 @@ public class Cart {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+	public LocalDateTime getDeliverydate() {
+		return deliverydate;
+	}
+
+	public void setDeliverydate(LocalDateTime deliverydate) {
+		this.deliverydate = deliverydate;
+	}
+
 }

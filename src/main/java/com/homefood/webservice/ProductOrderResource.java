@@ -1,5 +1,6 @@
 package com.homefood.webservice;
 
+import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,22 +12,40 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 
 import com.homefood.codetype.NotificationInfo;
 import com.homefood.codetype.OrderStatus;
 import com.homefood.core.LocalDateTimeParser;
 import com.homefood.core.TransactionInfo;
 import com.homefood.model.ProductOrder;
-import com.homefood.service.UserService;
+import com.homefood.model.User;
+import com.homefood.model.UserAuthenticationToken;
+import com.homefood.service.CatererService;
 import com.homefood.service.ProductOrderService;
 import com.homefood.service.ProductService;
+import com.homefood.service.UserAuthenticationTokenService;
+import com.homefood.service.UserService;
 
 @Path("/productorders")
 public class ProductOrderResource {
+
+	@Context
+	private javax.servlet.http.HttpServletRequest req;
+
+	@Autowired
+	UserAuthenticationTokenService authenticationTokenService;
+
+	@Autowired
+	CatererService catererService;
 
 	@Autowired
 	ProductOrderService orderService;
@@ -176,4 +195,44 @@ public class ProductOrderResource {
 				orderService.readAllOpenByProductAndDeliveryDate(productService.readById(productId), deliveryDateTime))
 				.build();
 	}
+
+	@GET
+	@Path("/bydate")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getByDate(@QueryParam("size") int size, @QueryParam("index") int index,
+			@QueryParam("sortas") String sortas, @QueryParam("sortby") String sortBy,
+			@QueryParam("adddays") int addDays) {
+
+		addDays = addDays > 7 ? 7 : addDays;
+		LocalDateTime deliveryDateTime = LocalDateTime.now().plusDays(addDays);
+		size = size > 10 ? size : 10;
+		Direction direction = (null != sortas && !sortas.isEmpty() && sortas.equalsIgnoreCase("asc")) ? Direction.ASC
+				: Direction.DESC;
+
+		if (null == sortBy || sortBy.isEmpty()) {
+			sortBy = "orderStatus";
+		} else {
+			for (Field x : ProductOrder.class.getDeclaredFields()) {
+				if (x.getName().equalsIgnoreCase(sortBy)) {
+					sortBy = x.getName();
+					break;
+				}
+			}
+		}
+
+		PageRequest pageable = new PageRequest(index, size, direction, sortBy);
+		return Response.ok().entity(orderService.readAllByDeliverydateAndProductCaterer(deliveryDateTime,
+				catererService.getByUser(getUser()), pageable)).build();
+
+	}
+
+	private User getUser() {
+		String token = req.getHeader("token");
+		UserAuthenticationToken authToken = authenticationTokenService.findByToken(token);
+		if (null != authToken)
+			return authToken.getUser();
+		return null;
+
+	}
+
 }

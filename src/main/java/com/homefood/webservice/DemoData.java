@@ -97,6 +97,14 @@ public class DemoData {
 		caterer.setDescription("First Caterer");
 		caterer = catererService.createCaterer(caterer);
 
+		User customer = new User();
+		customer.setUserName("Ashwal");
+		customer.setEmail("ashwalappi@gmail.com");
+		customer.setPassword("p");
+		customer.setConfirmPassword("p");
+		customer.setUserRole(UserRole.Customer);
+		customer = customerService.validateAndCreateCustomer(customer);
+
 		Category category = new Category();
 		category.setName("South Indian");
 		category = categoryService.createCategory(category);
@@ -108,6 +116,12 @@ public class DemoData {
 		product.setImageUrl("https://www.ruchiskitchen.com/wp-content/uploads/2016/01/instant-rice-idli-recipe-6.jpg");
 		product.setDescription("South Indian Breakfast");
 		product = productService.createProduct(product);
+
+		Cart cart = new Cart();
+		cart.setCustomer(customer);
+		cart.setProduct(product);
+		cart.setDeliverydate(LocalDateTime.now());
+		cartService.createCart(cart);
 
 		ProductPrice productPrice = new ProductPrice();
 		productPrice.setProduct(product);
@@ -131,6 +145,13 @@ public class DemoData {
 		product.setDescription("South Indian Breakfast");
 		product = productService.createProduct(product);
 
+		cart = new Cart();
+		cart.setCustomer(customer);
+		cart.setProduct(product);
+		cart.setDeliverydate(LocalDateTime.now().plusDays(1));
+		cart.setQuantity(3);
+		cartService.createCart(cart);
+
 		productPrice = new ProductPrice();
 		productPrice.setProduct(product);
 		productPrice.setPrice(50);
@@ -151,6 +172,12 @@ public class DemoData {
 		product.setName("Vada");
 		product.setDescription("South Indian Breakfast");
 		product = productService.createProduct(product);
+		cart = new Cart();
+		cart.setCustomer(customer);
+		cart.setProduct(product);
+		cart.setDeliverydate(LocalDateTime.now());
+		cart.setQuantity(3);
+		cartService.createCart(cart);
 
 		presence = new ProductPresence();
 		presence.setProduct(product);
@@ -340,15 +367,7 @@ public class DemoData {
 		presence.setEndTime(LocalDateTime.now().plusHours(3));
 		productPresenceService.createProductPresence(presence);
 
-		User customer = new User();
-		customer.setUserName("Ashwal");
-		customer.setEmail("ashwalappi@gmail.com");
-		customer.setPassword("p");
-		customer.setConfirmPassword("p");
-		customer.setUserRole(UserRole.Customer);
-		customer = customerService.validateAndCreateCustomer(customer);
-
-		Cart cart = new Cart();
+		cart = new Cart();
 		cart.setCustomer(customer);
 		cart.setProduct(product);
 		cartService.createCart(cart);

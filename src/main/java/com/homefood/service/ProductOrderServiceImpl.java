@@ -4,11 +4,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
+import com.homefood.model.Caterer;
 import com.homefood.model.CustomerOrder;
 import com.homefood.model.Product;
 import com.homefood.model.ProductOrder;
@@ -126,6 +129,12 @@ public class ProductOrderServiceImpl implements ProductOrderService {
 	@Override
 	public List<ProductOrder> readAllOpenByProductAndDeliveryDate(Product product, LocalDateTime deliveryDate) {
 		return orderRepository.findByProductAndDeliverydateAndOrderStatus(product, deliveryDate, OrderStatus.Open);
+	}
+
+	@Override
+	public Page<ProductOrder> readAllByDeliverydateAndProductCaterer(LocalDateTime deliveryDate, Caterer caterer,
+			Pageable pageable) {
+		return orderRepository.findByDeliverydateBetweenAndProductCaterer(deliveryDate.toLocalDate().atStartOfDay(), deliveryDate.toLocalDate().plusDays(1).atStartOfDay(),caterer, pageable);
 	}
 
 }

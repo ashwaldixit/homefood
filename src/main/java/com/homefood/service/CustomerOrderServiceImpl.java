@@ -61,7 +61,7 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 		carts.stream().forEach(cart -> {
 			ProductOrder productOrder = new ProductOrder();
 			productOrder.setCustomerOrder(customerOrder2);
-			productOrder.setDeliverydate(LocalDateTime.now().plusDays(1));
+			productOrder.setDeliverydate(cart.getDeliverydate());
 			productOrder.setProduct(cart.getProduct());
 			productOrderService.validateAndCreate(productOrder);
 		});

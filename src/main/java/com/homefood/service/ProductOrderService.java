@@ -3,8 +3,12 @@ package com.homefood.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
+import com.homefood.model.Caterer;
 import com.homefood.model.Product;
 import com.homefood.model.ProductOrder;
 
@@ -48,5 +52,8 @@ public interface ProductOrderService {
 	public List<ProductOrder> readAllCancelledByProductAndDeliveryDate(Product product, LocalDateTime deliveryDate);
 
 	public List<ProductOrder> readAllOpenByProductAndDeliveryDate(Product product, LocalDateTime deliveryDate);
+
+	public Page<ProductOrder> readAllByDeliverydateAndProductCaterer(LocalDateTime deliveryDate, Caterer caterer,
+			Pageable pageable);
 
 }
