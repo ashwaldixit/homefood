@@ -21,6 +21,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.homefood.codetype.OrderStatus;
@@ -49,6 +50,7 @@ public class CustomerOrder {
 	private RecordStatus status = RecordStatus.Active;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "customerOrder")
+    @JsonIgnore
 	private List<ProductOrder> productOrders;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -59,6 +61,8 @@ public class CustomerOrder {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "orderstatus")
 	private OrderStatus orderStatus = OrderStatus.Open;
+	
+	
 
 	public long getCustomerorderid() {
 		return customerorderid;

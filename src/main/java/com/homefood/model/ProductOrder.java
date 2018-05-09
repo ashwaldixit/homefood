@@ -19,7 +19,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
@@ -59,7 +58,6 @@ public class ProductOrder {
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "customerorderid", nullable = false, updatable = false)
-	@JsonIgnore
 	private CustomerOrder customerOrder;
 
 	public CustomerOrder getCustomerOrder() {
