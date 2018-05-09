@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.homefood.codetype.CartStatus;
 import com.homefood.model.Cart;
+import com.homefood.model.Product;
 import com.homefood.model.User;
 
 @Repository
@@ -26,5 +27,7 @@ public interface CartRepository extends JpaRepository<Cart, Serializable> {
 	@Transactional
 	@Query("update cart a set a.status = :status where a.customer = :customer")
 	public int updateStatusByCustomer(@Param("status") CartStatus status, @Param("customer") User customer);
+	
+	public Cart findByProductAndCustomerAndStatus(Product product, User user,CartStatus cartStatus);
 
 }

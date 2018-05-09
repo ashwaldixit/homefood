@@ -31,7 +31,6 @@ public class Cart {
 	private long cartid;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-//	@JoinColumn(name = "customerid")
 	@JoinColumn(name = "userid")
 	private User customer;
 
@@ -52,6 +51,12 @@ public class Cart {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "recordstatus")
 	private CartStatus status = CartStatus.ACTIVE;
+
+	@Column(name = "quantity")
+	private int quantity;
+
+	@Column(name = "price")
+	private double price;
 
 	public long getCartid() {
 		return cartid;
@@ -99,5 +104,21 @@ public class Cart {
 
 	public void setStatus(CartStatus status) {
 		this.status = status;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 }

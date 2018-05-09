@@ -2,9 +2,10 @@ package com.homefood.service;
 
 import java.util.List;
 
+import com.homefood.codetype.CartStatus;
 import com.homefood.model.Cart;
-import com.homefood.model.CartResponse;
 import com.homefood.model.CartTotal;
+import com.homefood.model.Product;
 import com.homefood.model.User;
 
 public interface CartService {
@@ -20,4 +21,9 @@ public interface CartService {
 	public Cart removeFromCart(Cart cart);
 
 	public CartTotal computeCart(User customer);
+
+	public Cart update(Cart cart);
+
+	public Cart readyByProductAndCustomerAndStatus(Product product, User user, CartStatus status);
+
 }
