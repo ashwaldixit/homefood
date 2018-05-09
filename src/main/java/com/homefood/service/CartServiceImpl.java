@@ -36,7 +36,8 @@ public class CartServiceImpl implements CartService {
 		if (null != existingCart) {
 			existingCart.setQuantity(existingCart.getQuantity() + 1);
 			return cartRepository.save(existingCart);
-		} 
+		}
+		cart.setQuantity(1);
 		return cartRepository.save(cart);
 	}
 
@@ -90,10 +91,29 @@ public class CartServiceImpl implements CartService {
 		return createCart(cart);
 	}
 
-
 	@Override
 	public Cart readyByProductAndCustomerAndStatus(Product product, User user, CartStatus status) {
-		return cartRepository.findByProductAndCustomerAndStatus(product,user,CartStatus.ACTIVE);
+		return cartRepository.findByProductAndCustomerAndStatus(product, user, CartStatus.ACTIVE);
+	}
+
+	@Override
+	public Cart addProductToCart(Product product, User user) {
+		Cart cart = new Cart();
+		cart.setProduct(product);
+		cart.setCustomer(user);
+		return createCart(cart);
+	}
+
+	@Override
+	public CartTotal removeProductFromCart(Product product, User user) {
+		Cart existingCart = cartRepository.findByProductAndCustomerAndStatus(product, user, CartStatus.ACTIVE);
+		if (existingCart.getQuantity() <= 1) {
+			existingCart.setStatus(CartStatus.REMOVED);
+		} else {
+			existingCart.setQuantity(existingCart.getQuantity() - 1);
+
+		}
+		return computeCart(user);
 	}
 
 }

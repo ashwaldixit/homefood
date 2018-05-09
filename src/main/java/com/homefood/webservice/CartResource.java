@@ -56,14 +56,17 @@ public class CartResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertCart(Cart cart) throws URISyntaxException {
 		cart.setCustomer(getUser());
-		if (cartService.readyByProductAndCustomerAndStatus(cart.getProduct(), cart.getCustomer(),
-				CartStatus.ACTIVE) != null) {
-			cart.setQuantity(cart.getQuantity() + 1);
-			cartService.computeCart(cart.getCustomer());
-			return Response.status(200).entity(cartService.update(cart)).build();
-		} else {
-			return Response.status(200).entity(cartService.createCart(cart)).build();
-		}
+		// if (cartService.readyByProductAndCustomerAndStatus(cart.getProduct(),
+		// cart.getCustomer(),
+		// CartStatus.ACTIVE) != null) {
+		// cart.setQuantity(cart.getQuantity() + 1);
+		// cartService.computeCart(cart.getCustomer());
+		// return Response.status(200).entity(cartService.update(cart)).build();
+		// } else {
+		// cart.setQuantity(cart.getQuantity() + 1);
+		// return Response.status(200).entity(cartService.createCart(cart)).build();
+		// }
+		return Response.status(200).entity(cartService.createCart(cart)).build();
 
 	}
 
@@ -110,9 +113,16 @@ public class CartResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/product")
 	public Response addProductToCart(Product product) {
+		return Response.ok().entity(cartService.addProductToCart(product, getUser())).build();
+	}
 
-		return Response.ok()
-				.entity(cartService.readyByProductAndCustomerAndStatus(product, getUser(), CartStatus.ACTIVE)).build();
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/product/{productId}/remove")
+	public Response removeProduct(@PathParam("productId") long productId) {
+		return Response.ok().entity(cartService.removeProductFromCart(productService.readById(productId), getUser()))
+				.build();
 	}
 
 }

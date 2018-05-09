@@ -26,4 +26,8 @@ public interface CartService {
 
 	public Cart readyByProductAndCustomerAndStatus(Product product, User user, CartStatus status);
 
+	public Cart addProductToCart(Product product, User user);
+
+	public CartTotal removeProductFromCart(Product product, User user);
+
 }
