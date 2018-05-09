@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.homefood.codetype.CartStatus;
+import com.homefood.codetype.RecordStatus;
 import com.homefood.model.Cart;
 import com.homefood.model.CartResponse;
 import com.homefood.model.CartTotal;
@@ -29,6 +30,13 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public Cart createCart(Cart cart) {
+		Cart existingCart = cartRepository.findByProductAndCustomerAndStatus(cart.getProduct(), cart.getCustomer(),
+				CartStatus.ACTIVE);
+
+		if (null != existingCart) {
+			existingCart.setQuantity(existingCart.getQuantity() + 1);
+			return cartRepository.save(existingCart);
+		} 
 		return cartRepository.save(cart);
 	}
 
@@ -57,33 +65,35 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public CartTotal computeCart(User customer) {
 		List<Cart> activeCartProducts = cartRepository.findByCustomerAndStatus(customer, CartStatus.ACTIVE);
-		Map<Product, Integer> productQtyMap = new HashMap<Product, Integer>();
-		Integer quantity = 1;
 		double totalCartPrice = 0;
+		CartResponse cartResponse;
 		ListIterator<Cart> itr = activeCartProducts.listIterator();
+		List<CartResponse> cartResponseList = new ArrayList<CartResponse>();
 		while (itr.hasNext()) {
 			Cart currentCart = itr.next();
-			if (!productQtyMap.containsKey(currentCart.getProduct())) {
-				productQtyMap.put(currentCart.getProduct(), quantity);
-			} else {
-				productQtyMap.replace(currentCart.getProduct(), productQtyMap.get(currentCart.getProduct()) + 1);
-			}
-		}
-		CartResponse cartResponse;
-		CartTotal cartTotal = new CartTotal();
-		List<CartResponse> cartResponseList = new ArrayList<CartResponse>();
-		for (Entry<Product, Integer> cartProduct : productQtyMap.entrySet()) {
 			cartResponse = new CartResponse();
-			cartResponse.setProduct(cartProduct.getKey());
-			cartResponse.setQuantity(cartProduct.getValue());
-			cartResponse.setUser(customer);
-			cartResponse.setTotalProductPrice(cartProduct.getValue() * cartProduct.getKey().getPrice());
+			cartResponse.setProduct(currentCart.getProduct());
+			cartResponse.setQuantity(currentCart.getQuantity());
+			cartResponse.setUser(currentCart.getCustomer());
+			cartResponse.setTotalProductPrice(currentCart.getProduct().getPrice() * currentCart.getQuantity());
 			totalCartPrice = totalCartPrice + cartResponse.getTotalProductPrice();
 			cartResponseList.add(cartResponse);
 		}
+		CartTotal cartTotal = new CartTotal();
 		cartTotal.setCarts(cartResponseList);
 		cartTotal.setTotalPrice(totalCartPrice);
 		return cartTotal;
+	}
+
+	@Override
+	public Cart update(Cart cart) {
+		return createCart(cart);
+	}
+
+
+	@Override
+	public Cart readyByProductAndCustomerAndStatus(Product product, User user, CartStatus status) {
+		return cartRepository.findByProductAndCustomerAndStatus(product,user,CartStatus.ACTIVE);
 	}
 
 }
