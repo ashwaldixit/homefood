@@ -59,6 +59,9 @@ public class CustomerOrder {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "orderstatus")
 	private OrderStatus orderStatus = OrderStatus.Open;
+	
+	@Column(name = "deliverydate")
+	private LocalDateTime deliverydate;
 
 	public long getCustomerorderid() {
 		return customerorderid;
