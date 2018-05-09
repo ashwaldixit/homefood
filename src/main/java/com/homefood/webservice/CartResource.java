@@ -56,16 +56,6 @@ public class CartResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertCart(Cart cart) throws URISyntaxException {
 		cart.setCustomer(getUser());
-		// if (cartService.readyByProductAndCustomerAndStatus(cart.getProduct(),
-		// cart.getCustomer(),
-		// CartStatus.ACTIVE) != null) {
-		// cart.setQuantity(cart.getQuantity() + 1);
-		// cartService.computeCart(cart.getCustomer());
-		// return Response.status(200).entity(cartService.update(cart)).build();
-		// } else {
-		// cart.setQuantity(cart.getQuantity() + 1);
-		// return Response.status(200).entity(cartService.createCart(cart)).build();
-		// }
 		return Response.status(200).entity(cartService.createCart(cart)).build();
 
 	}
