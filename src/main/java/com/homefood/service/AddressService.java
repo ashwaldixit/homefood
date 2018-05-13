@@ -23,5 +23,7 @@ public interface AddressService {
 	public List<Address> getAllNonDefaultByAddressByUser(User user);
 
 	public Address setAsDefault(Address address);
+	
+	public List<Address> getAllByUser(User user);
 
 }

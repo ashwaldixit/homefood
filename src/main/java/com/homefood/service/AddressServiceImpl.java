@@ -89,12 +89,16 @@ public class AddressServiceImpl implements AddressService {
 
 	@Override
 	public Address setAsDefault(Address address) {
-		Address defaultAddres  = getActiveAndDefaultByUser(address.getUser());
+		Address defaultAddres = getActiveAndDefaultByUser(address.getUser());
 		defaultAddres.setIsDefault(false);
 		addressRepository.save(defaultAddres);
 		address.setIsDefault(true);
 		return update(address);
 	}
 
+	@Override
+	public List<Address> getAllByUser(User user) {
+		return addressRepository.findAll();
+	}
 
 }

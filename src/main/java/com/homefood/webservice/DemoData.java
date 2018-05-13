@@ -2,6 +2,8 @@ package com.homefood.webservice;
 
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.homefood.codetype.DayAvailablity;
 import com.homefood.codetype.UserRole;
+import com.homefood.model.Address;
 import com.homefood.model.Cart;
 import com.homefood.model.Category;
 import com.homefood.model.Caterer;
@@ -26,6 +29,7 @@ import com.homefood.repository.CatererRepository;
 import com.homefood.repository.LocationRepository;
 import com.homefood.repository.ProductPresenceRepository;
 import com.homefood.repository.ProductRepository;
+import com.homefood.service.AddressService;
 import com.homefood.service.CartService;
 import com.homefood.service.CategoryService;
 import com.homefood.service.CatererLocationService;
@@ -89,22 +93,43 @@ public class DemoData {
 	@Autowired
 	CatererLocationService catererLocationService;
 
+	@Autowired
+	AddressService addressService;
+	
 	@POST
 	public void generateDemoData() throws NoSuchAlgorithmException {
 
 		Caterer caterer = new Caterer();
 		caterer.setName("Sumi");
 		caterer.setDescription("First Caterer");
+		caterer.setImageUrl("https://www.watscooking.com/images/dish/large/VEG_MEALS.jpg");
 		caterer = catererService.createCaterer(caterer);
 
 		User customer = new User();
+		Address address = new Address();
+		List<Address> addresses = new ArrayList<Address>();
+
+
 		customer.setUserName("Ashwal");
 		customer.setEmail("ashwalappi@gmail.com");
 		customer.setPassword("p");
 		customer.setConfirmPassword("p");
 		customer.setUserRole(UserRole.Customer);
+		customer.setAddresses(addresses);
 		customer = customerService.validateAndCreateCustomer(customer);
 
+		address.setAddressLine1("No 111");
+		address.setAddressLine2("Housing Board");
+		address.setIsDefault(true);
+		address.setUser(customer);
+		address.setCity("Bengaluru");
+		address.setState("Karnataka");
+		address.setCountry("India");
+		address.setZipCode("560056");
+		address.setUser(customer);
+		addresses.add(address);
+		addressService.createAddress(address);
+		
 		Category category = new Category();
 		category.setName("South Indian");
 		category = categoryService.createCategory(category);
