@@ -90,6 +90,9 @@ public class Product {
 
 	@Transient
 	private double price;
+	
+	@Column(name="isFeaturedProduct")
+	private boolean isFeaturedProduct;
 
 	public RecordStatus getStatus() {
 		return status;

@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
-import com.homefood.model.User;
 import com.homefood.model.CustomerOrder;
+import com.homefood.model.User;
 
 @Repository
 public interface CustomerOrderRepository extends CrudRepository<CustomerOrder, Serializable> {

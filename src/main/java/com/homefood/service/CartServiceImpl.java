@@ -1,11 +1,8 @@
 package com.homefood.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.transaction.Transactional;
 
@@ -13,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.homefood.codetype.CartStatus;
-import com.homefood.codetype.RecordStatus;
 import com.homefood.model.Cart;
 import com.homefood.model.CartResponse;
 import com.homefood.model.CartTotal;

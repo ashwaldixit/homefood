@@ -9,12 +9,10 @@ import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
 import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.Provider;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.homefood.codetype.NotificationInfo;
 import com.homefood.core.TransactionInfo;
 
 @Provider

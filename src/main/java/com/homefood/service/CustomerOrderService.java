@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
-import com.homefood.model.User;
 import com.homefood.model.CustomerOrder;
+import com.homefood.model.User;
 
 
 public interface CustomerOrderService {

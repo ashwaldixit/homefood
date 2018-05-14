@@ -1,6 +1,5 @@
 package com.homefood.service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
-import com.homefood.model.User;
 import com.homefood.model.Cart;
 import com.homefood.model.CustomerOrder;
 import com.homefood.model.ProductOrder;
+import com.homefood.model.User;
 import com.homefood.repository.CustomerOrderRepository;
 
 @Service

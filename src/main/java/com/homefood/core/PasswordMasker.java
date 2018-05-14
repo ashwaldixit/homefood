@@ -29,7 +29,6 @@ public class PasswordMasker {
 	private static final byte[] SALT = { (byte) 0xde, (byte) 0x33, (byte) 0x10, (byte) 0x12, (byte) 0xde, (byte) 0x33,
 			(byte) 0x10, (byte) 0x12, };
 
-	@SuppressWarnings("restriction")
 	private static String base64Encode(byte[] bytes) {
 		// NB: This class is internal, and you probably should use another impl
 		return new BASE64Encoder().encode(bytes);

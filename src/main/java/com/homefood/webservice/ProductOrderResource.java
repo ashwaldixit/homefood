@@ -219,6 +219,7 @@ public class ProductOrderResource {
 			}
 		}
 
+		@SuppressWarnings("deprecation")
 		PageRequest pageable = new PageRequest(index, size, direction, sortBy);
 		return Response.ok().entity(orderService.readAllByDeliverydateAndProductCaterer(deliveryDateTime,
 				catererService.getByUser(getUser()), pageable)).build();
