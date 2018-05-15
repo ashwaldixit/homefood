@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.homefood.codetype.NotificationInfo;
+import com.homefood.codetype.RecordStatus;
 import com.homefood.core.PasswordMasker;
 import com.homefood.core.TransactionInfo;
 import com.homefood.model.User;
@@ -46,12 +47,18 @@ public class UserAuthenticationTokenServiceImpl implements UserAuthenticationTok
 			transactionInfo.generateException("generic_error_message", NotificationInfo.ERROR,
 					Status.UNAUTHORIZED.getStatusCode());
 		}
-		UserAuthenticationToken authenticationToken = new UserAuthenticationToken();
+		UserAuthenticationToken authenticationToken = null;
 		User fetchedUser = userService.findByEmailAndPassword(user.getEmail(), hashedPassword);
 		if (null != fetchedUser) {
-              authenticationToken.setUser(fetchedUser);
-              authenticationToken.setToken(jwtTokenService.getJWTToken(fetchedUser));
-          	authenticationToken = userAuthenticationRepository.save(authenticationToken);
+			authenticationToken = userAuthenticationRepository.findByUserAndStatus(fetchedUser, RecordStatus.Active);
+			if (null != authenticationToken) {
+				return authenticationToken;
+			} else {
+				authenticationToken = new UserAuthenticationToken();
+				authenticationToken.setUser(fetchedUser);
+				authenticationToken.setToken(jwtTokenService.getJWTToken(fetchedUser));
+				return userAuthenticationRepository.save(authenticationToken);
+			}
 		} else {
 			transactionInfo.generateException("invalid.user", NotificationInfo.ERROR,
 					Status.UNAUTHORIZED.getStatusCode());
