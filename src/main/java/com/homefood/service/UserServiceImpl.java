@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.homefood.codetype.UserRole;
 import com.homefood.core.PasswordMasker;
+import com.homefood.model.Address;
 import com.homefood.model.User;
 import com.homefood.repository.UserRepository;
 
@@ -22,6 +23,9 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private PasswordMasker passwordMasker;
 
+	@Autowired
+	private AddressService addressService;
+
 	@Override
 	public User readById(long id) {
 		return customerRepository.findByUserid(id);
@@ -34,7 +38,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void validate(User customer) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -45,6 +48,8 @@ public class UserServiceImpl implements UserService {
 		if (!customer.getUserRole().equals(UserRole.Caterer)) {
 			customer.setIsApproved(true);
 		}
+		customer = createCustomer(customer);
+		createAddresses(customer);
 		return createCustomer(customer);
 	}
 
@@ -77,5 +82,12 @@ public class UserServiceImpl implements UserService {
 		return customerRepository.findByIsApprovedAndUserRole(false, UserRole.Caterer);
 	}
 
-	
+	private void createAddresses(User user) {
+		user.getAddresses().stream().forEach(address -> {
+			address.setUser(user);
+			this.addressService.validateAndCreate(address);
+		});
+
+	}
+
 }

@@ -114,7 +114,7 @@ public class DemoData {
 		customer.setEmail("ashwalappi@gmail.com");
 		customer.setPassword("p");
 		customer.setConfirmPassword("p");
-		customer.setUserRole(UserRole.Customer);
+		customer.setUserRole(UserRole.User);
 		customer.setAddresses(addresses);
 		customer = customerService.validateAndCreateCustomer(customer);
 

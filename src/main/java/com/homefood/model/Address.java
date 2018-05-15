@@ -12,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
-import javax.ws.rs.core.Context;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -40,13 +39,13 @@ public class Address {
 	private String addressLine2;
 
 	@Column
-	private String city;
+	private String city = "Bengaluru";
 
 	@Column
-	private String state;
+	private String state = "Karnataka";
 
 	@Column
-	private String country;
+	private String country = "India";
 
 	@Column(name = "zipcode")
 	private String zipCode;

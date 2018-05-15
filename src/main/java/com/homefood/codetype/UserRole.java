@@ -2,5 +2,5 @@ package com.homefood.codetype;
 
 public enum UserRole {
 
-	Admin, Caterer, Customer
+	Admin, Caterer, User
 }
