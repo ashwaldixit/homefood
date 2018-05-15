@@ -114,5 +114,5 @@ public class CartResource {
 		return Response.ok().entity(cartService.removeProductFromCart(productService.readById(productId), getUser()))
 				.build();
 	}
-
+	
 }

@@ -130,6 +130,31 @@ public class DemoData {
 		addresses.add(address);
 		addressService.createAddress(address);
 		
+		address.setAddressLine1("No 111");
+		address.setAddressLine2("Housing Board");
+		address.setIsDefault(true);
+		address.setUser(customer);
+		address.setCity("Bengaluru");
+		address.setState("Karnataka");
+		address.setCountry("India");
+		address.setZipCode("560056");
+		address.setUser(customer);
+		addresses.add(address);
+		addressService.createAddress(address);
+		
+		address = new Address();
+		address.setAddressLine1("No 222");
+		address.setAddressLine2("Housing Colony");
+		address.setIsDefault(false);
+		address.setUser(customer);
+		address.setCity("Bengaluru");
+		address.setState("Karnataka");
+		address.setCountry("India");
+		address.setZipCode("560056");
+		address.setUser(customer);
+		addresses.add(address);
+		addressService.createAddress(address);
+		
 		Category category = new Category();
 		category.setName("South Indian");
 		category = categoryService.createCategory(category);
