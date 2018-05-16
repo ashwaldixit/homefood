@@ -1,5 +1,7 @@
 package com.homefood.service;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
 import com.homefood.model.Cart;
 import com.homefood.model.CustomerOrder;
+import com.homefood.model.CustomerOrderResponse;
 import com.homefood.model.ProductOrder;
 import com.homefood.model.User;
 import com.homefood.repository.CustomerOrderRepository;
@@ -60,8 +63,10 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 		carts.stream().forEach(cart -> {
 			ProductOrder productOrder = new ProductOrder();
 			productOrder.setCustomerOrder(customerOrder2);
-			productOrder.setDeliverydate(cart.getDeliverydate());
+			productOrder.setDeliverydate(LocalDateTime.now().plusHours(3));
 			productOrder.setProduct(cart.getProduct());
+			productOrder.setOrderedQuantity(cart.getQuantity());
+			productOrder.setDeliveredQuantity(cart.getQuantity());
 			productOrderService.validateAndCreate(productOrder);
 		});
 
@@ -80,8 +85,16 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 	}
 
 	@Override
-	public List<CustomerOrder> readAllByCustomer(User customer) {
-		return customerOrderRepository.findByCustomer(customer);
+	public List<CustomerOrderResponse> readAllByCustomer(User customer) {
+		List<CustomerOrderResponse> customerOrderProductOrderList = new ArrayList<CustomerOrderResponse>();
+		List<CustomerOrder> customerOrders = customerOrderRepository.findByCustomer(customer);
+		customerOrders.stream().forEach(customerOrder -> {
+			CustomerOrderResponse customerOrderResponse = new CustomerOrderResponse();
+			customerOrderResponse.setProductOrders(productOrderService.readAllByCustomerOrder(customerOrder));
+			customerOrderResponse.setCustomerOrder(customerOrder);
+			customerOrderProductOrderList.add(customerOrderResponse);
+		});
+		return customerOrderProductOrderList;
 	}
 
 	@Override

@@ -60,6 +60,12 @@ public class ProductOrder {
 	@JoinColumn(name = "customerorderid", nullable = false, updatable = false)
 	private CustomerOrder customerOrder;
 
+	@Column(name = "orderedquantity")
+	private int orderedQuantity;
+
+	@Column(name = "deliveredquantity")
+	private int deliveredQuantity;
+
 	public CustomerOrder getCustomerOrder() {
 		return customerOrder;
 	}
@@ -124,4 +130,19 @@ public class ProductOrder {
 		this.deliverydate = deliverydate;
 	}
 
+	public int getOrderedQuantity() {
+		return orderedQuantity;
+	}
+
+	public void setOrderedQuantity(int orderedQuantity) {
+		this.orderedQuantity = orderedQuantity;
+	}
+
+	public int getDeliveredQuantity() {
+		return deliveredQuantity;
+	}
+
+	public void setDeliveredQuantity(int deliveredQuantity) {
+		this.deliveredQuantity = deliveredQuantity;
+	}
 }

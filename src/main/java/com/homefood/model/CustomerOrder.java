@@ -55,7 +55,7 @@ public class CustomerOrder {
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "customerid", nullable = false, updatable = false)
-	@JsonManagedReference
+//	@JsonManagedReference
 	private User customer;
 
 	@Enumerated(EnumType.STRING)

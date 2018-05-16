@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
 import com.homefood.model.Caterer;
+import com.homefood.model.CustomerOrder;
 import com.homefood.model.Product;
 import com.homefood.model.ProductOrder;
 
@@ -56,4 +57,5 @@ public interface ProductOrderService {
 	public Page<ProductOrder> readAllByDeliverydateAndProductCaterer(LocalDateTime deliveryDate, Caterer caterer,
 			Pageable pageable);
 
+	public List<ProductOrder> readAllByCustomerOrder(CustomerOrder customerOrder);
 }

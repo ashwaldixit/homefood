@@ -13,6 +13,7 @@ import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
 import com.homefood.model.Caterer;
 import com.homefood.model.CustomerOrder;
+import com.homefood.model.CustomerOrderResponse;
 import com.homefood.model.Product;
 import com.homefood.model.ProductOrder;
 import com.homefood.repository.ProductOrderRepository;
@@ -134,7 +135,14 @@ public class ProductOrderServiceImpl implements ProductOrderService {
 	@Override
 	public Page<ProductOrder> readAllByDeliverydateAndProductCaterer(LocalDateTime deliveryDate, Caterer caterer,
 			Pageable pageable) {
-		return orderRepository.findByDeliverydateBetweenAndProductCaterer(deliveryDate.toLocalDate().atStartOfDay(), deliveryDate.toLocalDate().plusDays(1).atStartOfDay(),caterer, pageable);
+		return orderRepository.findByDeliverydateBetweenAndProductCaterer(deliveryDate.toLocalDate().atStartOfDay(),
+				deliveryDate.toLocalDate().plusDays(1).atStartOfDay(), caterer, pageable);
+	}
+
+	@Override
+	public List<ProductOrder> readAllByCustomerOrder(CustomerOrder customerOrder) {
+		CustomerOrderResponse customerOrderResponse = new CustomerOrderResponse();
+		return orderRepository.findByCustomerOrder(customerOrder);
 	}
 
 }

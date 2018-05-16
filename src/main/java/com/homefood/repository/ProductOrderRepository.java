@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
 import com.homefood.model.Caterer;
+import com.homefood.model.CustomerOrder;
 import com.homefood.model.Product;
 import com.homefood.model.ProductOrder;
 
@@ -33,4 +34,6 @@ public interface ProductOrderRepository extends JpaRepository<ProductOrder, Seri
 
 	public Page<ProductOrder> findByDeliverydateBetweenAndProductCaterer(LocalDateTime deliveryDateStart,LocalDateTime deliveryDateEnd,
 			Caterer caterer, Pageable pageable);
+	
+	public List<ProductOrder> findByCustomerOrder(CustomerOrder customerOrder);
 }

@@ -95,6 +95,12 @@ public class CustomerOrderResource {
 		if (null != authToken)
 			return authToken.getUser();
 		return null;
+	}
 
+	@GET
+	@Path("/all")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllOrdersOFCustomer() {
+		return Response.ok().entity(customerOrderService.readAllByCustomer(getUser())).build();
 	}
 }
