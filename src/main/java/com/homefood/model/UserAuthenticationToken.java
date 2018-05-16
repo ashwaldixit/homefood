@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -22,6 +23,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.homefood.codetype.RecordStatus;
+import com.homefood.codetype.UserRole;
 
 @Entity(name = "userauthenticationtoken")
 @EntityListeners(AuditingEntityListener.class)
@@ -62,6 +64,9 @@ public class UserAuthenticationToken implements Serializable {
 	@Column(name = "recordstatus")
 	@JsonIgnore
 	private RecordStatus status = RecordStatus.Active;
+	
+	@Transient
+	private UserRole userRole;
 
 	public long getId() {
 		return id;
@@ -118,6 +123,14 @@ public class UserAuthenticationToken implements Serializable {
 
 	public void setStatus(RecordStatus status) {
 		this.status = status;
+	}
+
+	public UserRole getUserRole() {
+		return user.getUserRole();
+	}
+
+	public void setUserRole(UserRole userRole) {
+		this.userRole = userRole;
 	}
 
 }
