@@ -1,5 +1,6 @@
 package com.homefood.service;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,12 +25,25 @@ public class CatererServiceImpl implements CatererService {
 
 	@Autowired
 	TransactionInfo transactionInfo;
+	@Autowired
+	UserService userService;
 
 	@Autowired
 	private CatererLocationService catererLocationService;
 
 	@Override
 	public Caterer createCaterer(Caterer caterer) {
+
+		User user = userService.readById(caterer.getUser().getUserid());
+		if (null == user) {
+			try {
+				user = userService.validateAndCreateCustomer(user);
+			} catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+			}
+		}
+		caterer.setUser(user);
+
 		return catererRepository.save(caterer);
 	}
 

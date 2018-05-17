@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -23,10 +24,11 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
 
-@Entity(name="customerorder")
+@Entity(name = "customerorder")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class CustomerOrder {
@@ -49,19 +51,21 @@ public class CustomerOrder {
 	private RecordStatus status = RecordStatus.Active;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "customerOrder")
-    @JsonIgnore
+	@JsonIgnore
 	private List<ProductOrder> productOrders;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "customerid", nullable = false, updatable = false)
-//	@JsonManagedReference
+	// @JsonManagedReference
 	private User customer;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "orderstatus")
 	private OrderStatus orderStatus = OrderStatus.Open;
-	
-	
+
+	@OneToOne(fetch=FetchType.LAZY)
+	@JsonIgnore
+	private Address address;
 
 	public long getCustomerorderid() {
 		return customerorderid;
@@ -117,6 +121,15 @@ public class CustomerOrder {
 
 	public void setOrderStatus(OrderStatus orderStatus) {
 		this.orderStatus = orderStatus;
+	}
+
+	@JsonIgnore
+	public Address getAddress() {
+		return address;
+	}
+	@JsonProperty
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 }

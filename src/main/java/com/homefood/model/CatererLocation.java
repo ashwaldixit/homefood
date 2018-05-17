@@ -18,6 +18,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.homefood.codetype.RecordStatus;
 
@@ -31,9 +32,10 @@ public class CatererLocation {
 	private long catererlocationid;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
 	private Caterer caterer;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Location location;
 
 	@NotNull

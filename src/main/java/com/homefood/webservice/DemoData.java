@@ -99,12 +99,7 @@ public class DemoData {
 	@POST
 	public void generateDemoData() throws NoSuchAlgorithmException {
 
-		Caterer caterer = new Caterer();
-		caterer.setName("Sumi");
-		caterer.setDescription("First Caterer");
-		caterer.setImageUrl("https://www.watscooking.com/images/dish/large/VEG_MEALS.jpg");
-		caterer = catererService.createCaterer(caterer);
-
+		
 		User customer = new User();
 		Address address = new Address();
 		List<Address> addresses = new ArrayList<Address>();
@@ -117,6 +112,15 @@ public class DemoData {
 		customer.setUserRole(UserRole.User);
 		customer.setAddresses(addresses);
 		customer = customerService.validateAndCreateCustomer(customer);
+		
+		
+		Caterer caterer = new Caterer();
+		caterer.setName("Sumi");
+		caterer.setDescription("First Caterer");
+		caterer.setImageUrl("https://www.watscooking.com/images/dish/large/VEG_MEALS.jpg");
+		caterer.setUser(customer);
+		caterer = catererService.createCaterer(caterer);
+
 
 		address.setAddressLine1("No 111");
 		address.setAddressLine2("Housing Board");

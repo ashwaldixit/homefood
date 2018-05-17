@@ -45,8 +45,7 @@ public class CustomerOrderResource {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createOrder() {
-		CustomerOrder customerOrder = new CustomerOrder();
+	public Response createOrder(CustomerOrder customerOrder) {
 		customerOrder.setCustomer(getUser());
 		return Response.ok().entity(customerOrderService.validateAndCreate(customerOrder)).build();
 	}
