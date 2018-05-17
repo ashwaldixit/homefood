@@ -69,7 +69,6 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 			productOrder.setDeliveredQuantity(cart.getQuantity());
 			productOrderService.validateAndCreate(productOrder);
 		});
-
 		cartService.processAllByCustomer(customerOrder.getCustomer());
 		return customerOrder;
 	}
@@ -87,7 +86,7 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 	@Override
 	public List<CustomerOrderResponse> readAllByCustomer(User customer) {
 		List<CustomerOrderResponse> customerOrderProductOrderList = new ArrayList<CustomerOrderResponse>();
-		List<CustomerOrder> customerOrders = customerOrderRepository.findByCustomer(customer);
+		List<CustomerOrder> customerOrders = customerOrderRepository.findByCustomerOrderByCreatedDateDesc(customer);
 		customerOrders.stream().forEach(customerOrder -> {
 			CustomerOrderResponse customerOrderResponse = new CustomerOrderResponse();
 			customerOrderResponse.setProductOrders(productOrderService.readAllByCustomerOrder(customerOrder));

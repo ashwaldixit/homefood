@@ -18,7 +18,7 @@ public interface CustomerOrderRepository extends CrudRepository<CustomerOrder, S
 
 	public List<CustomerOrder> findByStatus(RecordStatus recordStatus);
 
-	public List<CustomerOrder> findByCustomer(User customer);
+	public List<CustomerOrder> findByCustomerOrderByCreatedDateDesc(User customer);
 
 	public List<CustomerOrder> findByCustomerAndStatus(User customer, OrderStatus orderStatus);
 

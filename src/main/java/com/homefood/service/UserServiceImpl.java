@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.homefood.codetype.UserRole;
 import com.homefood.core.PasswordMasker;
-import com.homefood.model.Address;
 import com.homefood.model.User;
 import com.homefood.repository.UserRepository;
 

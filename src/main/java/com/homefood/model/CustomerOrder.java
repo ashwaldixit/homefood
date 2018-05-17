@@ -23,11 +23,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
 
-@Entity
+@Entity(name="customerorder")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class CustomerOrder {
