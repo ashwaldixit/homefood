@@ -61,6 +61,13 @@ public class AddressResource {
 	public Response setAsDefault(Address address) {
 		return Response.status(Status.OK).entity(addressService.setAsDefault(address)).build();
 	}
+	
+	@PUT
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response update(Address address) {
+		return Response.status(Status.OK).entity(addressService.update(address)).build();
+	}
+
 
 	private User getUser() {
 		String token = req.getHeader("token");

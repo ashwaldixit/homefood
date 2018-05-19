@@ -15,7 +15,7 @@ public interface UserService {
 
 	public User validateAndCreateCustomer(User customer) throws NoSuchAlgorithmException;
 
-	public User update(User customer);
+	public User update(User customer) throws NoSuchAlgorithmException;
 
 	public User readByEmail(String email);
 

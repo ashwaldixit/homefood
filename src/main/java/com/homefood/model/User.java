@@ -43,14 +43,17 @@ public class User {
 	@Column(nullable = false)
 	private String password;
 
-	@Column(name = "role", nullable=false)
+	@Column(name = "role", nullable = false)
 	private UserRole userRole;
 
 	@Column(name = "isApproved")
 	private boolean isApproved = false;
-	
+
 	@Transient
 	private String confirmPassword;
+	
+	@Column(name="profileimage")
+	private String profileImage;
 
 	@Column(name = "lastlogin")
 	private LocalDateTime lastLoginDate;
@@ -94,10 +97,12 @@ public class User {
 		this.userName = userName;
 	}
 
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}
 
+	@JsonProperty
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -165,7 +170,7 @@ public class User {
 	public void setOrders(List<CustomerOrder> orders) {
 		this.orders = orders;
 	}
-	
+
 	@JsonIgnore
 	public List<Address> getAddresses() {
 		return addresses;
@@ -182,6 +187,14 @@ public class User {
 
 	public void setIsApproved(boolean isApproved) {
 		this.isApproved = isApproved;
+	}
+
+	public String getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
 	}
 
 }

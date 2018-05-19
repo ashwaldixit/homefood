@@ -98,7 +98,7 @@ public class AddressServiceImpl implements AddressService {
 
 	@Override
 	public List<Address> getAllByUser(User user) {
-		return addressRepository.findAll();
+		return addressRepository.findByuserAndStatus(user, RecordStatus.Active);
 	}
 
 }

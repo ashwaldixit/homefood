@@ -57,8 +57,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User update(User customer) {
-		return createCustomer(customer);
+	public User update(User customer) throws NoSuchAlgorithmException {
+		customer.setPassword(readById(customer.getUserid()).getPassword());
+		return validateAndCreateCustomer(customer);
 	}
 
 	@Override

@@ -95,15 +95,13 @@ public class DemoData {
 
 	@Autowired
 	AddressService addressService;
-	
+
 	@POST
 	public void generateDemoData() throws NoSuchAlgorithmException {
 
-		
 		User customer = new User();
 		Address address = new Address();
 		List<Address> addresses = new ArrayList<Address>();
-
 
 		customer.setUserName("Ashwal");
 		customer.setEmail("ashwalappi@gmail.com");
@@ -111,9 +109,10 @@ public class DemoData {
 		customer.setConfirmPassword("p");
 		customer.setUserRole(UserRole.User);
 		customer.setAddresses(addresses);
+		customer.setProfileImage(
+				"https://scontent.fmaa1-1.fna.fbcdn.net/v/t1.0-1/p320x320/12651209_10208285161471976_8980166677029189801_n.jpg?_nc_cat=0&oh=e8bf5d1854b2eb9860d9890035fe3565&oe=5B8289AF");
 		customer = customerService.validateAndCreateCustomer(customer);
-		
-		
+
 		Caterer caterer = new Caterer();
 		caterer.setName("Sumi");
 		caterer.setDescription("First Caterer");
@@ -121,6 +120,17 @@ public class DemoData {
 		caterer.setUser(customer);
 		caterer = catererService.createCaterer(caterer);
 
+		address.setAddressLine1("No 111");
+		address.setAddressLine2("Housing Board");
+		address.setIsDefault(true);
+		address.setUser(customer);
+		address.setCity("Bengaluru");
+		address.setState("Karnataka");
+		address.setCountry("India");
+		address.setZipCode("560056");
+		address.setUser(customer);
+		addresses.add(address);
+		addressService.createAddress(address);
 
 		address.setAddressLine1("No 111");
 		address.setAddressLine2("Housing Board");
@@ -133,19 +143,7 @@ public class DemoData {
 		address.setUser(customer);
 		addresses.add(address);
 		addressService.createAddress(address);
-		
-		address.setAddressLine1("No 111");
-		address.setAddressLine2("Housing Board");
-		address.setIsDefault(true);
-		address.setUser(customer);
-		address.setCity("Bengaluru");
-		address.setState("Karnataka");
-		address.setCountry("India");
-		address.setZipCode("560056");
-		address.setUser(customer);
-		addresses.add(address);
-		addressService.createAddress(address);
-		
+
 		address = new Address();
 		address.setAddressLine1("No 222");
 		address.setAddressLine2("Housing Colony");
@@ -158,7 +156,58 @@ public class DemoData {
 		address.setUser(customer);
 		addresses.add(address);
 		addressService.createAddress(address);
-		
+
+		customer = new User();
+		address = new Address();
+		addresses = new ArrayList<Address>();
+
+		customer.setUserName("Smitha");
+		customer.setEmail("smithasns.91@gmail.com");
+		customer.setPassword("p");
+		customer.setConfirmPassword("p");
+		customer.setUserRole(UserRole.User);
+		customer.setAddresses(addresses);
+		customer.setProfileImage(
+				"https://scontent.fmaa1-1.fna.fbcdn.net/v/t1.0-1/c0.24.768.768/s200x200/13501585_1061651210577960_3129189873734688166_n.jpg?_nc_cat=0&oh=81ab95f774466f22bbf72a52db24740b&oe=5B97154E");
+		customer = customerService.validateAndCreateCustomer(customer);
+
+		address.setAddressLine1("No 999");
+		address.setAddressLine2("Mrughavadhe");
+		address.setIsDefault(true);
+		address.setUser(customer);
+		address.setCity("Shimoga");
+		address.setState("Karnataka");
+		address.setCountry("India");
+		address.setZipCode("560056");
+		address.setUser(customer);
+		addresses.add(address);
+		addressService.createAddress(address);
+
+		address.setAddressLine1("No 222");
+		address.setAddressLine2("CSI Layout");
+		address.setIsDefault(true);
+		address.setUser(customer);
+		address.setCity("Tumkur");
+		address.setState("Karnataka");
+		address.setCountry("India");
+		address.setZipCode("560056");
+		address.setUser(customer);
+		addresses.add(address);
+		addressService.createAddress(address);
+
+		address = new Address();
+		address.setAddressLine1("No 666");
+		address.setAddressLine2("Housing Colony");
+		address.setIsDefault(false);
+		address.setUser(customer);
+		address.setCity("Thirthahalli");
+		address.setState("Karnataka");
+		address.setCountry("India");
+		address.setZipCode("560056");
+		address.setUser(customer);
+		addresses.add(address);
+		addressService.createAddress(address);
+
 		Category category = new Category();
 		category.setName("South Indian");
 		category = categoryService.createCategory(category);
