@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.homefood.codetype.CartStatus;
 import com.homefood.model.Cart;
 import com.homefood.model.CartResponse;
+import com.homefood.model.CartResponse1;
 import com.homefood.model.CartTotal;
 import com.homefood.model.Product;
 import com.homefood.model.User;
@@ -63,15 +64,13 @@ public class CartServiceImpl implements CartService {
 	public CartTotal computeCart(User customer) {
 		List<Cart> activeCartProducts = cartRepository.findByCustomerAndStatus(customer, CartStatus.ACTIVE);
 		double totalCartPrice = 0;
-		CartResponse cartResponse;
+		CartResponse1 cartResponse;
 		ListIterator<Cart> itr = activeCartProducts.listIterator();
-		List<CartResponse> cartResponseList = new ArrayList<CartResponse>();
+		List<CartResponse1> cartResponseList = new ArrayList<CartResponse1>();
 		while (itr.hasNext()) {
 			Cart currentCart = itr.next();
-			cartResponse = new CartResponse();
-			cartResponse.setProduct(currentCart.getProduct());
-			cartResponse.setQuantity(currentCart.getQuantity());
-			cartResponse.setUser(currentCart.getCustomer());
+			cartResponse = new CartResponse1();
+			cartResponse.setCart(currentCart);
 			cartResponse.setTotalProductPrice(currentCart.getProduct().getPrice() * currentCart.getQuantity());
 			totalCartPrice = totalCartPrice + cartResponse.getTotalProductPrice();
 			cartResponseList.add(cartResponse);

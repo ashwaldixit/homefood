@@ -4,15 +4,15 @@ import java.util.List;
 
 public class CartTotal {
 
-	private List<CartResponse> carts;
+	private List<CartResponse1> carts;
 
 	private double totalPrice;
 
-	public List<CartResponse> getCarts() {
+	public List<CartResponse1> getCarts() {
 		return carts;
 	}
 
-	public void setCarts(List<CartResponse> carts) {
+	public void setCarts(List<CartResponse1> carts) {
 		this.carts = carts;
 	}
 
