@@ -95,5 +95,12 @@ public class CatererResource {
 		catererLocation.setCaterer(catererService.getByUser(getUser()));
 		return Response.ok().entity(catererLocationService.validateAndCreate(catererLocation)).build();
 	}
+	
+	@GET
+	@Path("/activebycaterer/locations/{catererid}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllActiveLocationsBycaterer(@PathParam("catererid") long catererid) {
+		return Response.ok().entity(catererService.getAllActiveLocations(catererService.readById(catererid))).build();
+	}
 
 }

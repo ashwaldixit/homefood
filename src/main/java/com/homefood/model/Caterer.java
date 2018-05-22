@@ -63,6 +63,7 @@ public class Caterer {
 	private List<Product> products;
 
 	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+	@JsonIgnore
 	private User user;
 
 	@Version

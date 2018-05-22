@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.homefood.codetype.CartStatus;
 import com.homefood.model.Cart;
-import com.homefood.model.CartResponse;
 import com.homefood.model.CartResponse1;
 import com.homefood.model.CartTotal;
 import com.homefood.model.Product;

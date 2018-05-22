@@ -169,4 +169,12 @@ public class ProductResource {
 
 	}
 
+	@GET
+	@Path("/active")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllProducts() {
+		return Response.ok().entity(productService.getAllActiveProducts()).build();
+
+	}
+
 }

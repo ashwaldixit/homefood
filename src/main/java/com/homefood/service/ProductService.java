@@ -46,8 +46,10 @@ public interface ProductService {
 	public Product update(Product product);
 
 	public List<Product> findByCategoriesAndCaterers(List<Category> categories, List<Caterer> caterers);
-	
+
 	public List<Product> getAllActiveProductsByStatusAndStockAndAvailability(Caterer caterer);
-	
+
 	public Product validateAndcreateProduct(ProductCreate productCreate);
+
+	public List<Product> getAllActiveProducts();
 }

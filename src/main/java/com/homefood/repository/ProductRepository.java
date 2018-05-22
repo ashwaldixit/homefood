@@ -39,4 +39,6 @@ public interface ProductRepository extends CrudRepository<Product, Serializable>
 	public List<Product> getAllActiveProductsByStatusAndStockAndAvailability(Caterer caterer, RecordStatus status,
 			DayAvailablity availablity, LocalDateTime dateTime);
 
+	public List<Product> findByStatus(RecordStatus status);
+
 }

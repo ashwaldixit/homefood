@@ -206,4 +206,9 @@ public class ProductServiceImpl implements ProductService {
 		return product;
 	}
 
+	@Override
+	public List<Product> getAllActiveProducts() {
+		return productRepository.findByStatus(RecordStatus.Active);
+	}
+
 }
