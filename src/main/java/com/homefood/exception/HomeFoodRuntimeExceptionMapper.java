@@ -13,9 +13,9 @@ public class HomeFoodRuntimeExceptionMapper implements ExceptionMapper<HomeFoodR
 	private static final Logger logger = LoggerFactory.getLogger(HomeFoodRuntimeExceptionMapper.class);
 
 	@Override
-	public Response toResponse(HomeFoodRuntimeException obsAppException) {
-		logger.error(obsAppException.fillInStackTrace().toString());
-		return Response.status(obsAppException.getExceptionMessage().getErrorCode())
-				.entity(obsAppException.getExceptionMessage()).type(MediaType.APPLICATION_JSON).build();
+	public Response toResponse(HomeFoodRuntimeException homeFoodRuntimeAppException) {
+		logger.error(homeFoodRuntimeAppException.fillInStackTrace().toString());
+		return Response.status(homeFoodRuntimeAppException.getExceptionMessage().getErrorCode())
+				.entity(homeFoodRuntimeAppException.getExceptionMessage()).type(MediaType.APPLICATION_JSON).build();
 	}
 }

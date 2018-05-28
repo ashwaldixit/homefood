@@ -2,7 +2,9 @@ package com.homefood.service;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.homefood.codetype.NotificationInfo;
 import com.homefood.codetype.RecordStatus;
 import com.homefood.core.TransactionInfo;
+import com.homefood.model.Category;
 import com.homefood.model.Caterer;
 import com.homefood.model.Location;
 import com.homefood.model.User;
@@ -30,6 +33,9 @@ public class CatererServiceImpl implements CatererService {
 
 	@Autowired
 	private CatererLocationService catererLocationService;
+	
+	@Autowired
+	private ProductService productService;
 
 	@Override
 	public Caterer createCaterer(Caterer caterer) {
@@ -57,7 +63,7 @@ public class CatererServiceImpl implements CatererService {
 		List<Object> args = new ArrayList<Object>();
 		args.add(caterer.getClass().getSimpleName() + " name");
 		args.add(caterer.getName());
-		List<Caterer> caterers = catererRepository.findByNameAndRecordStatus(caterer.getName(), RecordStatus.Active);
+		List<Caterer> caterers = catererRepository.findByNameIgnoreCaseAndRecordStatus(caterer.getName(), RecordStatus.Active);
 		if (caterer.getName() == null || caterer.getName().isEmpty()) {
 			transactionInfo.generateException("EMPTY_FILED", args, NotificationInfo.ERROR, 501);
 		} else if (!caterers.isEmpty() || null == caterers) {
@@ -74,7 +80,7 @@ public class CatererServiceImpl implements CatererService {
 	@Override
 	public Caterer readActiveByName(String name) {
 
-		List<Caterer> result = catererRepository.findByNameAndRecordStatus(name, RecordStatus.Active);
+		List<Caterer> result = catererRepository.findByNameIgnoreCaseAndRecordStatus(name, RecordStatus.Active);
 		if (null != result && !result.isEmpty())
 			return result.get(0);
 		return null;
@@ -82,7 +88,7 @@ public class CatererServiceImpl implements CatererService {
 
 	@Override
 	public List<Caterer> readAllInActiveByName(String name) {
-		return catererRepository.findByNameAndRecordStatus(name, RecordStatus.Active);
+		return catererRepository.findByNameIgnoreCaseAndRecordStatus(name, RecordStatus.Active);
 	}
 
 	@Override
@@ -106,6 +112,13 @@ public class CatererServiceImpl implements CatererService {
 		catererLocationService.readAllActiveByCaterer(caterer).stream()
 				.forEach(item -> locations.add(item.getLocation()));
 		return locations;
+	}
+
+	@Override
+	public Set<Category> getAllActiveCategories(Caterer caterer) {
+		Set<Category> set = new HashSet<Category>();
+		productService.readAllActiveByCaterer(caterer).stream().forEach(item ->set.add(item.getCategory()));
+		return set;
 	}
 
 }

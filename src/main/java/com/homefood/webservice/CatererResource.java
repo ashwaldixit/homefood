@@ -10,15 +10,19 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.homefood.codetype.NotificationInfo;
+import com.homefood.core.TransactionInfo;
 import com.homefood.model.Caterer;
 import com.homefood.model.CatererLocation;
 import com.homefood.model.User;
 import com.homefood.model.UserAuthenticationToken;
 import com.homefood.service.CatererLocationService;
 import com.homefood.service.CatererService;
+import com.homefood.service.ProductService;
 import com.homefood.service.UserAuthenticationTokenService;
 
 @Path("/caterers")
@@ -35,6 +39,12 @@ public class CatererResource {
 
 	@Autowired
 	CatererLocationService catererLocationService;
+
+	@Autowired
+	ProductService productService;
+
+	@Autowired
+	TransactionInfo transactionInfo;
 
 	@GET
 	@Path("/{catererid}")
@@ -95,12 +105,45 @@ public class CatererResource {
 		catererLocation.setCaterer(catererService.getByUser(getUser()));
 		return Response.ok().entity(catererLocationService.validateAndCreate(catererLocation)).build();
 	}
-	
+
 	@GET
-	@Path("/activebycaterer/locations/{catererid}")
+	@Path("/activebycaterer/locations/{name}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAllActiveLocationsBycaterer(@PathParam("catererid") long catererid) {
-		return Response.ok().entity(catererService.getAllActiveLocations(catererService.readById(catererid))).build();
+	public Response getAllActiveLocationsBycaterer(@PathParam("name") String name) {
+		Caterer caterer = catererService.readActiveByName(name);
+		if (null == caterer)
+			transactionInfo.generateRuntimeException("NO_CATERER", NotificationInfo.ERROR,
+					Status.INTERNAL_SERVER_ERROR.getStatusCode());
+		return Response.ok().entity(catererService.getAllActiveLocations(caterer)).build();
+	}
+
+	@GET
+	@Path("/products")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllProducts() {
+		return Response.ok().entity(productService.readAllActiveByCaterer(catererService.getByUser(getUser()))).build();
+	}
+
+	@GET
+	@Path("/{name}/products")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllProductsOfCaterer(@PathParam("name") String name) {
+		Caterer caterer = catererService.readActiveByName(name);
+		if (null == caterer)
+			transactionInfo.generateRuntimeException("NO_CATERER", NotificationInfo.ERROR,
+					Status.INTERNAL_SERVER_ERROR.getStatusCode());
+		return Response.ok().entity(productService.readAllActiveByCaterer(caterer)).build();
+	}
+
+	@GET
+	@Path("/{name}/categories")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllActiveCategories(@PathParam("name") String name) {
+		Caterer caterer = catererService.readActiveByName(name);
+		if (null == caterer)
+			transactionInfo.generateRuntimeException("NO_CATERER", NotificationInfo.ERROR,
+					Status.INTERNAL_SERVER_ERROR.getStatusCode());
+		return Response.ok().entity(catererService.getAllActiveCategories(caterer)).build();
 	}
 
 }

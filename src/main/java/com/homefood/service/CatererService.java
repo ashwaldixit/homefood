@@ -1,7 +1,9 @@
 package com.homefood.service;
 
 import java.util.List;
+import java.util.Set;
 
+import com.homefood.model.Category;
 import com.homefood.model.Caterer;
 import com.homefood.model.Location;
 import com.homefood.model.User;
@@ -27,4 +29,6 @@ public interface CatererService {
 	public Caterer getByUser(User user);
 
 	public List<Location> getAllActiveLocations(Caterer caterer);
+	
+	public Set<Category> getAllActiveCategories(Caterer caterer);
 }
