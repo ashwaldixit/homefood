@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.ListIterator;
 
 import javax.transaction.Transactional;
+import javax.ws.rs.core.Response.Status;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.homefood.codetype.CartStatus;
+import com.homefood.codetype.NotificationInfo;
+import com.homefood.core.TransactionInfo;
 import com.homefood.model.Cart;
 import com.homefood.model.CartResponse1;
 import com.homefood.model.CartTotal;
@@ -24,6 +27,9 @@ public class CartServiceImpl implements CartService {
 	@Autowired
 	private CartRepository cartRepository;
 
+	@Autowired
+	private TransactionInfo transactionInfo;
+
 	@Override
 	public Cart createCart(Cart cart) {
 		Cart existingCart = cartRepository.findByProductAndCustomerAndStatus(cart.getProduct(), cart.getCustomer(),
@@ -34,6 +40,16 @@ public class CartServiceImpl implements CartService {
 			return cartRepository.save(existingCart);
 		}
 		cart.setQuantity(1);
+
+		List<Cart> result = readAllActiveByCustomer(cart.getCustomer());
+
+		if (null != result && !result.isEmpty()) {
+			if (!result.get(0).getProduct().getCaterer().equals(cart.getProduct().getCaterer())) {
+				transactionInfo.generateRuntimeException("transactionInfo", NotificationInfo.ERROR,
+						Status.INTERNAL_SERVER_ERROR.getStatusCode());
+			}
+		}
+
 		return cartRepository.save(cart);
 	}
 
