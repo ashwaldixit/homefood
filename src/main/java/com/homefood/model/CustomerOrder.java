@@ -58,6 +58,11 @@ public class CustomerOrder {
 	@JoinColumn(name = "customerid", nullable = false, updatable = false)
 	// @JsonManagedReference
 	private User customer;
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "catererid", nullable = false, updatable = false)
+	@JsonIgnore
+	private Caterer caterer;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "orderstatus")
@@ -132,4 +137,11 @@ public class CustomerOrder {
 		this.address = address;
 	}
 
+	public Caterer getCaterer() {
+		return caterer;
+	}
+
+	public void setCaterer(Caterer caterer) {
+		this.caterer = caterer;
+	}
 }

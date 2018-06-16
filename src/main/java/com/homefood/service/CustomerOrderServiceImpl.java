@@ -57,12 +57,15 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 			customer = customerService.createCustomer(customerOrder.getCustomer());
 		}
 		customerOrder.setCustomer(customer);
-		customerOrder = customerOrderRepository.save(customerOrder);
+		
 		final CustomerOrder customerOrder2 = customerOrder;
 		List<Cart> carts = cartService.readAllActiveByCustomer(customerOrder.getCustomer());
+		customerOrder.setCaterer(carts.get(0).getProduct().getCaterer());
+		customerOrder = customerOrderRepository.save(customerOrder);
 		carts.stream().forEach(cart -> {
 			ProductOrder productOrder = new ProductOrder();
 			productOrder.setCustomerOrder(customerOrder2);
+			cart.getProduct().getCaterer();
 			productOrder.setDeliverydate(LocalDateTime.now().plusHours(3));
 			productOrder.setProduct(cart.getProduct());
 			productOrder.setOrderedQuantity(cart.getQuantity());
