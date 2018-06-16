@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.homefood.HomeFoodAppContextAware;
+import com.homefood.codetype.FoodType;
 import com.homefood.codetype.RecordStatus;
 import com.homefood.service.ProductPriceService;
 
@@ -66,7 +67,7 @@ public class Product {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "categoryid", nullable = false)
-//	@JsonManagedReference
+	// @JsonManagedReference
 	private Category category;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -90,9 +91,13 @@ public class Product {
 
 	@Transient
 	private double price;
-	
-	@Column(name="isFeaturedProduct")
+
+	@Column(name = "isFeaturedProduct")
 	private boolean isFeaturedProduct;
+
+	@Column(name = "foodtype")
+	@Enumerated(EnumType.STRING)
+	private FoodType foodType = FoodType.NONVEGETARIAN;
 
 	public RecordStatus getStatus() {
 		return status;

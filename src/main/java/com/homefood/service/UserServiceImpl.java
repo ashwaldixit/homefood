@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.homefood.codetype.UserRole;
 import com.homefood.core.PasswordMasker;
+import com.homefood.model.Caterer;
 import com.homefood.model.User;
 import com.homefood.repository.UserRepository;
 
@@ -24,6 +25,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private AddressService addressService;
+
+	@Autowired
+	private CatererService catererService;
 
 	@Override
 	public User readById(long id) {
@@ -42,14 +46,24 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User validateAndCreateCustomer(User customer) throws NoSuchAlgorithmException {
-		validate(customer);
-		customer.setPassword(getHashedPassword(customer));
-		if (!customer.getUserRole().equals(UserRole.Caterer)) {
-			customer.setIsApproved(true);
+		if (null != customer) {
+			validate(customer);
+			customer.setPassword(getHashedPassword(customer));
+			if (!customer.getUserRole().equals(UserRole.Caterer)) {
+				customer.setIsApproved(true);
+
+			} else if (customer.getUserRole().equals(UserRole.Caterer)) {
+				Caterer caterer = new Caterer();
+				caterer.setUser(customer);
+				caterer.setName(customer.getUserName());
+				caterer.setDescription(customer.getUserName());
+				catererService.validateAndCreate(caterer);
+			}
+			customer = createCustomer(customer);
+			createAddresses(customer);
+			return createCustomer(customer);
 		}
-		customer = createCustomer(customer);
-		createAddresses(customer);
-		return createCustomer(customer);
+		return null;
 	}
 
 	private String getHashedPassword(User user) throws NoSuchAlgorithmException {

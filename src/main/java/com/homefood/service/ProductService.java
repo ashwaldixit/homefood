@@ -2,6 +2,7 @@ package com.homefood.service;
 
 import java.util.List;
 
+import com.homefood.codetype.FoodType;
 import com.homefood.codetype.RecordStatus;
 import com.homefood.model.Category;
 import com.homefood.model.Caterer;
@@ -52,4 +53,6 @@ public interface ProductService {
 	public Product validateAndcreateProduct(ProductCreate productCreate);
 
 	public List<Product> getAllActiveProducts();
+
+	public List<Product> getAllActiveProductsByFoodTypeAndCaterer(FoodType foodType, Caterer caterer);
 }

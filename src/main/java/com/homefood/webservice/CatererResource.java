@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response.Status;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.homefood.codetype.FoodType;
 import com.homefood.codetype.NotificationInfo;
 import com.homefood.core.TransactionInfo;
 import com.homefood.model.Caterer;
@@ -133,6 +134,31 @@ public class CatererResource {
 			transactionInfo.generateRuntimeException("NO_CATERER", NotificationInfo.ERROR,
 					Status.INTERNAL_SERVER_ERROR.getStatusCode());
 		return Response.ok().entity(productService.readAllActiveByCaterer(caterer)).build();
+	}
+
+	@GET
+	@Path("/{name}/products/veg")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllActiveVegProductsOfCaterer(@PathParam("name") String name) {
+		Caterer caterer = catererService.readActiveByName(name);
+		if (null == caterer)
+			transactionInfo.generateRuntimeException("NO_CATERER", NotificationInfo.ERROR,
+					Status.INTERNAL_SERVER_ERROR.getStatusCode());
+		return Response.ok()
+				.entity(productService.getAllActiveProductsByFoodTypeAndCaterer(FoodType.VEGETARIAN, caterer)).build();
+	}
+
+	@GET
+	@Path("/{name}/products/nonveg")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllActiveNonVegProductsOfCaterer(@PathParam("name") String name) {
+		Caterer caterer = catererService.readActiveByName(name);
+		if (null == caterer)
+			transactionInfo.generateRuntimeException("NO_CATERER", NotificationInfo.ERROR,
+					Status.INTERNAL_SERVER_ERROR.getStatusCode());
+		return Response.ok()
+				.entity(productService.getAllActiveProductsByFoodTypeAndCaterer(FoodType.NONVEGETARIAN, caterer))
+				.build();
 	}
 
 	@GET

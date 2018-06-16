@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.homefood.codetype.DayAvailablity;
+import com.homefood.codetype.FoodType;
 import com.homefood.codetype.NotificationInfo;
 import com.homefood.codetype.RecordStatus;
 import com.homefood.core.TransactionInfo;
@@ -209,6 +210,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> getAllActiveProducts() {
 		return productRepository.findByStatus(RecordStatus.Active);
+	}
+
+	@Override
+	public List<Product> getAllActiveProductsByFoodTypeAndCaterer(FoodType foodType, Caterer caterer) {
+		return productRepository.findByCatererAndFoodTypeAndStatus(caterer, foodType, RecordStatus.Active);
 	}
 
 }

@@ -179,7 +179,6 @@ public class DemoData {
 		address.setState("Karnataka");
 		address.setCountry("India");
 		address.setZipCode("560056");
-		address.setUser(customer);
 		addresses.add(address);
 		addressService.createAddress(address);
 
@@ -507,6 +506,21 @@ public class DemoData {
 		catererLocation.setCaterer(caterer);
 		catererLocation.setLocation(locationRepository.findAll().get(2));
 		catererLocationService.validateAndCreate(catererLocation);
+		
+		
+		 customer = new User();
+		 address = new Address();
+		addresses = new ArrayList<Address>();
+
+		customer.setUserName("Vinay");
+		customer.setEmail("Vinay");
+		customer.setPassword("p");
+		customer.setConfirmPassword("p");
+		customer.setUserRole(UserRole.Caterer);
+		customer.setAddresses(addresses);
+		customer.setProfileImage(
+				"https://lh3.googleusercontent.com/-fDOce5pAZz4/AAAAAAAAAAI/AAAAAAAAADk/dX7moi_fvNc/s120-p-rw-no-il/photo.jpg");
+		customer = customerService.validateAndCreateCustomer(customer);
 
 		System.out.println("*****************************Done with Demo Data *************************************");
 

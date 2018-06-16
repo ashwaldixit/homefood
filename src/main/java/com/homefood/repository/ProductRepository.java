@@ -9,6 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.homefood.codetype.DayAvailablity;
+import com.homefood.codetype.FoodType;
 import com.homefood.codetype.RecordStatus;
 import com.homefood.model.Category;
 import com.homefood.model.Caterer;
@@ -23,6 +24,7 @@ public interface ProductRepository extends CrudRepository<Product, Serializable>
 	public List<Product> findByNameAndStatus(String name, RecordStatus status);
 
 	public List<Product> findByCategoryAndStatus(Category category, RecordStatus status);
+	public List<Product> findByCatererAndFoodTypeAndStatus(Caterer caterer, FoodType foodType, RecordStatus status);
 
 	public List<Product> findByCatererAndStatus(Caterer caterer, RecordStatus status);
 

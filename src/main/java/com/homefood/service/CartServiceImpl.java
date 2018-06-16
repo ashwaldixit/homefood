@@ -30,6 +30,9 @@ public class CartServiceImpl implements CartService {
 	@Autowired
 	private TransactionInfo transactionInfo;
 
+	@Autowired
+	private ProductService productService;
+
 	@Override
 	public Cart createCart(Cart cart) {
 		Cart existingCart = cartRepository.findByProductAndCustomerAndStatus(cart.getProduct(), cart.getCustomer(),
@@ -43,9 +46,12 @@ public class CartServiceImpl implements CartService {
 
 		List<Cart> result = readAllActiveByCustomer(cart.getCustomer());
 
+		cart.setProduct(productService.readById(cart.getProduct().getProductid()));
+
 		if (null != result && !result.isEmpty()) {
-			if (!result.get(0).getProduct().getCaterer().equals(cart.getProduct().getCaterer())) {
-				transactionInfo.generateRuntimeException("transactionInfo", NotificationInfo.ERROR,
+			if (result.get(0).getProduct().getCaterer().getCatererid() != cart.getProduct().getCaterer()
+					.getCatererid()) {
+				transactionInfo.generateRuntimeException("CART_CATERER_DIFFERENT", NotificationInfo.ERROR,
 						Status.INTERNAL_SERVER_ERROR.getStatusCode());
 			}
 		}

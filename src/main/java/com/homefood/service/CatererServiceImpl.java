@@ -1,6 +1,5 @@
 package com.homefood.service;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -42,11 +41,7 @@ public class CatererServiceImpl implements CatererService {
 
 		User user = userService.readById(caterer.getUser().getUserid());
 		if (null == user) {
-			try {
-				user = userService.validateAndCreateCustomer(user);
-			} catch (NoSuchAlgorithmException e) {
-				e.printStackTrace();
-			}
+			user = userService.createCustomer(caterer.getUser());
 		}
 		caterer.setUser(user);
 
@@ -66,7 +61,7 @@ public class CatererServiceImpl implements CatererService {
 		List<Caterer> caterers = catererRepository.findByNameIgnoreCaseAndRecordStatus(caterer.getName(), RecordStatus.Active);
 		if (caterer.getName() == null || caterer.getName().isEmpty()) {
 			transactionInfo.generateException("EMPTY_FILED", args, NotificationInfo.ERROR, 501);
-		} else if (!caterers.isEmpty() || null == caterers) {
+		} else if (null != caterers && !caterers.isEmpty() ) {
 			transactionInfo.generateException("ALREADY_EXISTS", args, NotificationInfo.ERROR, 501);
 		}
 	}
