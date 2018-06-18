@@ -8,6 +8,7 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
+import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class EmailService {
 
-	public void sendMail(String to, String from, String subject, Object data) {
+	public void sendMail(String to, String subject, Object data) {
 		final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 		// Get a Properties object
 		Properties props = System.getProperties();
@@ -29,8 +30,8 @@ public class EmailService {
 		props.put("mail.debug", "true");
 		props.put("mail.store.protocol", "pop3");
 		props.put("mail.transport.protocol", "smtp");
-		final String username = "give email";// create a new email put here
-		final String password = "password";
+		final String username = "homefoodpoint@gmail.com";
+		final String password = "Homefood123";
 		try {
 			Session session = Session.getDefaultInstance(props, new Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
@@ -40,12 +41,12 @@ public class EmailService {
 			// -- Create a new message --
 			Message msg = new MimeMessage(session);
 
-			msg.setFrom(new InternetAddress(from));
+			msg.setFrom(new InternetAddress("homefoodpoint@gmail.coml"));
 			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to, false));
 			msg.setSubject(subject);
 			msg.setText(data.toString());
 			msg.setSentDate(new Date());
-			//Transport.send(msg); // uncomment once you have new email set up
+			Transport.send(msg); // uncomment once you have new email set up
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}

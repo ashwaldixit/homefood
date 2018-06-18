@@ -117,7 +117,7 @@ public class DemoData {
 				"https://scontent.fmaa1-1.fna.fbcdn.net/v/t1.0-1/p320x320/12651209_10208285161471976_8980166677029189801_n.jpg?_nc_cat=0&oh=e8bf5d1854b2eb9860d9890035fe3565&oe=5B8289AF");
 		customer = customerService.validateAndCreateCustomer(customer);
 
-		//emailService.sendMail(customer.getEmail(), "ashwalappi@gmail.com", "Test", "Awesome you are");
+		emailService.sendMail(customer.getEmail(), "Test", "Awesome you are");
 		
 		Caterer caterer = new Caterer();
 		caterer.setName("Sumi");
