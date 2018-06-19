@@ -4,13 +4,19 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.core.Response.Status;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.homefood.codetype.NotificationInfo;
 import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
+import com.homefood.core.TransactionInfo;
 import com.homefood.model.Cart;
+import com.homefood.model.Caterer;
+import com.homefood.model.CatererLocation;
 import com.homefood.model.CustomerOrder;
 import com.homefood.model.CustomerOrderResponse;
 import com.homefood.model.ProductOrder;
@@ -32,6 +38,15 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 
 	@Autowired
 	ProductOrderService productOrderService;
+
+	@Autowired
+	CatererService catererService;
+
+	@Autowired
+	CatererLocationService catererLocationService;
+
+	@Autowired
+	private TransactionInfo transactionInfo;
 
 	@Override
 	public CustomerOrder readById(long id) {
@@ -57,15 +72,24 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 			customer = customerService.createCustomer(customerOrder.getCustomer());
 		}
 		customerOrder.setCustomer(customer);
-		
+
 		final CustomerOrder customerOrder2 = customerOrder;
 		List<Cart> carts = cartService.readAllActiveByCustomer(customerOrder.getCustomer());
-		customerOrder.setCaterer(carts.get(0).getProduct().getCaterer());
+		String curentZipCode = customerOrder.getCustomer().getAddresses().get(0).getZipCode();
+		customerOrder.setCaterer(catererService.readById(carts.get(0).getProduct().getCaterer().getCatererid()));
+		List<CatererLocation> catererLocations = catererLocationService
+				.readAllActiveByCaterer(catererService.readById(carts.get(0).getProduct().getCaterer().getCatererid()));
 		customerOrder = customerOrderRepository.save(customerOrder);
+		List<Object> errorMessges = new ArrayList<Object>();
+		errorMessges.add(curentZipCode);
+		errorMessges.add(catererLocations);
+//		if (!catererLocations.contains(curentZipCode)) {
+//			transactionInfo.generateRuntimeException("CATERER_INVLAID_LOCATION", errorMessges, NotificationInfo.ERROR,
+//					Status.INTERNAL_SERVER_ERROR.getStatusCode());
+//		}
 		carts.stream().forEach(cart -> {
 			ProductOrder productOrder = new ProductOrder();
 			productOrder.setCustomerOrder(customerOrder2);
-			cart.getProduct().getCaterer();
 			productOrder.setDeliverydate(LocalDateTime.now().plusHours(3));
 			productOrder.setProduct(cart.getProduct());
 			productOrder.setOrderedQuantity(cart.getQuantity());
@@ -74,6 +98,7 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 		});
 		cartService.processAllByCustomer(customerOrder.getCustomer());
 		return customerOrder;
+
 	}
 
 	@Override
