@@ -1,9 +1,0 @@
-<html>
-    <body>
-        <span>
-			      <h4>${notification.notificationType}</h4>
-			      <p> ${notification.message}</p>
-			      <br/><br/>
-	   </span>
-    </body>
-</html>
