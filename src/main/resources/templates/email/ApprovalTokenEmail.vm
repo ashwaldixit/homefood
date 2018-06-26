@@ -1,0 +1,12 @@
+<html>
+    <body>
+        <h3>Hi ${user.userName}, welcome to Obsessory!</h3>
+        <div>
+             Congratulations, you have been identified to be a valuable blogger for Obsessory. Please you this code : <h4>${approvalcode.token}</h4>
+            for activating your blogger profile.
+            
+            Thanks,
+            Obsessory Team.
+        </div>
+    </body>
+</html>

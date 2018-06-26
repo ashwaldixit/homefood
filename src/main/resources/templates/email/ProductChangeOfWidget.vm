@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <span>
+			      <h4>${notification.notificationType}</h4>
+			      <p> ${notification.message}</p>
+			      <p> ${notification.createdDate}</p>
+			      <p> ${notification.productOutOfStockLink.bloggedProduct.guid}</p>
+			      <p> ${notification.productOutOfStockLink.recommendedbloggedProduct.guid}</p>
+			      <p> ${notification.bloggedProductImgSource}</p>
+			      <img src= "${notification.bloggedProductImgSource}" />
+			      <span> &lt;- <strong>Changed To</strong>  -&gt;</span>
+			      <img src= "${notification.obsRecommendedImgSource}" />
+			      <br/><br/>
+	   </span>
+    </body>
+</html>

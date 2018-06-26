@@ -1,0 +1,9 @@
+<html>
+    <body>
+        <span>
+			     
+			      <p> ${notification.message}</p>
+			    
+	   </span>
+    </body>
+</html>

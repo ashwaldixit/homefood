@@ -17,6 +17,12 @@ public class TransactionInfo {
 
 	@Autowired
 	private ErrorMessageReader messagesProperties;
+	@Autowired
+	private EmailService emailService;
+	@Autowired
+	private AppDataUtil appDataUtil;
+	@Autowired
+	private UtilMessageReader messageReader;
 
 	public void generateException(String messageKey, NotificationInfo notificationinfo, int errorCode) {
 		throw new HomeFoodInfoException(messagesProperties.getProperty(messageKey), notificationinfo, errorCode);
@@ -37,14 +43,13 @@ public class TransactionInfo {
 				errorCode);
 	}
 
-	/*
-	 * public void sendErrorMail(String stackTrace) { String mailinglist =
-	 * appDataUtil.getValueByKey("error.mailinglist"); String[] mailToList =
-	 * mailinglist.split(","); for (String to : mailToList) {
-	 * emailService.sendEmailWithText(null, to, obsessoryConfig.getFromAddress(),
-	 * "Error in CMT", stackTrace, null); }
-	 * 
-	 * }
-	 */
+	public void sendErrorMail(String stackTrace) {
+		String mailinglist = appDataUtil.getValueByKey("error.mailinglist");
+		String[] mailToList = mailinglist.split(",");
+		for (String to : mailToList) {
+			emailService.sendEmailWithText(null, to, "Error in CMT", stackTrace, null);
+		}
+
+	}
 
 }

@@ -3,7 +3,9 @@ package com.homefood.webservice;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -31,6 +33,7 @@ import com.homefood.repository.LocationRepository;
 import com.homefood.repository.ProductPresenceRepository;
 import com.homefood.repository.ProductRepository;
 import com.homefood.service.AddressService;
+import com.homefood.service.ApplicationDataService;
 import com.homefood.service.CartService;
 import com.homefood.service.CategoryService;
 import com.homefood.service.CatererLocationService;
@@ -98,10 +101,12 @@ public class DemoData {
 	AddressService addressService;
 
 	@Autowired
-	private EmailService emailService;
+	private ApplicationDataService applicationDataService;
 
 	@POST
 	public void generateDemoData() throws NoSuchAlgorithmException {
+
+		insertAppData();
 
 		User customer = new User();
 		Address address = new Address();
@@ -117,8 +122,10 @@ public class DemoData {
 				"https://scontent.fmaa1-1.fna.fbcdn.net/v/t1.0-1/p320x320/12651209_10208285161471976_8980166677029189801_n.jpg?_nc_cat=0&oh=e8bf5d1854b2eb9860d9890035fe3565&oe=5B8289AF");
 		customer = customerService.validateAndCreateCustomer(customer);
 
-		emailService.sendMail(customer.getEmail(), "Test", "Awesome you are");
-		
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("user", customer);
+		// emailService.sendEmailWithText("This is test message body",
+		// customer.getEmail(), "Test", "text", model);
 		Caterer caterer = new Caterer();
 		caterer.setName("Sumi");
 		caterer.setDescription("First Caterer");
@@ -517,8 +524,8 @@ public class DemoData {
 		address = new Address();
 		addresses = new ArrayList<Address>();
 
-		customer.setUserName("Vinay");
-		customer.setEmail("Vinay");
+		customer.setUserName("SmithaAshwal");
+		customer.setEmail("smithaashwaldixit@gmail.com");
 		customer.setPassword("p");
 		customer.setConfirmPassword("p");
 		customer.setUserRole(UserRole.Caterer);
@@ -529,6 +536,11 @@ public class DemoData {
 
 		System.out.println("*****************************Done with Demo Data *************************************");
 
+	}
+
+	public void insertAppData() {
+		if (applicationDataService.getAll().size() <= 0)
+			applicationDataService.updateDB();
 	}
 
 }

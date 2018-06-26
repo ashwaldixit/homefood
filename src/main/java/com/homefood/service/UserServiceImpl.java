@@ -1,13 +1,16 @@
 package com.homefood.service;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.homefood.codetype.UserRole;
+import com.homefood.core.EmailService;
 import com.homefood.core.PasswordMasker;
 import com.homefood.model.Caterer;
 import com.homefood.model.User;
@@ -28,6 +31,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private CatererService catererService;
+
+	@Autowired
+	private EmailService emailService;
 
 	@Override
 	public User readById(long id) {
@@ -61,7 +67,11 @@ public class UserServiceImpl implements UserService {
 			}
 			customer = createCustomer(customer);
 			createAddresses(customer);
-			return createCustomer(customer);
+			Map<String, Object> model = new HashMap<>();
+			model.put("user", customer);
+			emailService.sendEmail(customer, customer.getEmail(), "Successfully Registered",
+					"/templates/email/EmailRegistration.vm", model);
+			return customer;
 		}
 		return null;
 	}

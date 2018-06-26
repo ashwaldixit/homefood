@@ -1,0 +1,8 @@
+<html>
+    <body>
+        <h3>Hi ${user.userName}, welcome to Homefood!</h3>
+        <div>
+            Thank you for registering with us. Enjoy our home food and stay healthy</a>.
+        </div>
+    </body>
+</html>
