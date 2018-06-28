@@ -21,6 +21,8 @@ import com.homefood.webservice.LoginResource;
 import com.homefood.webservice.ProductOrderResource;
 import com.homefood.webservice.ProductPresenceResource;
 import com.homefood.webservice.ProductResource;
+import com.homefood.webservice.SupportCommentResource;
+import com.homefood.webservice.SupportTicketResource;
 
 @Component
 public class JerseyConfig extends ResourceConfig {
@@ -47,6 +49,8 @@ public class JerseyConfig extends ResourceConfig {
 		register(LoginResource.class);
 		register(CodeTypeResource.class);
 		register(LocationResource.class);
+		register(SupportTicketResource.class);
+		register(SupportCommentResource.class);
 	}
 
 }
