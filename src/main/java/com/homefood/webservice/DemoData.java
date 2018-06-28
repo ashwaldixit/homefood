@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 
 import com.homefood.codetype.DayAvailablity;
 import com.homefood.codetype.UserRole;
-import com.homefood.core.EmailService;
 import com.homefood.model.Address;
 import com.homefood.model.Cart;
 import com.homefood.model.Category;
@@ -524,8 +523,8 @@ public class DemoData {
 		address = new Address();
 		addresses = new ArrayList<Address>();
 
-		customer.setUserName("SmithaAshwal");
-		customer.setEmail("smithaashwaldixit@gmail.com");
+		customer.setUserName("Vinay");
+		customer.setEmail("vinaykumarcs.ait@gmail.com");
 		customer.setPassword("p");
 		customer.setConfirmPassword("p");
 		customer.setUserRole(UserRole.Caterer);

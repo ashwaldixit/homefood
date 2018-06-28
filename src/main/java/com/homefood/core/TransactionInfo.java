@@ -21,8 +21,6 @@ public class TransactionInfo {
 	private EmailService emailService;
 	@Autowired
 	private AppDataUtil appDataUtil;
-	@Autowired
-	private UtilMessageReader messageReader;
 
 	public void generateException(String messageKey, NotificationInfo notificationinfo, int errorCode) {
 		throw new HomeFoodInfoException(messagesProperties.getProperty(messageKey), notificationinfo, errorCode);
