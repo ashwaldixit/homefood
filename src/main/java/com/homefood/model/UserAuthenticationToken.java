@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
@@ -24,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.homefood.codetype.RecordStatus;
 import com.homefood.codetype.UserRole;
+import com.homefood.core.LocalDateTimeConverter;
 
 @Entity(name = "userauthenticationtoken")
 @EntityListeners(AuditingEntityListener.class)
@@ -46,18 +48,21 @@ public class UserAuthenticationToken implements Serializable {
 
 	@Column
 	@JsonIgnore
+	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime expiryDate = LocalDateTime.now();
 
 	@NotNull
 	@CreatedDate
 	@JsonIgnore
 	@Column(name = "createddate")
+	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime createdDate;
 
 	@NotNull
 	@LastModifiedDate
 	@JsonIgnore
 	@Column(name = "lastmodifieddate")
+	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime lastModifiedDate;
 
 	@Enumerated(EnumType.STRING)

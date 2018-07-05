@@ -3,6 +3,7 @@ package com.homefood.model;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
@@ -23,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.homefood.codetype.DayAvailablity;
 import com.homefood.codetype.RecordStatus;
+import com.homefood.core.LocalDateTimeConverter;
 
 @Entity(name = "productpresence")
 @EntityListeners(AuditingEntityListener.class)
@@ -39,9 +41,11 @@ public class ProductPresence {
 	private Product product;
 
 	@Column(name = "starttime")
+	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime startTime;
 
 	@Column(name = "endtime")
+	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime endTime;
 
 	@Transient
@@ -60,11 +64,13 @@ public class ProductPresence {
 	@NotNull
 	@CreatedDate
 	@Column(name = "createddate")
+	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime createdDate;
 
 	@NotNull
 	@LastModifiedDate
 	@Column(name = "lastmodifieddate")
+	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime lastModifiedDate;
 
 	@Enumerated(EnumType.STRING)

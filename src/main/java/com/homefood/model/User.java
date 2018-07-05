@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
@@ -24,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.homefood.codetype.RecordStatus;
 import com.homefood.codetype.UserRole;
+import com.homefood.core.LocalDateTimeConverter;
 
 @Entity(name = "users")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
@@ -51,21 +53,24 @@ public class User {
 
 	@Transient
 	private String confirmPassword;
-	
-	@Column(name="profileimage")
+
+	@Column(name = "profileimage")
 	private String profileImage;
 
 	@Column(name = "lastlogin")
+	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime lastLoginDate;
 
 	@NotNull
 	@CreatedDate
 	@Column(name = "createddate")
+	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime createdDate;
 
 	@NotNull
 	@LastModifiedDate
 	@Column(name = "lastmodifieddate")
+	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime lastModifiedDate;
 
 	@Enumerated(EnumType.STRING)

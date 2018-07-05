@@ -4,18 +4,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ws.rs.core.Response.Status;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.homefood.codetype.NotificationInfo;
 import com.homefood.codetype.OrderStatus;
 import com.homefood.codetype.RecordStatus;
 import com.homefood.core.TransactionInfo;
 import com.homefood.model.Cart;
-import com.homefood.model.Caterer;
 import com.homefood.model.CatererLocation;
 import com.homefood.model.CustomerOrder;
 import com.homefood.model.CustomerOrderResponse;

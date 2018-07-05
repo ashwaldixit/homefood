@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
@@ -29,6 +30,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.homefood.HomeFoodAppContextAware;
 import com.homefood.codetype.FoodType;
 import com.homefood.codetype.RecordStatus;
+import com.homefood.core.LocalDateTimeConverter;
 import com.homefood.service.ProductPriceService;
 
 @Entity
@@ -46,11 +48,13 @@ public class Product {
 	@NotNull
 	@CreatedDate
 	@Column(name = "createddate")
+	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime createdDate;
 
 	@NotNull
 	@LastModifiedDate
 	@Column(name = "lastmodifieddate")
+	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime lastModifiedDate;
 
 	@Enumerated(EnumType.STRING)

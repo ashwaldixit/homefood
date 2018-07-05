@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
@@ -22,6 +23,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.homefood.codetype.RecordStatus;
+import com.homefood.core.LocalDateTimeConverter;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -38,11 +40,13 @@ public class Category {
 	@NotNull
 	@CreatedDate
 	@Column(name = "createddate")
+	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime createdDate;
 
 	@NotNull
 	@LastModifiedDate
 	@Column(name = "lastmodifieddate")
+	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime lastModifiedDate;
 
 	@Enumerated(EnumType.STRING)

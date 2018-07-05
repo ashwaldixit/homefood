@@ -2,7 +2,10 @@ package com.homefood.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Convert;
+
 import com.homefood.codetype.DayAvailablity;
+import com.homefood.core.LocalDateTimeConverter;
 
 public class ProductCreate {
 
@@ -13,8 +16,11 @@ public class ProductCreate {
 	private Caterer caterer;
 	private double price;
 	private DayAvailablity dayAvailability;
+	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime day;
+	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime startTime;
+	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime endTime;
 
 	public String getName() {
